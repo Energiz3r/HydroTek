@@ -1,0 +1,38 @@
+.button-container {
+  padding: .8rem;
+  display: inline-block;
+  width: 40rem;
+}
+.button-container-header {
+  padding: .8rem;
+  float: right;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+}
+
+button:disabled {
+  cursor: default;
+}
+
+.button-base {
+  padding: .8rem;
+  //background-color: $highlight;
+  background-color: rgba(75, 75, 75, 0.849);
+  color: white;
+  box-shadow: $shadow;
+}
+.button-base:disabled {
+  padding: .8rem;
+  background-color: lighten($highlight, 20%);
+  color: rgb(190, 190, 190);
+  box-shadow: $shadow;
+}
+.button-navigation {
+  margin-right: .5rem;
+}
+.button-selected {
+  background-color: darken($theme, 10%);
+}

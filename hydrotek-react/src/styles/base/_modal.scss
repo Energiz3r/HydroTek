@@ -1,0 +1,5 @@
+.modal-fade-out {
+  transform: translateY(-1.5rem);
+  opacity: 0;
+  transition: opacity $transition-speed linear, transform $transition-speed linear !important;  
+}

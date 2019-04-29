@@ -1,0 +1,43 @@
+//
+// theme configuration
+//
+
+//fonts
+$font-default: 'Source Sans Pro', sans-serif;
+
+//$transition-speed: 150ms;
+$transition-speed: 2ms;
+
+//colours
+$primary-font: rgb(36, 36, 36);
+
+//$header-bg-color: #003b72; //navy blue
+//$header-bg-color: #004646; //teal
+$header-bg-color: #6600a1; //purple
+$theme: lighten($header-bg-color, 20%);
+
+$light-bg-color: lighten($header-bg-color, 83%);
+$bg-color: #ffffff;
+//$subtle-highlight: #63bdbd;
+
+//$subtle-highlight: rgb(158, 199, 202);
+$subtle-highlight: lighten($theme, 20%);
+$hover-row: rgba($subtle-highlight, 0.2);
+$hover-cell: darken(rgba(158, 199, 202, 0.3), 10%);
+
+$highlight: #242424;
+$border-color: rgb(160, 160, 160);
+$input-warning-color: rgb(255, 136, 57);
+$noborder: .1rem solid rgba(0,0,0,0);
+
+//box-shadow: none|h-offset v-offset blur spread color |inset|initial|inherit;
+$shadow: 0 .4rem .4rem rgba(0,0,0,.25);
+$shadow-faint: 1rem 1rem 2rem 1rem rgba(0,0,0,.05);
+
+//spacing
+$ssize: 1.2rem;
+$msize: 1.6rem;
+$lmsize: 2.2rem;
+$lsize: 3.2rem;
+$xlsize: 4.8rem;
+$desktop-breakpoint: 45rem;

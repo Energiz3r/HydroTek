@@ -1,0 +1,25 @@
+html {
+  font-size: 62.5%;
+  color: $primary-font;
+  background-color: $bg-color;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: $font-default;
+  font-size: $msize;
+  height: 100%;
+  margin: 0;  
+}
+
+h1, h2, h3, h4 {
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+  padding-left: 1rem;
+}
+
+.app-page {
+  padding: 2rem;
+}
