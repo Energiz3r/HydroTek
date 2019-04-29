@@ -1,8 +1,7 @@
 # HydroTek
 ## An IoT Hydroponics Controller
 
-*Current revision: rev3*
-*Current status: **issues** - see [Known Issues](#known-issues)*
+*Current revision: rev3 - see [Known Issues](#known-issues)*
 
 ![alt-text](https://i.imgur.com/i79Ttwah.jpg "Image")
 
