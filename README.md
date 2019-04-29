@@ -74,7 +74,7 @@ The PHP / React combination was selected due to me already having a CPanel-based
 
 ### Known issues *(rev3)*:
 
-* Have not yet designed a case for the relay module - may incorporate this into the main unit in a future revision, or offer both an integrate and remote unit.
+* Have not yet designed a case for the relay module - may incorporate this into the main unit in a future revision, or offer both an integrated and remote unit.
 * The PHP script is missing from the repo completely as it's hacky and not suitable for inclusion just yet.
 * The react app is included, but is just as hacky and not suitable for use.
 * PCB traces for serial communication between the Pro Micro and the ESP8266 is wrong as the method used was changed; hardware UART is used instead of software serial as initially planned. Hookup wires are required.
