@@ -20,7 +20,7 @@ The PHP / React combination was selected due to me already having a CPanel-based
 
 ---
 
-### To Do (apart from things that are in-progress):
+### To Do (not started):
 
 * pH sensor inputs
 * user management for the online component
@@ -47,6 +47,18 @@ The PHP / React combination was selected due to me already having a CPanel-based
 * Buzzer to alert lost WiFi signal, temperature extremes, nutrient pump faults, or full / empty nutrient tanks *(partially implemented)*
 * Online alerts for temperature extremes, nutrient pump faults, or full / empty nutrient tanks *(not yet implemented)*
 * Email alerts for temperature extremes, nutrient pump faults, or full / empty nutrient tanks *(not yet implemented)*
+
+---
+
+### Design considerations:
+
+If you're wondering why I've gone a certain way with some aspects of the design, this may explain.
+
+* Must be maintenance-free (the device, not the hydro setup)
+* Once assembled, configured, and flashed, the device must be easy to set up and use - I am making this to give to non-technical people
+* Must be reliable, as it won't be easy to provide support for
+* The main unit must be small as space is a premium. Other off-the-shelf units or open-source setups are huge or use things like an Arduino Mega.. this device's total footprint is smaller than the Mega alone
+* Data easily accessible from phone / PC. The aforementioned non-technical users will just want to log in and see their plant data, and know whether to empty the run-off tank at a glance. Mucking about with a built-in webserver on the ESP, only accessible within range wasn't an option.
 
 ---
 
