@@ -2,6 +2,7 @@
 ## An IoT Hydroponics Controller
 
 *Current revision: rev3*
+*Current status: **issues** - see [Known Issues](#known-issues)*
 
 ![alt-text](https://i.imgur.com/i79Ttwah.jpg "Image")
 
@@ -17,6 +18,17 @@ There are five components to this repository:
 * STL files for a 3D printed case to house the controller
 
 The PHP / React combination was selected due to me already having a CPanel-based web hosting platform that I was familiar with. Better solutions are likely to exist, in particular a nodeJS-based platform would be preferred, however for rapid deployment this was what was available and ready.
+
+---
+
+### To Do (apart from things that are in-progress):
+
+* pH sensor inputs
+* user management for the online component
+* getting configuration for lamp / pump timings from online so the sketch doesn't need to be uploaded to do it (pump control not currently implemented, lamp timing currently hardcoded in sketch)
+* online / email alerts
+* safe switching of mains, maybe through the use of an off the shelf 'switcher' of some kind?
+* WiFi configuration on the device instead of hardcoded to the sketch... Not sure if possible without some work to shrink the code, unless we do it directly on the ESP as there's only a few % space left in the sketch on the pro micro. 
 
 ---
 
@@ -39,7 +51,8 @@ The PHP / React combination was selected due to me already having a CPanel-based
 
 ---
 
-### Build instructions *(applicable only to rev3)*:
+### Build instructions:
+*(rev3)*
 
 * To manufacture the PCB, upload the gerber files for the current PCB revision to a service such as [DirtyPCBs](http://dirtypcbs.com/store/pcbs)
 * Purchase the components, as desired, that are outlined in the BOM file
@@ -72,7 +85,8 @@ The PHP / React combination was selected due to me already having a CPanel-based
 
 ---
 
-### Known issues *(rev3)*:
+### Known issues:
+*(rev3)*
 
 * Have not yet designed a case for the relay module - may incorporate this into the main unit in a future revision, or offer both an integrated and remote unit.
 * The PHP script is missing from the repo completely as it's hacky and not suitable for inclusion just yet.
