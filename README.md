@@ -22,7 +22,7 @@ The PHP / React combination was selected due to me already having a CPanel-based
 
 ### Features:
 
-* Uploads sensor data to a web server to enable online monitoring and control of hydroponics
+* Uploads sensor data to a web server to enable online monitoring and control of hydroponics *(control not yet implemented)*
 * WiFi enabled
 * 128x64 OLED display
 * RTC with battery backup for control of grow light on/off periods
@@ -32,18 +32,18 @@ The PHP / React combination was selected due to me already having a CPanel-based
   * 2x float sensors to detect either empty nutrient tank or full run-off tank
 * Can control:
   * 2x grow lights
-  * 2x nutrient pumps (not yet implemented)
-* Buzzer to alert lost WiFi signal, temperature extremes, nutrient pump faults, or full / empty nutrient tanks (partially implemented)
-* Online alerts for temperature extremes, nutrient pump faults, or full / empty nutrient tanks (not yet implemented)
-* Email alerts for temperature extremes, nutrient pump faults, or full / empty nutrient tanks (not yet implemented)
+  * 2x nutrient pumps *(not yet implemented)*
+* Buzzer to alert lost WiFi signal, temperature extremes, nutrient pump faults, or full / empty nutrient tanks *(partially implemented)*
+* Online alerts for temperature extremes, nutrient pump faults, or full / empty nutrient tanks *(not yet implemented)*
+* Email alerts for temperature extremes, nutrient pump faults, or full / empty nutrient tanks *(not yet implemented)*
 
 ---
 
-### Build instructions:
+### Build instructions *(applicable only to rev3)*:
 
 * To manufacture the PCB, upload the gerber files for the current PCB revision to a service such as [DirtyPCBs](http://dirtypcbs.com/store/pcbs)
 * Purchase the components, as desired, that are outlined in the BOM file
-* Solder the components, ensuring the following order is observed:
+* Solder the components, ensuring the following order is observed :
   * Using a dremel or other cutting tool, cut traces on underside of PCB for the data (middle) pins for both flow sensors
   * Solder in Pro Micro
   * Solder in LED1
@@ -72,7 +72,7 @@ The PHP / React combination was selected due to me already having a CPanel-based
 
 ---
 
-### Known issues:
+### Known issues *(rev3)*:
 
 * Have not yet designed a case for the relay module - may incorporate this into the main unit in a future revision, or offer both an integrate and remote unit.
 * The PHP script is missing from the repo completely as it's hacky and not suitable for inclusion just yet.
