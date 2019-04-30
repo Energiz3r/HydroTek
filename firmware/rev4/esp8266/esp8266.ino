@@ -89,7 +89,7 @@ void uploadData(String message) {
   shouldUpload = true;
 }
 
-int unsigned long lastUploadTime = 0;
+//int unsigned long lastUploadTime = 0;
 bool waitingForAVR = true;
 bool AVRWaitingForESP = true;
 void handleSWSerialInput(String input) {
@@ -106,11 +106,11 @@ void handleSWSerialInput(String input) {
     Serial.println("seen again"); //not really neccessary
   } else {
     //check if another upload should be done
-    if (shouldUpload && millis() - lastUploadTime > uploadFrequency){
-      lastUploadTime = millis();
+    //if (shouldUpload && millis() - lastUploadTime > uploadFrequency){
+      //lastUploadTime = millis();
       shouldUpload = false;
       uploadData(input); //upload the received data to the server - we'll let the server check for errors
-    }
+    //}
   }
 }
 
