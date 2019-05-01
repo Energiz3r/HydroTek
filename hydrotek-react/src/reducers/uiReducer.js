@@ -1,8 +1,9 @@
 const reducerDefaultState = {
   appName: 'UI',
   loggedIn: false,
-  location: 'home',
-  lastLocation: ''
+  location: 'Charts',
+  lastLocation: '',
+  deviceId: 1
 }
 
 export default (state = reducerDefaultState, action) => {

@@ -9,7 +9,9 @@ class Home extends React.Component {
     this.state = {
       headerCollapsed: false,
       collapseOverride: false,
-      loggedIn: window.loggedIn
+      loggedIn: window.loggedIn == '1',
+      userName: window.username,
+      displayMessage: window.displayMessage,
     }
   }
   navClick = (location) => {
@@ -45,13 +47,14 @@ class Home extends React.Component {
           <div className='header-container header-container-expanded'>
             <h1 className='header-title-text'>{this.props.ui.appName}</h1>
             <p className='header-link-text'>
-              <a href='#' onClick={() => {this.navClick('home')}} className={'header-link' + (this.props.ui.location == 'home' ? ' header-active-link' : '')}>Home</a>
+              {this.state.loggedIn &&
+                <a href='#' onClick={() => {this.navClick('home')}} className={'header-link' + (this.props.ui.location == 'home' ? ' header-active-link' : '')}>Home</a>}
               {!this.state.loggedIn ?
                 <a href='#' onClick={() => {this.navClick('login')}} className={'header-link' + (this.props.ui.location == 'login' ? ' header-active-link' : '')}>Login</a> :
                 <a href='#' onClick={() => {this.navClick('logout')}} className='header-link'>Logout</a> }
-                <a href='#' onClick={() => {this.navClick('information')}} className={'header-link' + (this.props.ui.location == 'information' ? ' header-active-link' : '')}>Information</a>
+              <a href='https://github.com/Energiz3r/HydroTek' target="_blank" className='header-link'>Information</a>
+              <i className='welcome-message'>{this.state.displayMessage == "" ? ("Hello, " + this.state.userName + ".") : this.state.displayMessage}</i>
             </p>
-            {/* <div className="button-container-header"><button className='button-base' onClick={this.goToCalculations} >Go To Calculations</button></div> */}
           </div>
         }
       </div>

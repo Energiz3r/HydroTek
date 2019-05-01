@@ -19,10 +19,13 @@ button:disabled {
 
 .button-base {
   padding: .8rem;
-  //background-color: $highlight;
-  background-color: rgba(75, 75, 75, 0.849);
+  background-color: $highlight;
+  //background-color: rgba(75, 75, 75, 0.849);
   color: white;
   box-shadow: $shadow;
+}
+.button-base-deselected {
+  background-color: rgba(75, 75, 75, 0.849);
 }
 .button-base:disabled {
   padding: .8rem;
@@ -34,5 +37,11 @@ button:disabled {
   margin-right: .5rem;
 }
 .button-selected {
+  background-color: darken($theme, 10%);
+}
+
+
+.button-base-input {
+  border: 0;
   background-color: darken($theme, 10%);
 }

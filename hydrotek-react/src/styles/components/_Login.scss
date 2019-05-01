@@ -1,0 +1,12 @@
+.login-form {
+  display: flex;
+  flex-direction: column;
+  max-width: 40rem;
+}
+
+.login-form > input {
+  margin: .5rem;
+  height: 4rem;
+  font-size: 2rem;
+  padding: .5rem;
+}

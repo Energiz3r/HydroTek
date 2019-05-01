@@ -19,17 +19,14 @@ class Login extends React.Component {
   }
   render() {
     return (
-      <div>
+      <div className='main-menu-container'>
         <h1>Login</h1>
-        <p>Please log in</p>
         <p>{this.state.displayMessage}</p>
-        <form action="index.php" method="post">
+        <form action="index.php" method="post" className='login-form'>
           <input type="text" name="username" placeholder='username' onChange={this.onUsernameChange} />
           <input type="password" name="password" placeholder="password" onChange={this.onPasswordChange} />
-          <input type='hidden' name="token" value="skjdfhslkg78h34flkjeho84f7y0894rj2oui43jhnf8923hr09fh24oi57h28437fh" />
-          <input type="submit" />
+          <input type="submit" class='button-base button-base-input' />
         </form>
-        <a href="#" onClick={this.props.setLoggedIn}>Force Login</a>
       </div>
     )
   }

@@ -26,9 +26,9 @@ class Content extends React.Component {
     return (
       <div>
         <Header isMounted={true} isHeader={true} />
-        <HomePage isMounted={this.state.loggedIn && loc == 'home'} />
         <LoginPage isMounted={!this.state.loggedIn} />
-        <Information isMounted={this.state.loggedIn && loc == 'information'} />
+        <HomePage isMounted={this.state.loggedIn && loc == 'home'} />
+        {/* <Information isMounted={this.state.loggedIn && loc == 'information'} /> */}
         <Charts isMounted={this.state.loggedIn && loc == 'Charts'} />
       </div>
     )

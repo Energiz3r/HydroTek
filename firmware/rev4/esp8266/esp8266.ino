@@ -11,7 +11,7 @@
 
 /* START CONFIG */
 
-#define dataString "user=USERNAME&password=PASSSWORD&action=upload&plant=1&" //set the username, password, and ID of the plant here. Ensure your userna/password are alphanumeric and don't contain special characters. Don't alter the other characters as this forms part of the GET request. 'action' should always = 'upload'
+#define dataString "user=USERNAME&password=PASSSWORD&device=1&" //set the username, password, and ID of the device here. Ensure your username/password are alphanumeric and don't contain special characters. Don't alter the other characters as this forms part of the GET request.
 #define endpoint "https://mydomain.com/endpoint.php" //the php script that the ESP8266 will connect to for uploading data
 //#define dummyUpload //uncomment to attempt a dummy upload every 10 seconds, with the results output to Serial (Pro Micro not required)
 

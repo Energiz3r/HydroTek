@@ -11,19 +11,12 @@ class Charts extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      userName: window.username,
-      displayMessage: window.displayMessage,
       filter: 'all'
     }
   }
   
   getFilteredData = (plant) => {
-    let filterObj;
-    if (plant == 1) {
-      filterObj = {...window.plant1Data}
-    } else {
-      filterObj = {...window.plant2Data}
-    }
+    var data = window.dataPoints.filter(datapoint=>deviceId == this.props.ui.deviceId);
 
     //figure out how to filter
     const hours = 60 * 60 * 1000
@@ -147,13 +140,12 @@ class Charts extends React.Component {
     }
     return (
       <div className='main-menu-container'>
-        <h2>Data Charts</h2>
-        <p>{this.state.displayMessage == "" ? ("Hello, " + this.state.userName + ".") : this.state.displayMessage}</p>
+        <h2>Charts</h2>
         <div className="button-container">
-          <p><button className={'button-base ' + (this.state.filter == 'all' ? 'button-selected' : '')} onClick={() => { this.setState({...this.state, filter: 'all'}) }} >All Time</button>
-          <button className={'button-base ' + (this.state.filter == 'last24' ? 'button-selected' : '')} onClick={() => { this.setState({...this.state, filter: 'last24'}) }} >Last 24hrs</button>
-          <button className={'button-base ' + (this.state.filter == 'last7days' ? 'button-selected' : '')} onClick={() => { this.setState({...this.state, filter: 'last7days'}) }} >Last 7 days</button>
-          <button className={'button-base ' + (this.state.filter == 'last30days' ? 'button-selected' : '')} onClick={() => { this.setState({...this.state, filter: 'last30days'}) }} >Last 30 days</button></p>
+          <p><button className={'button-base ' + (this.state.filter == 'all' ? 'button-selected' : 'button-deselected')} onClick={() => { this.setState({...this.state, filter: 'all'}) }} >All Time</button>
+          <button className={'button-base ' + (this.state.filter == 'last24' ? 'button-selected' : 'button-deselected')} onClick={() => { this.setState({...this.state, filter: 'last24'}) }} >Last 24hrs</button>
+          <button className={'button-base ' + (this.state.filter == 'last7days' ? 'button-selected' : 'button-deselected')} onClick={() => { this.setState({...this.state, filter: 'last7days'}) }} >Last 7 days</button>
+          <button className={'button-base ' + (this.state.filter == 'last30days' ? 'button-selected' : 'button-deselected')} onClick={() => { this.setState({...this.state, filter: 'last30days'}) }} >Last 30 days</button></p>
         </div>
         <div>
 			    <CanvasJSChart options = {plant1} />
