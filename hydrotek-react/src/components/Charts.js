@@ -11,14 +11,18 @@ class Charts extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      filter: 'all'
+      filter: 'all',
+      devices: window.devices,
+      deviceSelected: window.devices[0].deviceId
     }
   }
   
-  getFilteredData = (plant) => {
-    var data = window.dataPoints.filter(datapoint=>deviceId == this.props.ui.deviceId);
+  getFilteredData = () => {
 
-    //figure out how to filter
+    var data = window.dataPoints.filter(datapoint=>datapoint.deviceId == this.state.deviceSelected);
+    const now = Date.now()
+
+    //get a millisecond value for the required period of time, which we can use to compare against the timestamp for filtering
     const hours = 60 * 60 * 1000
     let filterBy = 365 * 24 * hours //max filter range is last 12 months
     if (this.state.filter == 'last24') {
@@ -28,21 +32,36 @@ class Charts extends React.Component {
     } else if (this.state.filter == 'last30days') {
       filterBy = 30 * 24 * hours
     }
-
-    const now = Date.now()
-
-    //apply display filters
-    filterObj.temp = filterObj.temp.filter(
-      val=>val.x > now - filterBy
-    )
-    filterObj.humidity = filterObj.humidity.filter(
-      val=>val.x > now - filterBy
-    )
-    filterObj.flow = filterObj.flow.filter(
-      val=>val.x > now - filterBy
-    )
     
-    return filterObj
+    //apply the date range filter
+    if (this.state.filter != 'all') {
+      data = data.filter(datapoint=>datapoint.datestamp > now - filterBy)
+    }
+
+    let output = {
+      temp1:[],
+      temp2:[],
+      humidity1:[],
+      humidity2:[],
+      float1:[],
+      float2:[],
+      flow1:[],
+      flow2:[]
+    }
+
+    data.map((datapoint)=>{
+      output.temp1.push({'y':datapoint.temp1, 'x':datapoint.datestamp})
+      output.temp2.push({'y':datapoint.temp2, 'x':datapoint.datestamp})
+      output.humidity1.push({'y':datapoint.humidity1, 'x':datapoint.datestamp})
+      output.humidity2.push({'y':datapoint.humidity2, 'x':datapoint.datestamp})
+      output.float1.push({'y':datapoint.float1, 'x':datapoint.datestamp})
+      output.float2.push({'y':datapoint.float2, 'x':datapoint.datestamp})
+      output.flow1.push({'y':datapoint.flow1 / 100, 'x':datapoint.datestamp})
+      output.flow2.push({'y':datapoint.flow2 / 100, 'x':datapoint.datestamp})
+    })
+    
+    console.log(output)
+    return output
     
   }
   render() {
@@ -74,21 +93,28 @@ class Charts extends React.Component {
           name: "Temp",
           showInLegend: true,
           xValueType: "dateTime",
-          dataPoints: this.getFilteredData(1).temp
+          dataPoints: this.getFilteredData().temp1
         },
         {
           type: "area",
           name: "Humidity",
           showInLegend: true,
           xValueType: "dateTime",
-          dataPoints: this.getFilteredData(1).humidity
+          dataPoints: this.getFilteredData().humidity1
+        },
+        {
+          type: "area",
+          name: "Float",
+          showInLegend: true,
+          xValueType: "dateTime",
+          dataPoints: this.getFilteredData().float1
         },
         {
           type: "area",
           name: "Flow",
           showInLegend: true,
           xValueType: "dateTime",
-          dataPoints: this.getFilteredData(1).flow
+          dataPoints: this.getFilteredData().flow1
         }
       ]
     }
@@ -117,24 +143,31 @@ class Charts extends React.Component {
       data: [
         {
           type: "area",
-          name: "Flow",
+          name: "Temp",
           showInLegend: true,
           xValueType: "dateTime",
-          dataPoints: this.getFilteredData(2).flow
+          dataPoints: this.getFilteredData().temp2
         },
         {
           type: "area",
           name: "Humidity",
           showInLegend: true,
           xValueType: "dateTime",
-          dataPoints: this.getFilteredData(2).humidity
+          dataPoints: this.getFilteredData().humidity2
         },
         {
           type: "area",
-          name: "Temp",
+          name: "Float",
           showInLegend: true,
           xValueType: "dateTime",
-          dataPoints: this.getFilteredData(2).temp
+          dataPoints: this.getFilteredData().float2
+        },
+        {
+          type: "area",
+          name: "Flow",
+          showInLegend: true,
+          xValueType: "dateTime",
+          dataPoints: this.getFilteredData().flow2
         }
       ]
     }
