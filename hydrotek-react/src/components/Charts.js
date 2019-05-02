@@ -11,10 +11,19 @@ class Charts extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      filter: 'all',
+      filter: 'last4Hours',
+      serverFilter: window.timePeriod,
       devices: window.devices,
       deviceSelected: window.devices[0].deviceId
     }
+  }
+
+  getFloatState = () => {
+    var output = {
+      float1: this.getFilteredData().float1[this.getFilteredData().float1.length - 1].y,
+      float2: this.getFilteredData().float2[this.getFilteredData().float2.length - 1].y
+    }
+    return output    
   }
   
   getFilteredData = () => {
@@ -31,6 +40,10 @@ class Charts extends React.Component {
       filterBy = 7 * 24 * hours
     } else if (this.state.filter == 'last30days') {
       filterBy = 30 * 24 * hours
+    } else if (this.state.filter == 'last4Hours') {
+      filterBy = 4 * hours
+    } else if (this.state.filter == 'lastHour') {
+      filterBy = 1 * hours
     }
     
     //apply the date range filter
@@ -56,22 +69,22 @@ class Charts extends React.Component {
       output.humidity2.push({'y':datapoint.humidity2, 'x':datapoint.datestamp})
       output.float1.push({'y':datapoint.float1, 'x':datapoint.datestamp})
       output.float2.push({'y':datapoint.float2, 'x':datapoint.datestamp})
-      output.flow1.push({'y':datapoint.flow1 / 100, 'x':datapoint.datestamp})
-      output.flow2.push({'y':datapoint.flow2 / 100, 'x':datapoint.datestamp})
+      output.flow1.push({'y':datapoint.flow1 / 10, 'x':datapoint.datestamp})
+      output.flow2.push({'y':datapoint.flow2 / 10, 'x':datapoint.datestamp})
     })
     
-    console.log(output)
+    //console.log(output)
+
     return output
     
   }
   render() {
-    const plant1 = {
+    const chartType = 'spline'
+    const bothCharts = {
       theme: "light2",
       animationEnabled: true,
+      zoomEnabled: true,
       exportEnabled: true,
-      title: {
-        text: "Plant 1"
-      },
       axisY: {
         title: "Values"
       },
@@ -86,104 +99,115 @@ class Charts extends React.Component {
         horizontalAlign: "right",
         reversed: true,
         cursor: "pointer"
+      }
+    }
+    const bothData = {
+      type: chartType,
+      showInLegend: true,
+      xValueType: "dateTime"
+    }
+    const plant1 = {
+      ...bothCharts,
+      title: {
+        text: "Plant 1"
       },
       data: [
         {
-          type: "area",
-          name: "Temp",
-          showInLegend: true,
-          xValueType: "dateTime",
-          dataPoints: this.getFilteredData().temp1
-        },
-        {
-          type: "area",
+          ...bothData,
           name: "Humidity",
-          showInLegend: true,
-          xValueType: "dateTime",
           dataPoints: this.getFilteredData().humidity1
         },
         {
-          type: "area",
-          name: "Float",
-          showInLegend: true,
-          xValueType: "dateTime",
-          dataPoints: this.getFilteredData().float1
+          ...bothData,
+          name: "Temp",
+          dataPoints: this.getFilteredData().temp1
         },
         {
-          type: "area",
+          ...bothData,
           name: "Flow",
-          showInLegend: true,
-          xValueType: "dateTime",
           dataPoints: this.getFilteredData().flow1
         }
       ]
     }
     const plant2 = {
-      theme: "light2",
-      animationEnabled: true,
-      exportEnabled: true,
+      ...bothCharts,
       title: {
         text: "Plant 2"
       },
-      axisY: {
-        title: "Values"
-      },
-      axisX: {
-        valueFormatString: "YYYY-MM-DD hh:mm:ss tt"
-      },
-      toolTip: {
-        shared: true
-      },
-      legend: {
-        verticalAlign: "center",
-        horizontalAlign: "right",
-        reversed: true,
-        cursor: "pointer"
-      },
       data: [
         {
-          type: "area",
-          name: "Temp",
-          showInLegend: true,
-          xValueType: "dateTime",
-          dataPoints: this.getFilteredData().temp2
-        },
-        {
-          type: "area",
+          ...bothData,
           name: "Humidity",
-          showInLegend: true,
-          xValueType: "dateTime",
           dataPoints: this.getFilteredData().humidity2
         },
         {
-          type: "area",
-          name: "Float",
-          showInLegend: true,
-          xValueType: "dateTime",
-          dataPoints: this.getFilteredData().float2
+          ...bothData,
+          name: "Temp",
+          dataPoints: this.getFilteredData().temp2
         },
         {
-          type: "area",
+          ...bothData,
           name: "Flow",
-          showInLegend: true,
-          xValueType: "dateTime",
           dataPoints: this.getFilteredData().flow2
         }
       ]
     }
     return (
+
+      window.dataPoints.length > 0 ? 
       <div className='main-menu-container'>
         <h2>Charts</h2>
-        <div className="button-container">
-          <p><button className={'button-base ' + (this.state.filter == 'all' ? 'button-selected' : 'button-deselected')} onClick={() => { this.setState({...this.state, filter: 'all'}) }} >All Time</button>
-          <button className={'button-base ' + (this.state.filter == 'last24' ? 'button-selected' : 'button-deselected')} onClick={() => { this.setState({...this.state, filter: 'last24'}) }} >Last 24hrs</button>
-          <button className={'button-base ' + (this.state.filter == 'last7days' ? 'button-selected' : 'button-deselected')} onClick={() => { this.setState({...this.state, filter: 'last7days'}) }} >Last 7 days</button>
-          <button className={'button-base ' + (this.state.filter == 'last30days' ? 'button-selected' : 'button-deselected')} onClick={() => { this.setState({...this.state, filter: 'last30days'}) }} >Last 30 days</button></p>
-        </div>
+        <table className='charts-option-table'>
+          <tbody>
+            <tr><th>Retrieve from server:</th><th>Data to display:</th></tr>
+            <tr>
+              <td>
+                <div className="button-container">
+                  <form action='index.php' method='post'>
+                    <p><input type='submit' name="fetchPeriod" className={'button-base button-base-input ' + (this.state.serverFilter == 'lastYear' ? 'button-selected' : 'button-deselected')} value="Last 12 Months" />
+                    <input type='submit' name="fetchPeriod" className={'button-base button-base-input ' + (this.state.serverFilter == 'lastQuarter' ? 'button-selected' : 'button-deselected')} value="Last 3 Months" />
+                    <input type='submit' name="fetchPeriod" className={'button-base button-base-input ' + (this.state.serverFilter == 'lastMonth' ? 'button-selected' : 'button-deselected')} value="Last Month" /> 
+                    <input type='submit' name="fetchPeriod" className={'button-base button-base-input ' + (this.state.serverFilter == 'lastWeek' ? 'button-selected' : 'button-deselected')} value="Last 7 Days" /> </p>
+                  </form>
+                </div>
+              </td>
+              <td>
+                <div className="button-container">
+                  <p>
+                    <button className={'button-base ' + (this.state.filter == 'all' ? 'button-selected' : 'button-deselected')} onClick={() => { this.setState({...this.state, filter: 'all'}) }} >All Time</button>
+                    <button className={'button-base ' + (this.state.filter == 'last30days' ? 'button-selected' : 'button-deselected')} onClick={() => { this.setState({...this.state, filter: 'last30days'}) }} >Last 30 days</button>
+                    <button className={'button-base ' + (this.state.filter == 'last7days' ? 'button-selected' : 'button-deselected')} onClick={() => { this.setState({...this.state, filter: 'last7days'}) }} >Last 7 days</button>
+                    <button className={'button-base ' + (this.state.filter == 'last24' ? 'button-selected' : 'button-deselected')} onClick={() => { this.setState({...this.state, filter: 'last24'}) }} >Last 24hrs</button>
+                    <button className={'button-base ' + (this.state.filter == 'last4Hours' ? 'button-selected' : 'button-deselected')} onClick={() => { this.setState({...this.state, filter: 'last4Hours'}) }} >Last 4hrs</button>
+                    <button className={'button-base ' + (this.state.filter == 'lastHour' ? 'button-selected' : 'button-deselected')} onClick={() => { this.setState({...this.state, filter: 'lastHour'}) }} >Last Hour</button>
+                  </p>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
         <div>
-			    <CanvasJSChart options = {plant1} />
+          <table className='run-off-table'>
+            <tbody>
+              <tr>
+                <th colSpan="2">Run-off tanks (most recent):</th>
+              </tr>
+              <tr>
+                <td>Plant 1: <i className={this.getFloatState().float1 > 0 ? "float-full" : "float-normal"}>{this.getFloatState().float1 > 0 ? "FULL" : "OK"}</i> </td>
+                <td>Plant 2: <i className={this.getFloatState().float2 > 0 ? "float-full" : "float-normal"}>{this.getFloatState().float2 > 0 ? "FULL" : "OK"}</i></td>
+              </tr> 
+            </tbody>  
+          </table>
+        </div>
+
+        <div className="charts-container">
+          <CanvasJSChart options = {plant1} />
           <CanvasJSChart options = {plant2} />
 		    </div>
+      </div> :
+      <div className='main-menu-contrainer'>
+        <h2 className="float-full">No data to display.</h2>
       </div>
     )
   }

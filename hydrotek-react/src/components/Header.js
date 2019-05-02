@@ -51,7 +51,8 @@ class Home extends React.Component {
                 <a href='#' onClick={() => {this.navClick('home')}} className={'header-link' + (this.props.ui.location == 'home' ? ' header-active-link' : '')}>Home</a>}
               {!this.state.loggedIn ?
                 <a href='#' onClick={() => {this.navClick('login')}} className={'header-link' + (this.props.ui.location == 'login' ? ' header-active-link' : '')}>Login</a> :
-                <a href='#' onClick={() => {this.navClick('logout')}} className='header-link'>Logout</a> }
+                // <a href='#' onClick={() => {this.navClick('logout')}} className='header-link'>Logout</a>
+                <a href='logout.php' className='header-link'>Logout</a> }
               <a href='https://github.com/Energiz3r/HydroTek' target="_blank" className='header-link'>Information</a>
               <i className='welcome-message'>{this.state.displayMessage == "" ? ("Hello, " + this.state.userName + ".") : this.state.displayMessage}</i>
             </p>

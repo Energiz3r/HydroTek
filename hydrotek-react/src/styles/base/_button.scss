@@ -1,10 +1,10 @@
 .button-container {
-  padding: .8rem;
+  //padding: .8rem;
   display: inline-block;
-  width: 40rem;
+  //width: 60rem;
 }
 .button-container-header {
-  padding: .8rem;
+  //padding: .8rem;
   float: right;
 }
 
@@ -43,5 +43,4 @@ button:disabled {
 
 .button-base-input {
   border: 0;
-  background-color: darken($theme, 10%);
 }

@@ -25,7 +25,7 @@ class Login extends React.Component {
         <form action="index.php" method="post" className='login-form'>
           <input type="text" name="username" placeholder='username' onChange={this.onUsernameChange} />
           <input type="password" name="password" placeholder="password" onChange={this.onPasswordChange} />
-          <input type="submit" class='button-base button-base-input' />
+          <input type="submit" class='button-base button-base-input button-selected' />
         </form>
       </div>
     )

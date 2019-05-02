@@ -1,0 +1,25 @@
+.charts-option-table {
+
+}
+.charts-option-table > tbody > tr > th {
+  text-align: left;
+}
+
+.float-full {
+  color: red;
+}
+.float-normal {
+  color: rgb(0, 148, 0);
+}
+.float-full, .float-normal {
+  font-weight: bold;
+}
+
+.charts-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.run-off-table {
+  font-size: 2.2rem;
+}
