@@ -11,8 +11,8 @@
 
 /* START CONFIG */
 
-#define dataString "user=USERNAME&password=PASSSWORD&device=1&" //set the username, password, and ID of the device here. Ensure your username/password are alphanumeric and don't contain special characters. Don't alter the other characters as this forms part of the GET request.
-#define endpoint "https://mydomain.com/endpoint.php" //the php script that the ESP8266 will connect to for uploading data
+#define dataString "user=USERNAME&password=PASSWORD&device=1&" //set the username, password, and ID of the device here. Ensure your username/password are alphanumeric and don't contain special characters. Don't alter the other characters as this forms part of the GET request.
+#define endpoint "http://MYDOMAIN.com/endpoint.php" //the php script that the ESP8266 will connect to for uploading data
 //#define dummyUpload //uncomment to attempt a dummy upload every 10 seconds, with the results output to Serial (Pro Micro not required)
 
 // See section below for adding WiFi access points to the configuration
@@ -40,7 +40,6 @@ void setup() {
 
   /* START WIFI CONFIG */
   
-  WiFiMulti.addAP("MyHomeWifi", "passphrase");
   WiFiMulti.addAP("AccessPoint", "passphrase");
   WiFiMulti.addAP("Another", "passphrase");
 
@@ -64,13 +63,15 @@ void uploadData(String message) {
       int httpCode = http.POST(data);
       
       if (httpCode > 0) { // httpCode will be negative on error
-        String response = (String)httpCode;
+        String response = "OK";
+        response += (String)httpCode;
         response += ", ";
         response += http.getString();
         response.replace('\n', ' ');
         displayMessage = response;
       } else {
-        String response = (String)httpCode;
+        String response = "ER";
+        response += (String)httpCode;
         response += ", ";
         response += http.errorToString(httpCode).c_str();
         response.replace('\n', ' ');
@@ -89,7 +90,7 @@ void uploadData(String message) {
   shouldUpload = true;
 }
 
-//int unsigned long lastUploadTime = 0;
+int unsigned long lastUploadTime = 0;
 bool waitingForAVR = true;
 bool AVRWaitingForESP = true;
 void handleSWSerialInput(String input) {
@@ -107,7 +108,7 @@ void handleSWSerialInput(String input) {
   } else {
     //check if another upload should be done
     //if (shouldUpload && millis() - lastUploadTime > uploadFrequency){
-      //lastUploadTime = millis();
+      lastUploadTime = millis();
       shouldUpload = false;
       uploadData(input); //upload the received data to the server - we'll let the server check for errors
     //}

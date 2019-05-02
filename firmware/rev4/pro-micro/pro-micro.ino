@@ -12,14 +12,18 @@
 #define lamp2OnHour 10
 #define lamp2OffHour 11
 
-#define enableFlowTicks // uncomment to make a ticking sounds when activity from the flow sensors is detected
-#define drawBorder // uncomment to draw a white border and title background on the OLED (looks nicer)
+#define pump1Enable //run the pump every 4 hours
+#define pump1Duration 10 //seconds
+//#define pump2Enable
+#define pump2Duration 10
+
+#define enableFlow1 // uncomment to make a ticking sounds when activity from the flow sensors is detected
+//#define enableFlow2 // uncomment to make a ticking sounds when activity from the flow sensors is detected
+//#define drawBorder // uncomment to draw a white border and title background on the OLED (looks nicer)
 #define invertFloatSensorLogic // uncomment for use with a normally-closed float sensor, or to detect emptyness with float sensors designed for detecting fullness. Note that installing a jumper is a good idea if the float alarm is enabled and the unit will be powered on without the float sensor connected
-#define enableFloatAlarm // uncomment to sound an alarm when the float sensor is triggered
+//#define enableFloatAlarm // uncomment to sound an alarm when the float sensor is triggered
 
 // PIN ASSIGNMENTS
-#define RXPin 8 //used to talk to the ESP
-#define TXPin 19 //used to talk to the ESP
 #define flow1Pin 19
 #define flow2Pin 21
 #define dht1Pin 4
@@ -91,8 +95,8 @@ void setup() {
   pinMode(lamp2Pin, OUTPUT); digitalWrite( lamp2Pin, HIGH);
   pinMode(pump1Pin, OUTPUT); digitalWrite( pump1Pin, HIGH);
   pinMode(pump2Pin, OUTPUT); digitalWrite( pump2Pin, HIGH);
-  pinMode(flow1Pin, INPUT);
-  pinMode(flow2Pin, INPUT);
+  pinMode(flow1Pin, INPUT_PULLUP);
+  pinMode(flow2Pin, INPUT_PULLUP);
   analogWrite(ledPin, 5);
   
   tone(buzzPin, 800, 200);
@@ -173,7 +177,7 @@ void serialEventCapture() {
 }
 
 #define numPages 4
-#define updateFrequency 4000 //seconds to display each page before moving to the next
+#define updateFrequency 3000 //seconds to display each page before moving to the next
 byte page = 1; //which page the loop ison
 unsigned int long lastSendHandshake = 0;
 unsigned int long lastDataUpload = 0;
@@ -184,6 +188,7 @@ unsigned int flow1SinceLastUpdate = 0; //track how many flow pulses there have b
 bool flow2LastState = false;
 unsigned int flow2PulseCount = 0;
 unsigned int flow2SinceLastUpdate = 0;
+unsigned int long pumpLastCheck = 0;
 void loop() {
 
   //capture serial incoming
@@ -192,19 +197,20 @@ void loop() {
   }
 
   //monitor for changes to state on the flow sensor inputs
-  if (digitalRead(flow1Pin) != flow1LastState) {
-    flow1LastState = !flow1LastState;
-    flow1PulseCount++;
-    #ifdef enableFlowTicks
-      tone(buzzPin, 800, 5);
-    #endif
-  } if (digitalRead(flow2Pin) != flow2LastState) {
-    flow2LastState = !flow2LastState;
-    flow2PulseCount++;
-    #ifdef enableFlowTicks
+  #ifdef enableFlow1
+    if (digitalRead(flow1Pin) != flow1LastState) {
+      flow1LastState = !flow1LastState;
+        flow1PulseCount++;
+        tone(buzzPin, 800, 5);
+    }
+  #endif
+  #ifdef enableFlow2
+    if (digitalRead(flow2Pin) != flow2LastState) {
+      flow2LastState = !flow2LastState;
+      flow2PulseCount++;
       tone(buzzPin, 600, 5);
-    #endif
-  }
+    }
+  #endif
 
   //tell the ESP the AVR is ready
   if (ESPWaitingForAVR && millis() - lastSendHandshake > 1000) {
@@ -213,6 +219,43 @@ void loop() {
       Serial.println("Sent 'ready'");
     #endif
     lastSendHandshake = millis();
+  }
+
+  //run the pump. The pump is hardcoded to run at these times:
+  /*
+    3
+    7
+    11
+    15
+    19
+    23
+   */
+  if (millis() - pumpLastCheck > 500) {
+    pumpLastCheck = millis();
+    DateTime now = RTC.now(); 
+    byte H = now.hour();
+    byte M = now.minute();
+    byte S = now.second();
+    if ((H == 3 || H == 7 || H == 11 || H == 15 || H == 19 || H == 23) && M == 1) { //only run the pumps at the start of these hours and during the first minute of the hour 
+      #ifdef pump1Enable
+        if (S <= pump1Duration) { //only run for the duration of the pump
+          digitalWrite(pump1Pin, LOW);
+        } else {
+          digitalWrite(pump1Pin, HIGH);
+        }
+      #endif
+      #ifdef pump2Enable
+        if (S <= pump2Duration) { //only run for the duration of the pump
+          digitalWrite(pump2Pin, LOW);
+        } else {
+          digitalWrite(pump2Pin, HIGH);
+        }
+      #endif
+    }
+    else {
+      digitalWrite(pump1Pin, HIGH);
+      digitalWrite(pump2Pin, HIGH);
+    }
   }
 
   //advance the page and update sensors etc every x ms
@@ -259,8 +302,8 @@ void loop() {
     }
     #ifndef RTC_SET
       else if (page == 3) {
-        Serial.print("hour: ");
-        Serial.println(now.hour());
+        //Serial.print("hour: ");
+        //Serial.println(now.hour());
         String date; date += now.day(); date += '/'; date += now.month(); date += '/'; date += now.year();
         display.print(date); // line 2
         display.setCursor(2, 36);
