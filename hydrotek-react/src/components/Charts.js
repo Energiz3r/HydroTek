@@ -89,7 +89,7 @@ class Charts extends React.Component {
         title: "Values"
       },
       axisX: {
-        valueFormatString: "YYYY-MM-DD hh:mm:ss tt"
+        valueFormatString: "hh:mm:ss tt"
       },
       toolTip: {
         shared: true
@@ -104,7 +104,8 @@ class Charts extends React.Component {
     const bothData = {
       type: chartType,
       showInLegend: true,
-      xValueType: "dateTime"
+      xValueType: "dateTime",
+      xValueFormatString: "YYYY/MM/DD hh:mm:ss tt"
     }
     const plant1 = {
       ...bothCharts,
@@ -115,17 +116,20 @@ class Charts extends React.Component {
         {
           ...bothData,
           name: "Humidity",
-          dataPoints: this.getFilteredData().humidity1
+          dataPoints: this.getFilteredData().humidity1,
+          toolTipContent: "{x}</br><span style='\"'color: {color};'\"'>{name}</span>, <strong>{y}</strong>"
         },
         {
           ...bothData,
           name: "Temp",
-          dataPoints: this.getFilteredData().temp1
+          dataPoints: this.getFilteredData().temp1,
+          toolTipContent: "<span style='\"'color: {color};'\"'>{name}</span>, <strong>{y}</strong>"
         },
         {
           ...bothData,
           name: "Flow",
-          dataPoints: this.getFilteredData().flow1
+          dataPoints: this.getFilteredData().flow1,
+          toolTipContent: "<span style='\"'color: {color};'\"'>{name}</span>, <strong>{y}</strong>"
         }
       ]
     }
@@ -138,17 +142,20 @@ class Charts extends React.Component {
         {
           ...bothData,
           name: "Humidity",
-          dataPoints: this.getFilteredData().humidity2
+          dataPoints: this.getFilteredData().humidity2,
+          toolTipContent: "{x}</br><span style='\"'color: {color};'\"'>{name}</span>, <strong>{y}</strong>"
         },
         {
           ...bothData,
           name: "Temp",
-          dataPoints: this.getFilteredData().temp2
+          dataPoints: this.getFilteredData().temp2,
+          toolTipContent: "<span style='\"'color: {color};'\"'>{name}</span>, <strong>{y}</strong>"
         },
         {
           ...bothData,
           name: "Flow",
-          dataPoints: this.getFilteredData().flow2
+          dataPoints: this.getFilteredData().flow2,
+          toolTipContent: "<span style='\"'color: {color};'\"'>{name}</span>, <strong>{y}</strong>"
         }
       ]
     }
