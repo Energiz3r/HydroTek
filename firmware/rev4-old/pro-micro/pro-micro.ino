@@ -8,7 +8,7 @@
 //#define RTC_SET //sets the time on the RTC to the time the sketch is compiled - upload the sketch, then ensure the sketch is re-uploaded with this commented-out afterwards otherwise the RTC will reset when the unit is powered on
 
 #define lamp1OnHour 7
-#define lamp1OffHour 21
+#define lamp1OffHour 19
 #define lamp2OnHour 10
 #define lamp2OffHour 11
 
@@ -18,20 +18,19 @@
 #define pump2Duration 10
 
 #define enableFlow1 // uncomment to make a ticking sounds when activity from the flow sensors is detected
-#define enableFlow2 // uncomment to make a ticking sounds when activity from the flow sensors is detected
-#define flowTicks
+//#define enableFlow2 // uncomment to make a ticking sounds when activity from the flow sensors is detected
 //#define drawBorder // uncomment to draw a white border and title background on the OLED (looks nicer)
-//#define invertFloatSensorLogic // uncomment for use with a normally-closed float sensor, or to detect emptyness with float sensors designed for detecting fullness. Note that installing a jumper is a good idea if the float alarm is enabled and the unit will be powered on without the float sensor connected
-#define enableFloatAlarm // uncomment to sound an alarm when the float sensor is triggered
+#define invertFloatSensorLogic // uncomment for use with a normally-closed float sensor, or to detect emptyness with float sensors designed for detecting fullness. Note that installing a jumper is a good idea if the float alarm is enabled and the unit will be powered on without the float sensor connected
+//#define enableFloatAlarm // uncomment to sound an alarm when the float sensor is triggered
 
 // PIN ASSIGNMENTS
-#define flow1Pin 4
-#define flow2Pin 5
-#define dht1Pin 19
-#define dht2Pin 21
+#define flow1Pin 19
+#define flow2Pin 21
+#define dht1Pin 4
+#define dht2Pin 5
 #define ledPin 6
 #define buzzPin 7
-#define buttonPin 18
+#define buttonPin 8
 #define floatSw1Pin 9
 #define floatSw2Pin 20
 #define lamp1Pin 10
@@ -92,10 +91,10 @@ void setup() {
   pinMode(floatSw2Pin, INPUT_PULLUP);
   //pinMode(ledPin, OUTPUT); //using analogWrite for this so that it isn't at full brightness
   //pinMode(buzzPin, OUTPUT);
-  pinMode(lamp1Pin, OUTPUT); //digitalWrite( lamp1Pin, HIGH); //default the relay to OFF
-  pinMode(lamp2Pin, OUTPUT); //digitalWrite( lamp2Pin, HIGH);
-  pinMode(pump1Pin, OUTPUT); //digitalWrite( pump1Pin, HIGH);
-  pinMode(pump2Pin, OUTPUT); //digitalWrite( pump2Pin, HIGH);
+  pinMode(lamp1Pin, OUTPUT); digitalWrite( lamp1Pin, HIGH); //default the relay to OFF
+  pinMode(lamp2Pin, OUTPUT); digitalWrite( lamp2Pin, HIGH);
+  pinMode(pump1Pin, OUTPUT); digitalWrite( pump1Pin, HIGH);
+  pinMode(pump2Pin, OUTPUT); digitalWrite( pump2Pin, HIGH);
   pinMode(flow1Pin, INPUT_PULLUP);
   pinMode(flow2Pin, INPUT_PULLUP);
   analogWrite(ledPin, 5);
@@ -202,18 +201,14 @@ void loop() {
     if (digitalRead(flow1Pin) != flow1LastState) {
       flow1LastState = !flow1LastState;
         flow1PulseCount++;
-        #ifdef flowTicks
-          tone(buzzPin, 800, 5);
-        #endif
+        tone(buzzPin, 800, 5);
     }
   #endif
   #ifdef enableFlow2
     if (digitalRead(flow2Pin) != flow2LastState) {
       flow2LastState = !flow2LastState;
       flow2PulseCount++;
-      #ifdef flowTicks
-        tone(buzzPin, 600, 5);
-      #endif
+      tone(buzzPin, 600, 5);
     }
   #endif
 
@@ -362,31 +357,18 @@ void loop() {
 
     //set the state of the lamp outputs
     #if lamp1OffHour > lamp1OnHour
-      if (true || now.hour() < lamp1OffHour && now.hour() >= lamp1OnHour) {
-        #ifdef SERIAL_DEBUG
-          Serial.println("Lamp 1 ON");
-        #endif
+      if (now.hour() < lamp1OffHour && now.hour() >= lamp1OnHour) {
         digitalWrite(lamp1Pin, LOW); //fucking relay is inverted... LOW is ON
       } else {
-        #ifdef SERIAL_DEBUG
-          Serial.println("Lamp 1 OFF");
-        #endif
         digitalWrite(lamp1Pin, HIGH);
       }
     #else if lamp1OffHour < lamp1OnHour
       if (now.hour() >= lamp1OnHour || now.hour() < lamp1OffHour) {
-        #ifdef SERIAL_DEBUG
-          Serial.println("Lamp 1 ON");
-        #endif
         digitalWrite(lamp1Pin, LOW); //fucking relay is inverted... LOW is ON
       } else {
-        #ifdef SERIAL_DEBUG
-          Serial.println("Lamp 1 OFF");
-        #endif
         digitalWrite(lamp1Pin, HIGH);
       }
     #endif
-    
     #if lamp2OffHour > lamp2OnHour
       if (now.hour() < lamp2OffHour && now.hour() >= lamp2OnHour) {
         digitalWrite(lamp2Pin, LOW); //fucking relay is inverted... LOW is ON
@@ -394,10 +376,10 @@ void loop() {
         digitalWrite(lamp2Pin, HIGH);
       }
     #else if lamp2OffHour < lamp2OnHour
-      if (now.hour() >= lamp2OnHour || now.hour() < lamp2OffHour) {
-        digitalWrite(lamp2Pin, LOW); //fucking relay is inverted... LOW is ON
+      if (now.hour() >= lamp1OnHour || now.hour() < lamp1OffHour) {
+        digitalWrite(lamp1Pin, LOW); //fucking relay is inverted... LOW is ON
       } else {
-        digitalWrite(lamp2Pin, HIGH);
+        digitalWrite(lamp1Pin, HIGH);
       }
     #endif
 
