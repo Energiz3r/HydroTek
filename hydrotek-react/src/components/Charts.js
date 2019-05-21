@@ -201,20 +201,29 @@ class Charts extends React.Component {
                 <th colSpan="2">Run-off tanks (most recent):</th>
               </tr>
               <tr>
-                <td>Plant 1: <i className={this.getFloatState().float1 > 0 ? "float-full" : "float-normal"}>{this.getFloatState().float1 > 0 ? "FULL" : "OK"}</i> </td>
-                <td>Plant 2: <i className={this.getFloatState().float2 > 0 ? "float-full" : "float-normal"}>{this.getFloatState().float2 > 0 ? "FULL" : "OK"}</i></td>
+                {this.getFilteredData().humidity1.length > 0 && 
+                  <td>Plant 1: <i className={this.getFloatState().float1 > 0 ? "float-full" : "float-normal"}>{this.getFloatState().float1 > 0 ? "FULL" : "OK"}</i> </td>
+                  }
+                {this.getFilteredData().humidity2.length > 0 && 
+                  <td>Plant 2: <i className={this.getFloatState().float2 > 0 ? "float-full" : "float-normal"}>{this.getFloatState().float2 > 0 ? "FULL" : "OK"}</i></td>
+                  }
               </tr> 
             </tbody>  
           </table>
         </div>
 
         <div className="charts-container">
-          <CanvasJSChart options = {plant1} />
-          <CanvasJSChart options = {plant2} />
+          {this.getFilteredData().humidity1.length > 0 ? 
+            <CanvasJSChart options = {plant1} /> :
+            <h2>No data for selected time period.</h2>
+            }
+          {this.getFilteredData().humidity2.length > 0 &&
+            <CanvasJSChart options = {plant2} /> 
+            }
 		    </div>
       </div> :
       <div className='main-menu-contrainer'>
-        <h2 className="float-full">No data to display.</h2>
+        <h2 className="float-full">No data on server for selected period.</h2>
       </div>
     )
   }
