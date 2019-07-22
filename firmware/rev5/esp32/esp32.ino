@@ -4,7 +4,7 @@
  * 
  */
 
-#define SERIAL_DEBUG //print output from BOTH the ESP8266 and the Pro Micro to serial
+#define SERIAL_DEBUG //print output to serial
 //#define RTC_SET //sets the time on the RTC to the time the sketch is compiled - upload the sketch, then ensure the sketch is re-uploaded with this commented-out afterwards otherwise the RTC will reset when the unit is powered on
 
 //Ensure your username/password are alphanumeric and don't contain special characters.
@@ -12,7 +12,6 @@
 #define webPassword "jiblet123"
 #define deviceId "1"
 #define webEndpoint "http://noobs.wtf/plants/endpoint.php" //the php script that the ESP8266 will connect to for uploading data
-
 //#define dummyUpload //uncomment to attempt to upload dummy data every 10 seconds for testing purposes
 const char* ssid = "TanglesS8";
 const char* passphrase =  "jiblet123";
@@ -28,10 +27,11 @@ const char* passphrase =  "jiblet123";
 #define pump1Duration 15 //seconds
 //#define pump2Enable
 #define pump2Duration 10
+//#define INVERT_RELAY_LOGIC //invert the logic of the relay outputs
 
 #define enableFlow1 // uncomment to enable the flow sensor
 #define enableFlow2
-#define flowTicks // uncomment to make a ticking sounds when activity from the flow sensors is detected
+#define flowTicks // uncomment to make ticking sounds when activity from the flow sensors is detected
 #define drawBorder // uncomment to draw a white border and title background on the OLED (looks nicer)
 //#define invertFloatSensorLogic // uncomment for use with a normally-closed float sensor, or to detect emptyness with float sensors designed for detecting fullness. Note that installing a jumper is a good idea if the float alarm is enabled and the unit will be powered on without the float sensor connected
 #define enableFloatAlarm // uncomment to sound an alarm when the float sensor is triggered
@@ -166,6 +166,7 @@ unsigned int long sensorLastCheck = 0;
 void loop() {
 
   //monitor for changes to state on the flow sensor inputs
+  // this probably should be an interrupt but the state doesn't seem to change fast enough that the loop will miss it. Worst-case a few ticks from the flow sensors are missed
   #ifdef enableFlow1
     if (digitalRead(flow1Pin) != flow1LastState) {
       flow1LastState = !flow1LastState;
@@ -205,22 +206,43 @@ void loop() {
     if ((H == 3 || H == 7 || H == 11 || H == 15 || H == 19 || H == 23) && M == 1) { //only run the pumps at the start of these hours and during the first minute of the hour 
       #ifdef pump1Enable
         if (S <= pump1Duration) { //only run for the pump for the specified duration
-          digitalWrite(pump1Pin, LOW);
+          #ifndef INVERT_RELAY_LOGIC
+            digitalWrite(pump1Pin, LOW);
+          #else
+            digitalWrite(pump1Pin, HIGH);
+          #endif
         } else {
-          digitalWrite(pump1Pin, HIGH);
+          #ifndef INVERT_RELAY_LOGIC
+            digitalWrite(pump1Pin, HIGH);
+          #else
+            digitalWrite(pump1Pin, LOW);
+          #endif
         }
       #endif
       #ifdef pump2Enable
         if (S <= pump2Duration) {
-          digitalWrite(pump2Pin, LOW);
+          #ifndef INVERT_RELAY_LOGIC
+            digitalWrite(pump2Pin, LOW);
+          #else
+            digitalWrite(pump2Pin, HIGH);
+          #endif
         } else {
-          digitalWrite(pump2Pin, HIGH);
+          #ifndef INVERT_RELAY_LOGIC
+            digitalWrite(pump2Pin, HIGH);
+          #else
+            digitalWrite(pump2Pin, LOW);
+          #endif
         }
       #endif
     }
     else {
-      digitalWrite(pump1Pin, HIGH);
-      digitalWrite(pump2Pin, HIGH);
+      #ifndef INVERT_RELAY_LOGIC
+        digitalWrite(pump1Pin, HIGH);
+        digitalWrite(pump2Pin, HIGH);
+      #else
+        digitalWrite(pump1Pin, LOW);
+        digitalWrite(pump2Pin, LOW);
+      #endif
     }
   }
 
@@ -317,37 +339,69 @@ void loop() {
         #ifdef SERIAL_DEBUG
           Serial.println("Lamp 1 ON");
         #endif
-        digitalWrite(lamp1Pin, LOW); //fucking relay is inverted... LOW is ON
+        #ifndef INVERT_RELAY_LOGIC
+          digitalWrite(lamp1Pin, LOW); //fucking relay is inverted... LOW is ON
+        #else
+          digitalWrite(lamp1Pin, HIGH);
+        #endif
       } else {
         #ifdef SERIAL_DEBUG
           Serial.println("Lamp 1 OFF");
         #endif
-        digitalWrite(lamp1Pin, HIGH);
+        #ifndef INVERT_RELAY_LOGIC
+          digitalWrite(lamp1Pin, HIGH);
+        #else
+          digitalWrite(lamp1Pin, LOW);
+        #endif
       }
     #else if lamp1OffHour < lamp1OnHour
       if (now.hour() >= lamp1OnHour || now.hour() < lamp1OffHour) {
         #ifdef SERIAL_DEBUG
           Serial.println("Lamp 1 ON");
         #endif
-        digitalWrite(lamp1Pin, LOW);
+        #ifndef INVERT_RELAY_LOGIC
+          digitalWrite(lamp1Pin, LOW);
+        #else
+          digitalWrite(lamp1Pin, HIGH);
+        #endif
       } else {
         #ifdef SERIAL_DEBUG
           Serial.println("Lamp 1 OFF");
         #endif
-        digitalWrite(lamp1Pin, HIGH);
+        #ifndef INVERT_RELAY_LOGIC
+          digitalWrite(lamp1Pin, HIGH);
+        #else
+          digitalWrite(lamp1Pin, LOW);
+        #endif
       }
     #endif
     #if lamp2OffHour > lamp2OnHour
       if (now.hour() < lamp2OffHour && now.hour() >= lamp2OnHour) {
-        digitalWrite(lamp2Pin, LOW);
+        #ifndef INVERT_RELAY_LOGIC
+          digitalWrite(lamp2Pin, LOW);
+        #else
+          digitalWrite(lamp2Pin, HIGH);
+        #endif
       } else {
-        digitalWrite(lamp2Pin, HIGH);
+        #ifndef INVERT_RELAY_LOGIC
+          digitalWrite(lamp2Pin, HIGH);
+        #else
+          digitalWrite(lamp2Pin, LOW);
+        #endif
       }
     #else if lamp2OffHour < lamp2OnHour
       if (now.hour() >= lamp2OnHour || now.hour() < lamp2OffHour) {
-        digitalWrite(lamp2Pin, LOW);
+        #ifndef INVERT_RELAY_LOGIC
+          digitalWrite(lamp2Pin, LOW);
+        #else
+          digitalWrite(lamp2Pin, HIGH);
+        #endif
       } else {
-        digitalWrite(lamp2Pin, HIGH);
+        #ifndef INVERT_RELAY_LOGIC
+          digitalWrite(lamp2Pin, HIGH);
+        #else
+          digitalWrite(lamp2Pin, LOW);
+        #endif
       }
     #endif
 
@@ -389,7 +443,7 @@ void loop() {
         #else
           String postString = postIdentifierString + dummyData;
           #ifdef SERIAL_DEBUG
-            Serial.println("Sending POST request:");
+            Serial.println("Sending dummy POST request:");
             Serial.println(dummyData);
             Serial.print("POST response: ");
           #endif
