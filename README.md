@@ -1,7 +1,7 @@
 # HydroTek
 ## An IoT Hydroponics Controller
 
-*Current revision: rev4 - see [Known Issues](#known-issues)*
+*Current revision: rev5*
 
 (rev3 pictured)
 ![alt-text](https://i.imgur.com/i79Ttwah.jpg "Image")
@@ -12,21 +12,9 @@
 
 There are four components to this repository:
 * PCB cad file (created in PCBWeb)
-* Firmware (sketches) for the Sparkfun Pro Micro and for the ESP8266
-* React/PHP web app for displaying data captured by the device
+* Firmware (sketch) for the ESP32 - written with Arduino IDE
 * STL files for a 3D printed case to house the controller
-
-The PHP / React combination was selected due to me already having a CPanel-based web hosting platform that I was familiar with. Better solutions exist, and a nodeJS-based platform would be preferred, however this was available and ready with minimal effort.
-
----
-
-### To Do (not started):
-
-* user management interface for the online component
-* fetching configuration for lamp / pump timings from online so the sketch doesn't need to be altered
-* alerts
-* safe switching of mains, maybe through the use of an off the shelf 'switcher' of some kind
-* WiFi configuration on the device instead of through the sketch
+* API specifications (below) for building a web endpoint
 
 ---
 
@@ -42,57 +30,105 @@ The PHP / React combination was selected due to me already having a CPanel-based
   * 2x float switches to detect either empty nutrient tank or full run-off tank
 * Can control:
   * 2x grow lights
-  * 2x nutrient pumps - *(not implemented yet)*
-* Buzzer / LED to alert lost WiFi signal, temperature extremes, nutrient pump faults, or full / empty nutrient tanks - *(partially implemented)*
-* Online / email alerts for temperature extremes, nutrient pump faults, or full / empty nutrient tanks - *(not implemented yet)*
-* I2C pH sensors *can* be connected using a kit [such as this](https://www.sparkfun.com/products/10972). pH meters are supposed to be kept in a storage solution and aren't suitable for constant monitoring, therefore this was excluded from the feature set.
-* The board can be powered either through the barrel jack as designed or using a USB power source capable of 1.5A plugged into the Pro Micro.
+  * 2x nutrient pumps
+* Buzzer / LED to alert user to lost WiFi signal, temperature extremes, nutrient pump faults, or full / empty nutrient / run-off tanks
+* The board can be powered either through the barrel jack as designed or using a USB power source plugged into the ESP32
+
+I2C pH sensors *could* be connected using a kit [such as this](https://www.sparkfun.com/products/10972), however pH meters are supposed to be kept in a storage solution and aren't suitable for constant monitoring, therefore this was excluded from the feature set.
 
 ---
 
 ### Design considerations:
 
-* Must be maintenance-free (the device, not the hydro setup necessarily)
-* Once assembled, configured, and flashed, the device must be easy to set up and use by non-technical people
+* The device must be maintenance-free
+* Once assembled, flashed, and configured, the device must be easy to set up and use by non-technical people
 * Compact size desirable. Other off-the-shelf units or open-source setups seem to be quite large
-* Data easily accessible from phone / PC anywhere (rather than using ESP in built web server)
+
+---
+
+### To Do (not started):
+
+* fetching configuration for lamp / pump timings from online so the sketch doesn't need to be altered to make changes
+* updating the RTC time from online
+* WiFi configuration on the device instead of through the sketch
+* Calculate actual flow from the flow sensors
 
 ---
 
 ### Build instructions:
-*(rev4)*
+*(rev5)*
 
 * To manufacture the PCB, upload the gerber files for the current PCB revision to a service such as [DirtyPCBs](http://dirtypcbs.com/store/pcbs)
-* Purchase the components, as desired, that are outlined in the BOM file
-* Solder the components, ensuring the following order is observed:
-  * Solder in Pro Micro on the reverse side of the board
-  * Solder in ESP8266 on the reverse side of the board
-  * Solder in RTC ensuring clearance between battery and the header pins of the ESP8266
-  * Solder in OLED using IDC headers ensuring clearance between battery and the header pins of the Pro Micro
-  * Bridge J2 with solder if you need to bypass the in-built regulator on the Pro Micro (bridges RAW to VCC)
-  * Bridge J3 with solder if LM7805 will not be installed (ensure regulated +5v is supplied to the PCB)
-  * Bridge either side of J4 with solder, depending whether you'd like an always-on LED or the LED to be controlled by the Pro Micro
-  * Solder in remaining components and headers
+* Purchase the components, as desired, outlined in the BOM file
+* Solder the components to the PCB, ensuring the following order is observed:
+
+*B/S = BOTTOM SIDE*
+
+  * (B/S) Solder the LM7805 linear regulator to the UNDERSIDE of the board, ensuring the tab is soldered to the large square pad for heat dissipation
+  * Solder in the 4x capacitors
+  * Solder in the piezo buzzer
+  * Solder in the IDC headers for the sensor inputs (to the TOP side of the board)
+  * Solder in the IDC sockets for the LCD (or alternatively, solder the LCD direct to the board, if clearance above capacitors allows)
+  * Solder in the ESP32
+  * Solder remaining components
   * Install IDC jumper shunts between the GND and DATA pins for flow sensors that will not be used, else the pin will float and detect erroneous readings
-  * If the float sensor logic is to be inverted (normally-closed), a jumper shunt to close the connection may be required to silence the alarm, if enabled, while the power is on 
-* Edit the WiFi configuration and username / password combination in 'esp8266.ino' to suit your needs, then upload to the ESP8266
-* Edit the configuration in 'pro-micro.ino' to suit your needs, then upload to the Pro Micro ensuring you select "5V, 16Mhz" variant
-* Deploy the files found in /hydrotek-react/server to your PHP/MYSQL capable web server (see known issues)
-* Edit the configuration to suit your needs in /config.php (see known issues)
-* Execute the installation script found in /install.php, then delete the file (see known issues)
-* Power on your HydroTek and access the web app to confirm it all works
-* Connect your lamps / pumps to the relay module and connect the relay module to the relay header pins on the PCB
+  * If the float sensor logic is to be inverted (normally-closed), a jumper shunt on those pins will be handy to silence the alarm if the power is on and the float sensors are not connected
+* Configure your Arduino IDE according to the section below
+* Edit the WiFi configuration and web username / password combination in 'esp32.ino' to suit your needs, then upload to the ESP32
+* Power on your HydroTek and access the web app to confirm it works
+* Connect your (safe, low-voltage) lamps / pumps to the relay module and connect the relay module inputs to the header pins on the PCB
   * NOTE: If in any doubt at all, use safe, low-voltage LED grow lights and nutrient pumps. Switching of mains voltages may not be at all legal where you live, your relays may not be sufficient, I advise you not to try it, and I accept no responsibility if you do.
 
 ---
 
+### Arduino IDE Configuration:
+*(rev5)*
+
+* Go to 'File' > 'Preferences', then click the icon to the right of the text input for "Additional board manager URLs"
+* Paste the following text into the field (separate existing entries by a comma and a new line):
+> https://dl.espressif.com/dl/package_esp32_index.json
+* Go to 'Tools' > 'Board...' > 'Boards Manager'
+* Search for ESP32, and install the 'esp32 by Espressif Systems' package (version 1.0.2 at the time of writing)
+* Go to 'Tools' > 'Board...' and select 'ESP32 Dev Module'
+* Go to 'Sketch' > 'Include Library' > 'Manage Libraries'
+* Search for 'Adafruit GFX' and install the 'Adafruit GFX Library' package by Adafruit
+* Search for 'Adafruit 1306' and install the 'Adafruit SSD1306' package by Adafruit
+* Search for 'dht22' and install the 'DHT sensor library' package by Adafruit
+* Search for 'rtclib' and install the 'RTClib' package by Adafruit
+
+* Go to 'Tools' > 'Port' and select the port for your connected ESP32
+* Once you have edited the .ino file to suit your desired configuration, click upload to flash the ESP.
+
+---
+
 ### Known issues:
-*(rev4)*
+*(rev5)*
 
-* I have observed some Pro Micros seem to have a fault with the onboard regulator or fuse (haven't been able to track down the cause). If the Pro Micro will not power on when the PCB is supplied with power, or if the other components don't get power when the Pro Micro is supplied by USB, run a hookup wire from **J1 on the Pro Micro** to the nearby J1 pad on the PCB. J2 may need to be bridged as well.
-* Have not yet designed a case for the relay module - may incorporate this into the main unit in a future revision, or offer both an integrated and remote unit.
-* The PHP script is missing from the repo completely as it's hacky and not suitable for inclusion just yet.
-* The react app is included, but is just as hacky and not suitable for use.
-* Hardware UARTS are used to communicate between the Pro Micro and the 8266. For this reason, there is no serial output from the 8266 while communicating. Observe the output from the Pro Micro or enable dummyUpload mode on the 8266 sketch.
+* Have not yet designed a 3D printable case
+* The react app is included in the repo for now but will be removed in future. Makers will be able to use my hosted platform or build their own API
+* The nutrient flow values are raw 'ticks' from the flow sensor, not a calculated litres or gallons value
 
+---
 
+### API:
+*(rev5)*
+
+The sketch sends a POST request to the URL supplied in the variable 'webEndpoint'. The POST values are as follows:
+
+| POST variable name | description | data type the ESP will supply |
+| --- | --- | --- |
+| user | username for API | string |
+| password | password for API | string |
+| deviceID | the ID of the device* | int |
+| t1 | temperature 1 | int or float |
+| t2 | temperature 2 | int or float |
+| h1 | humidity 1 | int or float |
+| h2 | humidity 2 | int or float |
+| f1 | float 1 | int |
+| f2 | float 2 | int |
+| l1 | flow 1 | int or float |
+| l2 | flow 2 | int or float |
+
+*The deviceID was only intended to be used if you wanted to have multiple devices use your endpoint.*
+
+In future, makers will be able to use my hosted platform once it is complete instead of building their own.

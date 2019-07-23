@@ -1,6 +1,8 @@
 /*
  * 
- * plant controller - tim eastwood
+ * HydroTek hydroponics controller - tim eastwood
+ * 
+ * See https://github.com/Energiz3r/HydroTek for information and instructions
  * 
  */
 
