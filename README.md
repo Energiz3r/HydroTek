@@ -60,10 +60,7 @@ I2C pH sensors *could* be connected using a kit [such as this](https://www.spark
 
 * To manufacture the PCB, upload the gerber files for the current PCB revision to a service such as [DirtyPCBs](http://dirtypcbs.com/store/pcbs)
 * Purchase the components, as desired, outlined in the BOM file
-* Solder the components to the PCB, ensuring the following order is observed:
-
-*B/S = BOTTOM SIDE*
-
+* Solder the components to the PCB, ensuring the following order is observed (*B/S = BOTTOM SIDE*):
   * (B/S) Solder the LM7805 linear regulator to the UNDERSIDE of the board, ensuring the tab is soldered to the large square pad for heat dissipation
   * Solder in the 4x capacitors
   * Solder in the piezo buzzer
