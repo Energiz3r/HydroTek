@@ -12,6 +12,13 @@
 ![alt-text](https://i.imgur.com/qcLx93il.jpg "Image")
 
 ---
+### Update:
+
+Early revisions of this gadget used an ESP8266 for WiFi functionality and an Arduino Nano for sensors, which communicated with each other over serial. Since discovering the ESP32 I've changed the design to simplify it greatly for rev5, however I've found a consistent issue with the gerber files produced by PCBWeb which has been ruining my manufactured PCBs. The tool is excellent otherwise but it looks like I need to change to Eagle or one of the others unless the vendor can release a patch.
+
+In the meantime, I've fixed the rev5 gerber files using a gerber editor such that they can be successfully manufactured. I will likely assemble a rev5, test it for issues, then do a 6th revision with a new layout using a new tool.
+
+---
 
 ### Overview:
 
@@ -53,14 +60,17 @@ I2C pH sensors *could* be connected using a kit [such as this](https://www.spark
 
 ### To Do (not started):
 
-* fetching configuration for lamp / pump timings from online so the sketch doesn't need to be altered to make changes
-* updating the RTC time from online
-* WiFi configuration on the device instead of through the sketch
+* fetch the configuration for lamp / pump timings from online so the sketch doesn't need to be altered to make changes
+* update the RTC time from online
+* WiFi configuration on the device, using buttons and a menu instead of by editing the sketch
 * Calculate actual flow from the flow sensors
 
 ---
 
 ### Build instructions:
+
+The software for this is a bit incomplete. The hardware is good to go, so go ahead with that, but if you want to build this and use the online component as I've designed it, shoot me a message at cl@noobs.wtf and I'll sort out the things still needing to be done manually, such as creating an account and preparing the database for your hardware.
+
 *(rev5)*
 
 * To manufacture the PCB, upload the gerber files for the current PCB revision to a service such as [DirtyPCBs](http://dirtypcbs.com/store/pcbs)
@@ -106,7 +116,7 @@ I2C pH sensors *could* be connected using a kit [such as this](https://www.spark
 ### Known issues:
 *(rev5)*
 
-* Have not yet designed a 3D printable case
+* Have not yet designed a 3D printable case for rev 4 / 5
 * The react app is included in the repo for now but will be removed in future. Makers will be able to use my hosted platform or build their own API
 * The nutrient flow values are raw 'ticks' from the flow sensor, not a calculated litres or gallons value
 
