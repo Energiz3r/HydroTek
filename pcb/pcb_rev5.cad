@@ -1,7 +1,7 @@
 <ElectronicDesign Guid="b7b8c5d0-e26f-44bf-9cd8-e6b0b759159c" Id="1">
   <Prop Val="pcb_rev5" Nm="%%DESIGNNAME" />
   <Prop Val="C:\Projects\HydroTek\pcb\pcb_rev5.cad" Nm="%%DESIGNFILENAME" />
-  <Prop Val="12:03:20.2621445" Nm="%%DESIGNTIME" />
+  <Prop Val="12:12:40.3469142" Nm="%%DESIGNTIME" />
   <UsedPartTypes>
     <PartType Id="2" Name="LED_RADIAL">
       <Prop Val="N/A" Nm="DATASHEETS" />
@@ -744,63 +744,6 @@
       </PartType>
       <DistributorParts />
     </PartType>
-    <PartType Id="194" Name="3-PIN-HEADER">
-      <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
-      <Prop Val="3-PIN-HEADER" Nm="%%SCHPARTNUM" />
-      <Footprint Name="3-PIN-HEADER" LibGuid="00000000-0000-0000-0000-000000000000">
-        <Metrics NamedPadCount="3" PadRows="1" PadCols="3" XPitch="1000000" YPitch="0" IsSmd="False" />
-        <Prop Val="100000bu,100000bu" Nm="%%PCBGRIDSIZE" />
-        <Prop Val="Mm" Nm="%%PCBCURRENTUNITS" />
-        <BitBucket>
-          <Pad Id="204" X="-1000000bu" Y="0bu" Name="1" Width="531496bu" Height="531496bu" Drill="314961bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
-          <Pad Id="205" X="0bu" Y="0bu" Name="2" Width="531496bu" Height="531496bu" Drill="314961bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
-          <Pad Id="206" X="1000000bu" Y="0bu" Name="3" Width="531496bu" Height="531496bu" Drill="314961bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="False" Thermals="True" />
-          <Poly Id="207" Name="" Type="Outline" Layer="FpSilk" LineWidth="100000bu">
-            <Crn X="-1400000bu" Y="400000bu" />
-            <Crn X="-1400000bu" Y="-400000bu" />
-            <Crn X="1400000bu" Y="-400000bu" />
-            <Crn X="1400000bu" Y="400000bu" />
-            <Crn X="-1400000bu" Y="400000bu" />
-            <Crn X="-1400000bu" Y="400000bu" />
-          </Poly>
-          <Text Id="208" String="GND" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="FpSilk" X="-800000bu" Y="-1400000bu" />
-          <Text Id="209" String="D" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="FpSilk" X="200000bu" Y="-800000bu" />
-          <Text Id="210" String="VCC" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="FpSilk" X="1200000bu" Y="-1500000bu" />
-        </BitBucket>
-      </Footprint>
-      <Symbol Id="195" SetName="NewSymbol" LibGuid="00000000-0000-0000-0000-000000000000">
-        <Prop Val="1000000bu,1000000bu" Nm="%%PCBGRIDSIZE" />
-        <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
-        <Section Id="196" SymbolName="" SectionName="" X="0bu" Y="0bu" Rot="0" Req="False" SwapId="0">
-          <Prop Val="4278190080" Nm="%%SCHPINNAMECOLOR" />
-          <Prop Val="4278190080" Nm="%%SCHPINNUMCOLOR" />
-          <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
-          <Prop Val="U???" Nm="%%SCHREFDES" />
-          <Prop Val="PN???" Nm="%%SCHPARTNUM" />
-          <Prop Val="Val???" Nm="%%SCHPARTVALUE" />
-          <Prop Val="Tol???" Nm="%%SCHPARTTOL" />
-          <BitBucket>
-            <SchText Id="197" String="$%%SCHPARTNUM" Rot="0" PtHeight="12" Justify="CenterCenter" Invisible="False" X="0bu" Y="-3000000bu">
-              <Prop Val="3-PIN-HEADER" Nm="%%SCHPARTNUM" />
-            </SchText>
-            <SchText Id="198" String="$%%SCHREFDES" Rot="0" PtHeight="12" Justify="CenterCenter" Invisible="False" X="0bu" Y="3000000bu">
-              <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
-            </SchText>
-            <Pin Id="199" X="2000000bu" Y="1000000bu" Name="GND" Num="1" Ori="Right" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
-            <Pin Id="200" X="2000000bu" Y="0bu" Name="D" Num="2" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
-            <Pin Id="201" X="2000000bu" Y="-1000000bu" Name="VCC" Num="3" Ori="Right" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
-            <Rect Id="202" X1="-2000000bu" Y1="-2000000bu" X2="0bu" Y2="2000000bu" />
-          </BitBucket>
-        </Section>
-      </Symbol>
-      <PartType Name="3-PIN-HEADER">
-        <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
-        <Prop Val="3-PIN-HEADER" Nm="%%SCHPARTNUM" />
-        <DefaultFootprint Name="3-PIN-HEADER" Guid="00000000-0000-0000-0000-000000000000" />
-        <DefaultSymbol Name="NewSymbol" Guid="00000000-0000-0000-0000-000000000000" />
-      </PartType>
-      <DistributorParts />
-    </PartType>
     <PartType Id="211" Name="ESP32_D1_MINI">
       <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
       <Prop Val="ESP32_D1_MINI" Nm="%%SCHPARTNUM" />
@@ -941,39 +884,40 @@
       </PartType>
       <DistributorParts />
     </PartType>
-    <PartType Id="304" Name="RELAY_OUTPUTS_STACKED">
+    <PartType Id="2465" Name="RELAY_OUTPUTS_STACKED">
       <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
       <Prop Val="RELAY_OUTPUTS_STACKED" Nm="%%SCHPARTNUM" />
+      <Prop />
       <Footprint Name="RELAY_OUTPUTS_F" LibGuid="f54380af-3650-4365-bf5f-8a7fda98bff8">
         <Metrics NamedPadCount="6" PadRows="2" PadCols="3" XPitch="1000000" YPitch="1000000" IsSmd="False" />
-        <Prop Val="125000bu,125000bu" Nm="%%PCBGRIDSIZE" />
+        <Prop Val="500000bu,500000bu" Nm="%%PCBGRIDSIZE" />
         <Prop Val="In" Nm="%%PCBCURRENTUNITS" />
         <BitBucket>
-          <Pad Id="317" X="-1000000bu" Y="500000bu" Name="1" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
-          <Pad Id="318" X="-1000000bu" Y="-500000bu" Name="2" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="False" Thermals="True" />
-          <Pad Id="319" X="0bu" Y="500000bu" Name="3" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="False" />
-          <Pad Id="320" X="0bu" Y="-500000bu" Name="4" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="False" />
-          <Pad Id="321" X="1000000bu" Y="500000bu" Name="5" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="False" />
-          <Pad Id="322" X="1000000bu" Y="-500000bu" Name="6" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="False" />
-          <Poly Id="323" Name="" Type="Outline" Layer="FpSilk" LineWidth="100000bu">
+          <Poly Id="2478" Name="" Type="Outline" Layer="FpSilk" LineWidth="100000bu">
             <Crn X="-1375000bu" Y="875000bu" />
             <Crn X="-1375000bu" Y="-875000bu" />
             <Crn X="1375000bu" Y="-875000bu" />
             <Crn X="1375000bu" Y="875000bu" />
             <Crn X="-1375000bu" Y="875000bu" />
           </Poly>
-          <Text Id="324" String="GND" Rot="0" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="FpSilk" X="-1500000bu" Y="-1375000bu" />
-          <Text Id="325" String="VCC" Rot="0" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="FpSilk" X="-1625000bu" Y="-1875000bu" />
-          <Text Id="326" String="P1" Rot="0" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="FpSilk" X="750000bu" Y="-1375000bu" />
-          <Text Id="327" String="P2" Rot="0" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="FpSilk" X="750000bu" Y="-1875000bu" />
-          <Text Id="328" String="L1" Rot="0" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="FpSilk" X="-250000bu" Y="-1375000bu" />
-          <Text Id="329" String="L2" Rot="0" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="FpSilk" X="-250000bu" Y="-1875000bu" />
+          <Text Id="2479" String="GND" Rot="0" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="FpSilk" X="-1500000bu" Y="-1375000bu" />
+          <Text Id="2480" String="VCC" Rot="0" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="FpSilk" X="-1625000bu" Y="-1875000bu" />
+          <Text Id="2481" String="P1" Rot="0" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="FpSilk" X="750000bu" Y="-1375000bu" />
+          <Text Id="2482" String="P2" Rot="0" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="FpSilk" X="750000bu" Y="-1875000bu" />
+          <Text Id="2483" String="L1" Rot="0" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="FpSilk" X="-250000bu" Y="-1375000bu" />
+          <Text Id="2484" String="L2" Rot="0" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="FpSilk" X="-250000bu" Y="-1875000bu" />
+          <Pad Id="2485" X="-1000000bu" Y="500000bu" Name="1" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
+          <Pad Id="2486" X="-1000000bu" Y="-500000bu" Name="2" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="False" Thermals="True" />
+          <Pad Id="2487" X="0bu" Y="500000bu" Name="3" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
+          <Pad Id="2488" X="0bu" Y="-500000bu" Name="4" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
+          <Pad Id="2489" X="1000000bu" Y="500000bu" Name="5" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
+          <Pad Id="2490" X="1000000bu" Y="-500000bu" Name="6" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
         </BitBucket>
       </Footprint>
-      <Symbol Id="305" SetName="NewSymbol" LibGuid="86b294c2-cb20-4202-9cf2-f91093344fa8">
+      <Symbol Id="2466" SetName="NewSymbol" LibGuid="86b294c2-cb20-4202-9cf2-f91093344fa8">
         <Prop Val="1000000bu,1000000bu" Nm="%%PCBGRIDSIZE" />
         <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
-        <Section Id="306" SymbolName="" SectionName="" X="0bu" Y="0bu" Rot="0" Req="False" SwapId="0">
+        <Section Id="2467" SymbolName="" SectionName="" X="0bu" Y="0bu" Rot="0" Req="False" SwapId="0">
           <Prop Val="4278190080" Nm="%%SCHPINNAMECOLOR" />
           <Prop Val="4278190080" Nm="%%SCHPINNUMCOLOR" />
           <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
@@ -982,27 +926,86 @@
           <Prop Val="Val???" Nm="%%SCHPARTVALUE" />
           <Prop Val="Tol???" Nm="%%SCHPARTTOL" />
           <BitBucket>
-            <SchText Id="307" String="$%%SCHPARTNUM" Rot="0" PtHeight="12" Justify="CenterCenter" Invisible="False" X="0bu" Y="-4000000bu">
+            <SchText Id="2468" String="$%%SCHPARTNUM" Rot="0" PtHeight="12" Justify="CenterCenter" Invisible="False" X="0bu" Y="-4000000bu">
               <Prop Val="RELAY_OUTPUTS_STACKED" Nm="%%SCHPARTNUM" />
             </SchText>
-            <SchText Id="308" String="$%%SCHREFDES" Rot="0" PtHeight="12" Justify="CenterCenter" Invisible="False" X="1000000bu" Y="4000000bu">
+            <SchText Id="2469" String="$%%SCHREFDES" Rot="0" PtHeight="12" Justify="CenterCenter" Invisible="False" X="1000000bu" Y="4000000bu">
               <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
             </SchText>
-            <Pin Id="309" X="3000000bu" Y="2000000bu" Name="GND" Num="1" Ori="Right" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
-            <Pin Id="310" X="3000000bu" Y="1000000bu" Name="VCC" Num="2" Ori="Right" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
-            <Pin Id="311" X="3000000bu" Y="0bu" Name="L1" Num="3" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
-            <Pin Id="312" X="3000000bu" Y="-1000000bu" Name="L2" Num="4" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
-            <Pin Id="313" X="3000000bu" Y="-2000000bu" Name="P1" Num="5" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
-            <Pin Id="314" X="3000000bu" Y="-3000000bu" Name="P2" Num="6" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
-            <Rect Id="315" X1="-3000000bu" Y1="-4000000bu" X2="1000000bu" Y2="3000000bu" />
+            <Pin Id="2470" X="3000000bu" Y="2000000bu" Name="GND" Num="1" Ori="Right" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+            <Pin Id="2471" X="3000000bu" Y="1000000bu" Name="VCC" Num="2" Ori="Right" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+            <Pin Id="2472" X="3000000bu" Y="0bu" Name="L1" Num="3" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+            <Pin Id="2473" X="3000000bu" Y="-1000000bu" Name="L2" Num="4" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+            <Pin Id="2474" X="3000000bu" Y="-2000000bu" Name="P1" Num="5" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+            <Pin Id="2475" X="3000000bu" Y="-3000000bu" Name="P2" Num="6" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+            <Rect Id="2476" X1="-3000000bu" Y1="-4000000bu" X2="1000000bu" Y2="3000000bu" />
           </BitBucket>
         </Section>
       </Symbol>
       <PartType Name="RELAY_OUTPUTS_STACKED">
         <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
         <Prop Val="RELAY_OUTPUTS_STACKED" Nm="%%SCHPARTNUM" />
+        <Prop />
         <DefaultFootprint Name="RELAY_OUTPUTS_F" Guid="f54380af-3650-4365-bf5f-8a7fda98bff8" />
         <DefaultSymbol Name="NewSymbol" Guid="86b294c2-cb20-4202-9cf2-f91093344fa8" />
+      </PartType>
+      <DistributorParts />
+    </PartType>
+    <PartType Id="5138" Name="3-PIN-HEADER">
+      <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
+      <Prop Val="3-PIN-HEADER" Nm="%%SCHPARTNUM" />
+      <Prop />
+      <Footprint Name="3-PIN-HEADER" LibGuid="2b6b35fb-0351-4904-8c2a-d8240d163fe7">
+        <Metrics NamedPadCount="3" PadRows="1" PadCols="3" XPitch="1000000" YPitch="0" IsSmd="False" />
+        <Prop Val="100000bu,100000bu" Nm="%%PCBGRIDSIZE" />
+        <Prop Val="In" Nm="%%PCBCURRENTUNITS" />
+        <BitBucket>
+          <Poly Id="5148" Name="" Type="Outline" Layer="FpSilk" LineWidth="100000bu">
+            <Crn X="-1500000bu" Y="500000bu" />
+            <Crn X="-1500000bu" Y="-500000bu" />
+            <Crn X="1500000bu" Y="-500000bu" />
+            <Crn X="1500000bu" Y="500000bu" />
+            <Crn X="-1500000bu" Y="500000bu" />
+          </Poly>
+          <Text Id="5149" String="GND" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="FpSilk" X="-700000bu" Y="-1500000bu" />
+          <Text Id="5150" String="D" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="FpSilk" X="300000bu" Y="-1000000bu" />
+          <Text Id="5151" String="VCC" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="FpSilk" X="1200000bu" Y="-1600000bu" />
+          <Pad Id="5152" X="-1000000bu" Y="0bu" Name="1" Width="750000bu" Height="753000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
+          <Pad Id="5153" X="0bu" Y="0bu" Name="2" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
+          <Pad Id="5154" X="1000000bu" Y="0bu" Name="3" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="False" Thermals="True" />
+        </BitBucket>
+      </Footprint>
+      <Symbol Id="5139" SetName="NewSymbol" LibGuid="986af1e7-23d6-4af6-b17a-1371d1680bdb">
+        <Prop Val="1000000bu,1000000bu" Nm="%%PCBGRIDSIZE" />
+        <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
+        <Section Id="5140" SymbolName="" SectionName="" X="0bu" Y="0bu" Rot="0" Req="False" SwapId="0">
+          <Prop Val="4278190080" Nm="%%SCHPINNAMECOLOR" />
+          <Prop Val="4278190080" Nm="%%SCHPINNUMCOLOR" />
+          <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
+          <Prop Val="U???" Nm="%%SCHREFDES" />
+          <Prop Val="PN???" Nm="%%SCHPARTNUM" />
+          <Prop Val="Val???" Nm="%%SCHPARTVALUE" />
+          <Prop Val="Tol???" Nm="%%SCHPARTTOL" />
+          <BitBucket>
+            <SchText Id="5141" String="$%%SCHPARTNUM" Rot="0" PtHeight="12" Justify="CenterCenter" Invisible="False" X="0bu" Y="-3000000bu">
+              <Prop Val="3-PIN-HEADER" Nm="%%SCHPARTNUM" />
+            </SchText>
+            <SchText Id="5142" String="$%%SCHREFDES" Rot="0" PtHeight="12" Justify="CenterCenter" Invisible="False" X="0bu" Y="3000000bu">
+              <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
+            </SchText>
+            <Pin Id="5143" X="2000000bu" Y="1000000bu" Name="GND" Num="1" Ori="Right" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+            <Pin Id="5144" X="2000000bu" Y="0bu" Name="D" Num="2" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+            <Pin Id="5145" X="2000000bu" Y="-1000000bu" Name="VCC" Num="3" Ori="Right" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+            <Rect Id="5146" X1="-2000000bu" Y1="-2000000bu" X2="0bu" Y2="2000000bu" />
+          </BitBucket>
+        </Section>
+      </Symbol>
+      <PartType Name="3-PIN-HEADER">
+        <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
+        <Prop Val="3-PIN-HEADER" Nm="%%SCHPARTNUM" />
+        <Prop />
+        <DefaultFootprint Name="3-PIN-HEADER" Guid="2b6b35fb-0351-4904-8c2a-d8240d163fe7" />
+        <DefaultSymbol Name="NewSymbol" Guid="986af1e7-23d6-4af6-b17a-1371d1680bdb" />
       </PartType>
       <DistributorParts />
     </PartType>
@@ -1163,42 +1166,6 @@
           <Prop Val="1000000bu,1000000bu" Nm="%%PCBGRIDSIZE" />
         </Sections>
       </Part>
-      <Part Id="358" Name="3-PIN-HEADER" RefDes="U3" PartType="194">
-        <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
-        <Prop Val="3-PIN-HEADER" Nm="%%SCHPARTNUM" />
-        <Prop Val="U3" Nm="%%SCHREFDES" />
-        <Sections Id="359" SetName="NewSymbol" LibGuid="00000000-0000-0000-0000-000000000000" OwningPart="358">
-          <Prop Val="1000000bu,1000000bu" Nm="%%PCBGRIDSIZE" />
-          <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
-        </Sections>
-      </Part>
-      <Part Id="360" Name="3-PIN-HEADER" RefDes="U5" PartType="194">
-        <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
-        <Prop Val="3-PIN-HEADER" Nm="%%SCHPARTNUM" />
-        <Prop Val="U5" Nm="%%SCHREFDES" />
-        <Sections Id="361" SetName="NewSymbol" LibGuid="00000000-0000-0000-0000-000000000000" OwningPart="360">
-          <Prop Val="1000000bu,1000000bu" Nm="%%PCBGRIDSIZE" />
-          <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
-        </Sections>
-      </Part>
-      <Part Id="362" Name="3-PIN-HEADER" RefDes="U6" PartType="194">
-        <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
-        <Prop Val="3-PIN-HEADER" Nm="%%SCHPARTNUM" />
-        <Prop Val="U6" Nm="%%SCHREFDES" />
-        <Sections Id="363" SetName="NewSymbol" LibGuid="00000000-0000-0000-0000-000000000000" OwningPart="362">
-          <Prop Val="1000000bu,1000000bu" Nm="%%PCBGRIDSIZE" />
-          <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
-        </Sections>
-      </Part>
-      <Part Id="364" Name="3-PIN-HEADER" RefDes="U10" PartType="194">
-        <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
-        <Prop Val="3-PIN-HEADER" Nm="%%SCHPARTNUM" />
-        <Prop Val="U10" Nm="%%SCHREFDES" />
-        <Sections Id="365" SetName="NewSymbol" LibGuid="00000000-0000-0000-0000-000000000000" OwningPart="364">
-          <Prop Val="1000000bu,1000000bu" Nm="%%PCBGRIDSIZE" />
-          <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
-        </Sections>
-      </Part>
       <Part Id="366" Name="ESP32_D1_MINI" RefDes="U4" PartType="211">
         <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
         <Prop Val="ESP32_D1_MINI" Nm="%%SCHPARTNUM" />
@@ -1208,11 +1175,47 @@
           <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
         </Sections>
       </Part>
-      <Part Id="368" Name="RELAY_OUTPUTS_STACKED" RefDes="U7" PartType="304">
+      <Part Id="2493" Name="RELAY_OUTPUTS_STACKED" RefDes="U7" PartType="2465">
         <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
         <Prop Val="RELAY_OUTPUTS_STACKED" Nm="%%SCHPARTNUM" />
         <Prop Val="U7" Nm="%%SCHREFDES" />
-        <Sections Id="369" SetName="NewSymbol" LibGuid="86b294c2-cb20-4202-9cf2-f91093344fa8" OwningPart="368">
+        <Sections Id="2494" SetName="NewSymbol" LibGuid="86b294c2-cb20-4202-9cf2-f91093344fa8" OwningPart="2493">
+          <Prop Val="1000000bu,1000000bu" Nm="%%PCBGRIDSIZE" />
+          <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
+        </Sections>
+      </Part>
+      <Part Id="5157" Name="3-PIN-HEADER" RefDes="U3" PartType="5138">
+        <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
+        <Prop Val="3-PIN-HEADER" Nm="%%SCHPARTNUM" />
+        <Prop Val="U3" Nm="%%SCHREFDES" />
+        <Sections Id="5158" SetName="NewSymbol" LibGuid="986af1e7-23d6-4af6-b17a-1371d1680bdb" OwningPart="5157">
+          <Prop Val="1000000bu,1000000bu" Nm="%%PCBGRIDSIZE" />
+          <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
+        </Sections>
+      </Part>
+      <Part Id="5176" Name="3-PIN-HEADER" RefDes="U5" PartType="5138">
+        <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
+        <Prop Val="3-PIN-HEADER" Nm="%%SCHPARTNUM" />
+        <Prop Val="U5" Nm="%%SCHREFDES" />
+        <Sections Id="5177" SetName="NewSymbol" LibGuid="986af1e7-23d6-4af6-b17a-1371d1680bdb" OwningPart="5176">
+          <Prop Val="1000000bu,1000000bu" Nm="%%PCBGRIDSIZE" />
+          <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
+        </Sections>
+      </Part>
+      <Part Id="5195" Name="3-PIN-HEADER" RefDes="U6" PartType="5138">
+        <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
+        <Prop Val="3-PIN-HEADER" Nm="%%SCHPARTNUM" />
+        <Prop Val="U6" Nm="%%SCHREFDES" />
+        <Sections Id="5196" SetName="NewSymbol" LibGuid="986af1e7-23d6-4af6-b17a-1371d1680bdb" OwningPart="5195">
+          <Prop Val="1000000bu,1000000bu" Nm="%%PCBGRIDSIZE" />
+          <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
+        </Sections>
+      </Part>
+      <Part Id="5214" Name="3-PIN-HEADER" RefDes="U10" PartType="5138">
+        <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
+        <Prop Val="3-PIN-HEADER" Nm="%%SCHPARTNUM" />
+        <Prop Val="U10" Nm="%%SCHREFDES" />
+        <Sections Id="5215" SetName="NewSymbol" LibGuid="986af1e7-23d6-4af6-b17a-1371d1680bdb" OwningPart="5214">
           <Prop Val="1000000bu,1000000bu" Nm="%%PCBGRIDSIZE" />
           <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
         </Sections>
@@ -1226,8 +1229,8 @@
       <Prop Val="4278190080" Nm="%%SCHPINNAMECOLOR" />
       <Prop Val="4278190080" Nm="%%SCHPINNUMCOLOR" />
       <Prop Val="C" Nm="%%SCHPAGEFORMAT" />
-      <Prop Val="110000000bu,85000000bu" Nm="%%SCHPAGEVIEWCENTER" />
-      <Prop Val="110000000bu" Nm="%%SCHPAGEVIEWRADIUS" />
+      <Prop Val="40834688bu,113065090bu" Nm="%%SCHPAGEVIEWCENTER" />
+      <Prop Val="41483180bu" Nm="%%SCHPAGEVIEWRADIUS" />
       <SubNet Id="372" Name="AGND" />
       <SubNet Id="373" Name="AGND" />
       <SubNet Id="374" Name="AGND" />
@@ -1246,21 +1249,12 @@
       <SubNet Id="387" Name="BTN" />
       <SubNet Id="388" Name="VIN" />
       <SubNet Id="389" Name="AGND" />
-      <SubNet Id="390" Name="DHT2" />
-      <SubNet Id="391" Name="DHT1" />
-      <SubNet Id="392" Name="FLOW1" />
-      <SubNet Id="393" Name="FLOW2" />
       <SubNet Id="394" Name="FLOAT1" />
       <SubNet Id="395" Name="FLOAT2" />
       <SubNet Id="396" Name="BUZZ" />
       <SubNet Id="397" Name="AGND" />
       <SubNet Id="398" Name="AGND" />
       <SubNet Id="399" Name="AGND" />
-      <SubNet Id="400" Name="AGND" />
-      <SubNet Id="401" Name="LAMP1" />
-      <SubNet Id="402" Name="LAMP2" />
-      <SubNet Id="403" Name="PUMP1" />
-      <SubNet Id="404" Name="PUMP2" />
       <SubNet Id="405" Name="SCL" />
       <SubNet Id="406" Name="SDA" />
       <SubNet Id="407" Name="DHT2" />
@@ -1278,17 +1272,26 @@
       <SubNet Id="419" Name="LED" />
       <SubNet Id="420" Name="+5V" />
       <SubNet Id="421" Name="+3.3V" />
-      <SubNet Id="422" Name="AGND" />
-      <SubNet Id="423" Name="AGND" />
-      <SubNet Id="424" Name="AGND" />
-      <SubNet Id="425" Name="AGND" />
-      <SubNet Id="426" Name="+3.3V" />
-      <SubNet Id="427" Name="+3.3V" />
-      <SubNet Id="428" Name="+3.3V" />
-      <SubNet Id="429" Name="+3.3V" />
       <SubNet Id="430" Name="+3.3V" />
-      <SubNet Id="431" Name="+3.3V" />
       <SubNet Id="432" Name="+3.3V" />
+      <SubNet Id="2548" Name="AGND" />
+      <SubNet Id="2553" Name="+3.3V" />
+      <SubNet Id="2562" Name="LAMP1" />
+      <SubNet Id="2565" Name="LAMP2" />
+      <SubNet Id="2568" Name="PUMP1" />
+      <SubNet Id="2571" Name="PUMP2" />
+      <SubNet Id="5251" Name="DHT2" />
+      <SubNet Id="5254" Name="AGND" />
+      <SubNet Id="5257" Name="+3.3V" />
+      <SubNet Id="5260" Name="AGND" />
+      <SubNet Id="5263" Name="DHT1" />
+      <SubNet Id="5266" Name="+3.3V" />
+      <SubNet Id="5269" Name="AGND" />
+      <SubNet Id="5272" Name="FLOW1" />
+      <SubNet Id="5275" Name="+3.3V" />
+      <SubNet Id="5278" Name="AGND" />
+      <SubNet Id="5281" Name="FLOW2" />
+      <SubNet Id="5284" Name="+3.3V" />
       <SchTie Id="433" SubNetRef="388" X="23000000bu" Y="156000000bu" />
       <SchTie Id="434" SubNetRef="388" X="17000000bu" Y="156000000bu" />
       <SchTie Id="435" SubNetRef="389" X="23000000bu" Y="151000000bu" />
@@ -1556,7 +1559,7 @@
             <Crn X="0bu" Y="0bu" />
           </Poly>
           <SchText Id="493" String="$%%SCHPORTNETNAME" Rot="0" PtHeight="6" Justify="CenterCenter" Invisible="False" X="-5000000bu" Y="50000bu" />
-          <Pin Id="494" SubNetRef="391" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Input" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="494" SubNetRef="5263" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Input" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
         </BitBucket>
         <Poly Id="492">
           <Crn X="0bu" Y="0bu" />
@@ -1567,7 +1570,7 @@
           <Crn X="0bu" Y="0bu" />
         </Poly>
         <SchText Id="493" String="$%%SCHPORTNETNAME" Rot="0" PtHeight="6" Justify="CenterCenter" Invisible="False" X="-5000000bu" Y="50000bu" />
-        <Pin Id="494" SubNetRef="391" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Input" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+        <Pin Id="494" SubNetRef="5263" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Input" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
       </Port>
       <Port Id="495" SymbolName="" X="49000000bu" Y="121000000bu" Rot="180" Type="OffPageIn" NetName="DHT2">
         <BitBucket>
@@ -1580,7 +1583,7 @@
             <Crn X="0bu" Y="0bu" />
           </Poly>
           <SchText Id="497" String="$%%SCHPORTNETNAME" Rot="0" PtHeight="6" Justify="CenterCenter" Invisible="False" X="-5000000bu" Y="50000bu" />
-          <Pin Id="498" SubNetRef="390" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Input" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="498" SubNetRef="5251" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Input" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
         </BitBucket>
         <Poly Id="496">
           <Crn X="0bu" Y="0bu" />
@@ -1591,7 +1594,7 @@
           <Crn X="0bu" Y="0bu" />
         </Poly>
         <SchText Id="497" String="$%%SCHPORTNETNAME" Rot="0" PtHeight="6" Justify="CenterCenter" Invisible="False" X="-5000000bu" Y="50000bu" />
-        <Pin Id="498" SubNetRef="390" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Input" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+        <Pin Id="498" SubNetRef="5251" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Input" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
       </Port>
       <Port Id="499" SymbolName="" X="33000000bu" Y="83000000bu" Rot="90" Type="AGnd" NetName="AGND">
         <BitBucket>
@@ -1707,7 +1710,7 @@
             <Crn X="0bu" Y="0bu" />
           </Poly>
           <SchText Id="530" String="$%%SCHPORTNETNAME" Rot="0" PtHeight="6" Justify="CenterCenter" Invisible="False" X="-5000000bu" Y="50000bu" />
-          <Pin Id="531" SubNetRef="392" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Input" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="531" SubNetRef="5272" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Input" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
         </BitBucket>
         <Poly Id="529">
           <Crn X="0bu" Y="0bu" />
@@ -1718,7 +1721,7 @@
           <Crn X="0bu" Y="0bu" />
         </Poly>
         <SchText Id="530" String="$%%SCHPORTNETNAME" Rot="0" PtHeight="6" Justify="CenterCenter" Invisible="False" X="-5000000bu" Y="50000bu" />
-        <Pin Id="531" SubNetRef="392" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Input" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+        <Pin Id="531" SubNetRef="5272" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Input" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
       </Port>
       <Port Id="532" SymbolName="" X="18000000bu" Y="100000000bu" Rot="0" Type="OffPageIn" NetName="BTN">
         <BitBucket>
@@ -1950,7 +1953,7 @@
             <Crn X="-10000000bu" Y="0bu" />
           </Poly>
           <SchText Id="570" String="$%%SCHPORTNETNAME" Rot="0" PtHeight="6" Justify="CenterCenter" Invisible="False" X="-5000000bu" Y="50000bu" />
-          <Pin Id="571" SubNetRef="393" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="571" SubNetRef="5281" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
         </BitBucket>
         <Poly Id="569">
           <Crn X="-10000000bu" Y="0bu" />
@@ -1961,7 +1964,7 @@
           <Crn X="-10000000bu" Y="0bu" />
         </Poly>
         <SchText Id="570" String="$%%SCHPORTNETNAME" Rot="0" PtHeight="6" Justify="CenterCenter" Invisible="False" X="-5000000bu" Y="50000bu" />
-        <Pin Id="571" SubNetRef="393" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+        <Pin Id="571" SubNetRef="5281" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
       </Port>
       <Port Id="572" SymbolName="" X="19000000bu" Y="131000000bu" Rot="180" Type="OffPageIn" NetName="SCL">
         <BitBucket>
@@ -2247,12 +2250,12 @@
           <Line Id="650" StartX="-1000000bu" StartY="0bu" EndX="1000000bu" EndY="0bu" />
           <Line Id="651" StartX="-500000bu" StartY="-500000bu" EndX="500000bu" EndY="-500000bu" />
           <Line Id="652" StartX="-250000bu" StartY="-1000000bu" EndX="250000bu" EndY="-1000000bu" />
-          <Pin Id="653" SubNetRef="400" X="0bu" Y="2000000bu" Name="" Num="" Ori="Top" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="653" SubNetRef="2548" X="0bu" Y="2000000bu" Name="" Num="" Ori="Top" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
         </BitBucket>
         <Line Id="650" StartX="-1000000bu" StartY="0bu" EndX="1000000bu" EndY="0bu" />
         <Line Id="651" StartX="-500000bu" StartY="-500000bu" EndX="500000bu" EndY="-500000bu" />
         <Line Id="652" StartX="-250000bu" StartY="-1000000bu" EndX="250000bu" EndY="-1000000bu" />
-        <Pin Id="653" SubNetRef="400" X="0bu" Y="2000000bu" Name="" Num="" Ori="Top" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+        <Pin Id="653" SubNetRef="2548" X="0bu" Y="2000000bu" Name="" Num="" Ori="Top" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
       </Port>
       <Port Id="654" SymbolName="" X="51000000bu" Y="94000000bu" Rot="180" Type="OffPageIn" NetName="LAMP1">
         <BitBucket>
@@ -2265,7 +2268,7 @@
             <Crn X="0bu" Y="0bu" />
           </Poly>
           <SchText Id="656" String="$%%SCHPORTNETNAME" Rot="0" PtHeight="6" Justify="CenterCenter" Invisible="False" X="-5000000bu" Y="50000bu" />
-          <Pin Id="657" SubNetRef="401" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Input" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="657" SubNetRef="2562" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Input" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
         </BitBucket>
         <Poly Id="655">
           <Crn X="0bu" Y="0bu" />
@@ -2276,7 +2279,7 @@
           <Crn X="0bu" Y="0bu" />
         </Poly>
         <SchText Id="656" String="$%%SCHPORTNETNAME" Rot="0" PtHeight="6" Justify="CenterCenter" Invisible="False" X="-5000000bu" Y="50000bu" />
-        <Pin Id="657" SubNetRef="401" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Input" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+        <Pin Id="657" SubNetRef="2562" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Input" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
       </Port>
       <Port Id="658" SymbolName="" X="51000000bu" Y="93000000bu" Rot="180" Type="OffPageIn" NetName="LAMP2">
         <BitBucket>
@@ -2289,7 +2292,7 @@
             <Crn X="0bu" Y="0bu" />
           </Poly>
           <SchText Id="660" String="$%%SCHPORTNETNAME" Rot="0" PtHeight="6" Justify="CenterCenter" Invisible="False" X="-5000000bu" Y="50000bu" />
-          <Pin Id="661" SubNetRef="402" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Input" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="661" SubNetRef="2565" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Input" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
         </BitBucket>
         <Poly Id="659">
           <Crn X="0bu" Y="0bu" />
@@ -2300,7 +2303,7 @@
           <Crn X="0bu" Y="0bu" />
         </Poly>
         <SchText Id="660" String="$%%SCHPORTNETNAME" Rot="0" PtHeight="6" Justify="CenterCenter" Invisible="False" X="-5000000bu" Y="50000bu" />
-        <Pin Id="661" SubNetRef="402" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Input" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+        <Pin Id="661" SubNetRef="2565" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Input" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
       </Port>
       <Port Id="662" SymbolName="" X="51000000bu" Y="92000000bu" Rot="180" Type="OffPageIn" NetName="PUMP1">
         <BitBucket>
@@ -2313,7 +2316,7 @@
             <Crn X="0bu" Y="0bu" />
           </Poly>
           <SchText Id="664" String="$%%SCHPORTNETNAME" Rot="0" PtHeight="6" Justify="CenterCenter" Invisible="False" X="-5000000bu" Y="50000bu" />
-          <Pin Id="665" SubNetRef="403" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Input" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="665" SubNetRef="2568" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Input" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
         </BitBucket>
         <Poly Id="663">
           <Crn X="0bu" Y="0bu" />
@@ -2324,7 +2327,7 @@
           <Crn X="0bu" Y="0bu" />
         </Poly>
         <SchText Id="664" String="$%%SCHPORTNETNAME" Rot="0" PtHeight="6" Justify="CenterCenter" Invisible="False" X="-5000000bu" Y="50000bu" />
-        <Pin Id="665" SubNetRef="403" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Input" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+        <Pin Id="665" SubNetRef="2568" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Input" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
       </Port>
       <Port Id="666" SymbolName="" X="51000000bu" Y="91000000bu" Rot="180" Type="OffPageIn" NetName="PUMP2">
         <BitBucket>
@@ -2337,7 +2340,7 @@
             <Crn X="0bu" Y="0bu" />
           </Poly>
           <SchText Id="668" String="$%%SCHPORTNETNAME" Rot="0" PtHeight="6" Justify="CenterCenter" Invisible="False" X="-5000000bu" Y="50000bu" />
-          <Pin Id="669" SubNetRef="404" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Input" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="669" SubNetRef="2571" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Input" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
         </BitBucket>
         <Poly Id="667">
           <Crn X="0bu" Y="0bu" />
@@ -2348,7 +2351,7 @@
           <Crn X="0bu" Y="0bu" />
         </Poly>
         <SchText Id="668" String="$%%SCHPORTNETNAME" Rot="0" PtHeight="6" Justify="CenterCenter" Invisible="False" X="-5000000bu" Y="50000bu" />
-        <Pin Id="669" SubNetRef="404" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Input" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+        <Pin Id="669" SubNetRef="2571" X="2000000bu" Y="0bu" Name="" Num="" Ori="Right" Type="Input" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
       </Port>
       <Section Id="670" SymbolName="" SectionName="" X="42000000bu" Y="154000000bu" Rot="270" Req="False" SwapId="0" OwningSymbolSet="345">
         <Prop Val="C" Nm="%%SCHREFDESPREFIX" />
@@ -2509,79 +2512,6 @@
           <Line Id="729" StartX="1000000bu" StartY="0bu" EndX="500000bu" EndY="0bu" />
           <Line Id="730" StartX="-125000bu" StartY="750000bu" EndX="-125000bu" EndY="500000bu" />
           <Line Id="731" StartX="-250000bu" StartY="625000bu" EndX="0bu" EndY="625000bu" />
-        </BitBucket>
-      </Section>
-      <Section Id="732" SymbolName="" SectionName="" X="12000000bu" Y="121000000bu" Rot="0" Req="False" SwapId="0" OwningSymbolSet="359">
-        <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
-        <Prop Val="U???" Nm="%%SCHREFDES" />
-        <Prop Val="3-PIN-HEADER" Nm="%%SCHPARTNUM" />
-        <Prop Val="Val???" Nm="%%SCHPARTVALUE" />
-        <Prop Val="Tol???" Nm="%%SCHPARTTOL" />
-        <BitBucket>
-          <SchText Id="733" String="$%%SCHPARTNUM" Rot="0" PtHeight="12" Justify="CenterCenter" Invisible="False" X="0bu" Y="-3000000bu">
-            <Prop Val="3-PIN-HEADER" Nm="%%SCHPARTNUM" />
-          </SchText>
-          <SchText Id="734" String="$%%SCHREFDES" Rot="0" PtHeight="12" Justify="CenterCenter" Invisible="False" X="0bu" Y="3000000bu">
-            <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
-          </SchText>
-          <Pin Id="735" SubNetRef="425" X="2000000bu" Y="1000000bu" Name="GND" Num="1" Ori="Right" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
-          <Pin Id="736" SubNetRef="393" X="2000000bu" Y="0bu" Name="D" Num="2" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
-          <Pin Id="737" SubNetRef="429" X="2000000bu" Y="-1000000bu" Name="VCC" Num="3" Ori="Right" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
-          <Rect Id="738" X1="-2000000bu" Y1="-2000000bu" X2="0bu" Y2="2000000bu" />
-        </BitBucket>
-      </Section>
-      <Section Id="739" SymbolName="" SectionName="" X="12000000bu" Y="111000000bu" Rot="0" Req="False" SwapId="0" OwningSymbolSet="361">
-        <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
-        <Prop Val="U???" Nm="%%SCHREFDES" />
-        <Prop Val="3-PIN-HEADER" Nm="%%SCHPARTNUM" />
-        <Prop Val="Val???" Nm="%%SCHPARTVALUE" />
-        <Prop Val="Tol???" Nm="%%SCHPARTTOL" />
-        <BitBucket>
-          <SchText Id="740" String="$%%SCHPARTNUM" Rot="0" PtHeight="12" Justify="CenterCenter" Invisible="False" X="0bu" Y="-3000000bu">
-            <Prop Val="3-PIN-HEADER" Nm="%%SCHPARTNUM" />
-          </SchText>
-          <SchText Id="741" String="$%%SCHREFDES" Rot="0" PtHeight="12" Justify="CenterCenter" Invisible="False" X="0bu" Y="3000000bu">
-            <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
-          </SchText>
-          <Pin Id="742" SubNetRef="424" X="2000000bu" Y="1000000bu" Name="GND" Num="1" Ori="Right" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
-          <Pin Id="743" SubNetRef="392" X="2000000bu" Y="0bu" Name="D" Num="2" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
-          <Pin Id="744" SubNetRef="428" X="2000000bu" Y="-1000000bu" Name="VCC" Num="3" Ori="Right" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
-          <Rect Id="745" X1="-2000000bu" Y1="-2000000bu" X2="0bu" Y2="2000000bu" />
-        </BitBucket>
-      </Section>
-      <Section Id="746" SymbolName="" SectionName="" X="43000000bu" Y="111000000bu" Rot="0" Req="False" SwapId="0" OwningSymbolSet="363">
-        <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
-        <Prop Val="U???" Nm="%%SCHREFDES" />
-        <Prop Val="3-PIN-HEADER" Nm="%%SCHPARTNUM" />
-        <Prop Val="Val???" Nm="%%SCHPARTVALUE" />
-        <Prop Val="Tol???" Nm="%%SCHPARTTOL" />
-        <BitBucket>
-          <SchText Id="747" String="$%%SCHPARTNUM" Rot="0" PtHeight="12" Justify="CenterCenter" Invisible="False" X="0bu" Y="-3000000bu">
-            <Prop Val="3-PIN-HEADER" Nm="%%SCHPARTNUM" />
-          </SchText>
-          <SchText Id="748" String="$%%SCHREFDES" Rot="0" PtHeight="12" Justify="CenterCenter" Invisible="False" X="0bu" Y="3000000bu">
-            <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
-          </SchText>
-          <Pin Id="749" SubNetRef="422" X="2000000bu" Y="1000000bu" Name="GND" Num="1" Ori="Right" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
-          <Pin Id="750" SubNetRef="391" X="2000000bu" Y="0bu" Name="D" Num="2" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
-          <Pin Id="751" SubNetRef="427" X="2000000bu" Y="-1000000bu" Name="VCC" Num="3" Ori="Right" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
-          <Rect Id="752" X1="-2000000bu" Y1="-2000000bu" X2="0bu" Y2="2000000bu" />
-        </BitBucket>
-      </Section>
-      <Section Id="753" SymbolName="" SectionName="" X="43000000bu" Y="121000000bu" Rot="0" Req="False" SwapId="0" OwningSymbolSet="365">
-        <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
-        <Prop Val="U???" Nm="%%SCHREFDES" />
-        <Prop Val="3-PIN-HEADER" Nm="%%SCHPARTNUM" />
-        <Prop Val="Val???" Nm="%%SCHPARTVALUE" />
-        <Prop Val="Tol???" Nm="%%SCHPARTTOL" />
-        <BitBucket>
-          <SchText Id="754" String="$%%SCHREFDES" Rot="0" PtHeight="12" Justify="CenterCenter" Invisible="False" X="0bu" Y="3000000bu">
-            <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
-          </SchText>
-          <Pin Id="755" SubNetRef="423" X="2000000bu" Y="1000000bu" Name="GND" Num="1" Ori="Right" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
-          <Pin Id="756" SubNetRef="390" X="2000000bu" Y="0bu" Name="D" Num="2" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
-          <Pin Id="757" SubNetRef="426" X="2000000bu" Y="-1000000bu" Name="VCC" Num="3" Ori="Right" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
-          <Rect Id="758" X1="-2000000bu" Y1="-2000000bu" X2="0bu" Y2="2000000bu" />
         </BitBucket>
       </Section>
       <Port Id="759" SymbolName="" X="18000000bu" Y="86000000bu" Rot="0" Type="OffPageOut" NetName="FLOAT2">
@@ -2772,28 +2702,6 @@
         <Line Id="832" StartX="-250000bu" StartY="-1000000bu" EndX="250000bu" EndY="-1000000bu" />
         <Pin Id="833" SubNetRef="397" X="0bu" Y="2000000bu" Name="" Num="" Ori="Top" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
       </Port>
-      <Section Id="834" SymbolName="" SectionName="" X="45000000bu" Y="94000000bu" Rot="0" Req="False" SwapId="0" OwningSymbolSet="369">
-        <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
-        <Prop Val="U???" Nm="%%SCHREFDES" />
-        <Prop Val="RELAY_OUTPUTS_STACKED" Nm="%%SCHPARTNUM" />
-        <Prop Val="Val???" Nm="%%SCHPARTVALUE" />
-        <Prop Val="Tol???" Nm="%%SCHPARTTOL" />
-        <BitBucket>
-          <SchText Id="835" String="$%%SCHPARTNUM" Rot="0" PtHeight="12" Justify="CenterCenter" Invisible="False" X="0bu" Y="-4000000bu">
-            <Prop Val="RELAY_OUTPUTS_STACKED" Nm="%%SCHPARTNUM" />
-          </SchText>
-          <SchText Id="836" String="$%%SCHREFDES" Rot="0" PtHeight="12" Justify="CenterCenter" Invisible="False" X="1000000bu" Y="4000000bu">
-            <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
-          </SchText>
-          <Pin Id="837" SubNetRef="400" X="3000000bu" Y="2000000bu" Name="GND" Num="1" Ori="Right" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
-          <Pin Id="838" SubNetRef="431" X="3000000bu" Y="1000000bu" Name="VCC" Num="2" Ori="Right" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
-          <Pin Id="839" SubNetRef="401" X="3000000bu" Y="0bu" Name="L1" Num="3" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
-          <Pin Id="840" SubNetRef="402" X="3000000bu" Y="-1000000bu" Name="L2" Num="4" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
-          <Pin Id="841" SubNetRef="403" X="3000000bu" Y="-2000000bu" Name="P1" Num="5" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
-          <Pin Id="842" SubNetRef="404" X="3000000bu" Y="-3000000bu" Name="P2" Num="6" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
-          <Rect Id="843" X1="-3000000bu" Y1="-4000000bu" X2="1000000bu" Y2="3000000bu" />
-        </BitBucket>
-      </Section>
       <Port Id="844" SymbolName="" X="43000000bu" Y="67000000bu" Rot="0" Type="OffPageOut" NetName="LED">
         <BitBucket>
           <Poly Id="845">
@@ -2843,48 +2751,48 @@
           <Line Id="857" StartX="-1000000bu" StartY="0bu" EndX="1000000bu" EndY="0bu" />
           <Line Id="858" StartX="-500000bu" StartY="-500000bu" EndX="500000bu" EndY="-500000bu" />
           <Line Id="859" StartX="-250000bu" StartY="-1000000bu" EndX="250000bu" EndY="-1000000bu" />
-          <Pin Id="860" SubNetRef="422" X="0bu" Y="2000000bu" Name="" Num="" Ori="Top" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="860" SubNetRef="5260" X="0bu" Y="2000000bu" Name="" Num="" Ori="Top" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
         </BitBucket>
         <Line Id="857" StartX="-1000000bu" StartY="0bu" EndX="1000000bu" EndY="0bu" />
         <Line Id="858" StartX="-500000bu" StartY="-500000bu" EndX="500000bu" EndY="-500000bu" />
         <Line Id="859" StartX="-250000bu" StartY="-1000000bu" EndX="250000bu" EndY="-1000000bu" />
-        <Pin Id="860" SubNetRef="422" X="0bu" Y="2000000bu" Name="" Num="" Ori="Top" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+        <Pin Id="860" SubNetRef="5260" X="0bu" Y="2000000bu" Name="" Num="" Ori="Top" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
       </Port>
       <Port Id="861" SymbolName="" X="47000000bu" Y="124000000bu" Rot="180" Type="AGnd" NetName="AGND">
         <BitBucket>
           <Line Id="862" StartX="-1000000bu" StartY="0bu" EndX="1000000bu" EndY="0bu" />
           <Line Id="863" StartX="-500000bu" StartY="-500000bu" EndX="500000bu" EndY="-500000bu" />
           <Line Id="864" StartX="-250000bu" StartY="-1000000bu" EndX="250000bu" EndY="-1000000bu" />
-          <Pin Id="865" SubNetRef="423" X="0bu" Y="2000000bu" Name="" Num="" Ori="Top" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="865" SubNetRef="5254" X="0bu" Y="2000000bu" Name="" Num="" Ori="Top" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
         </BitBucket>
         <Line Id="862" StartX="-1000000bu" StartY="0bu" EndX="1000000bu" EndY="0bu" />
         <Line Id="863" StartX="-500000bu" StartY="-500000bu" EndX="500000bu" EndY="-500000bu" />
         <Line Id="864" StartX="-250000bu" StartY="-1000000bu" EndX="250000bu" EndY="-1000000bu" />
-        <Pin Id="865" SubNetRef="423" X="0bu" Y="2000000bu" Name="" Num="" Ori="Top" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+        <Pin Id="865" SubNetRef="5254" X="0bu" Y="2000000bu" Name="" Num="" Ori="Top" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
       </Port>
       <Port Id="866" SymbolName="" X="16000000bu" Y="114000000bu" Rot="180" Type="AGnd" NetName="AGND">
         <BitBucket>
           <Line Id="867" StartX="-1000000bu" StartY="0bu" EndX="1000000bu" EndY="0bu" />
           <Line Id="868" StartX="-500000bu" StartY="-500000bu" EndX="500000bu" EndY="-500000bu" />
           <Line Id="869" StartX="-250000bu" StartY="-1000000bu" EndX="250000bu" EndY="-1000000bu" />
-          <Pin Id="870" SubNetRef="424" X="0bu" Y="2000000bu" Name="" Num="" Ori="Top" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="870" SubNetRef="5269" X="0bu" Y="2000000bu" Name="" Num="" Ori="Top" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
         </BitBucket>
         <Line Id="867" StartX="-1000000bu" StartY="0bu" EndX="1000000bu" EndY="0bu" />
         <Line Id="868" StartX="-500000bu" StartY="-500000bu" EndX="500000bu" EndY="-500000bu" />
         <Line Id="869" StartX="-250000bu" StartY="-1000000bu" EndX="250000bu" EndY="-1000000bu" />
-        <Pin Id="870" SubNetRef="424" X="0bu" Y="2000000bu" Name="" Num="" Ori="Top" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+        <Pin Id="870" SubNetRef="5269" X="0bu" Y="2000000bu" Name="" Num="" Ori="Top" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
       </Port>
       <Port Id="871" SymbolName="" X="16000000bu" Y="124000000bu" Rot="180" Type="AGnd" NetName="AGND">
         <BitBucket>
           <Line Id="872" StartX="-1000000bu" StartY="0bu" EndX="1000000bu" EndY="0bu" />
           <Line Id="873" StartX="-500000bu" StartY="-500000bu" EndX="500000bu" EndY="-500000bu" />
           <Line Id="874" StartX="-250000bu" StartY="-1000000bu" EndX="250000bu" EndY="-1000000bu" />
-          <Pin Id="875" SubNetRef="425" X="0bu" Y="2000000bu" Name="" Num="" Ori="Top" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="875" SubNetRef="5278" X="0bu" Y="2000000bu" Name="" Num="" Ori="Top" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
         </BitBucket>
         <Line Id="872" StartX="-1000000bu" StartY="0bu" EndX="1000000bu" EndY="0bu" />
         <Line Id="873" StartX="-500000bu" StartY="-500000bu" EndX="500000bu" EndY="-500000bu" />
         <Line Id="874" StartX="-250000bu" StartY="-1000000bu" EndX="250000bu" EndY="-1000000bu" />
-        <Pin Id="875" SubNetRef="425" X="0bu" Y="2000000bu" Name="" Num="" Ori="Top" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+        <Pin Id="875" SubNetRef="5278" X="0bu" Y="2000000bu" Name="" Num="" Ori="Top" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
       </Port>
       <Port Id="876" SymbolName="" X="21000000bu" Y="135000000bu" Rot="0" Type="Pwr" NetName="+3.3V">
         <BitBucket>
@@ -2900,51 +2808,51 @@
         <BitBucket>
           <Line Id="881" StartX="-1000000bu" StartY="0bu" EndX="1000000bu" EndY="0bu" />
           <SchText Id="882" String="$%%SCHPORTNETNAME" Rot="0" PtHeight="12" Justify="LowerCenter" Invisible="False" X="0bu" Y="100000bu" />
-          <Pin Id="883" SubNetRef="429" X="0bu" Y="-2000000bu" Name="" Num="" Ori="Bottom" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="883" SubNetRef="5284" X="0bu" Y="-2000000bu" Name="" Num="" Ori="Bottom" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
         </BitBucket>
         <Line Id="881" StartX="-1000000bu" StartY="0bu" EndX="1000000bu" EndY="0bu" />
         <SchText Id="882" String="$%%SCHPORTNETNAME" Rot="0" PtHeight="12" Justify="LowerCenter" Invisible="False" X="0bu" Y="100000bu" />
-        <Pin Id="883" SubNetRef="429" X="0bu" Y="-2000000bu" Name="" Num="" Ori="Bottom" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+        <Pin Id="883" SubNetRef="5284" X="0bu" Y="-2000000bu" Name="" Num="" Ori="Bottom" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
       </Port>
       <Port Id="884" SymbolName="" X="21000000bu" Y="108000000bu" Rot="180" Type="Pwr" NetName="+3.3V">
         <BitBucket>
           <Line Id="885" StartX="-1000000bu" StartY="0bu" EndX="1000000bu" EndY="0bu" />
           <SchText Id="886" String="$%%SCHPORTNETNAME" Rot="0" PtHeight="12" Justify="LowerCenter" Invisible="False" X="0bu" Y="100000bu" />
-          <Pin Id="887" SubNetRef="428" X="0bu" Y="-2000000bu" Name="" Num="" Ori="Bottom" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="887" SubNetRef="5275" X="0bu" Y="-2000000bu" Name="" Num="" Ori="Bottom" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
         </BitBucket>
         <Line Id="885" StartX="-1000000bu" StartY="0bu" EndX="1000000bu" EndY="0bu" />
         <SchText Id="886" String="$%%SCHPORTNETNAME" Rot="0" PtHeight="12" Justify="LowerCenter" Invisible="False" X="0bu" Y="100000bu" />
-        <Pin Id="887" SubNetRef="428" X="0bu" Y="-2000000bu" Name="" Num="" Ori="Bottom" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+        <Pin Id="887" SubNetRef="5275" X="0bu" Y="-2000000bu" Name="" Num="" Ori="Bottom" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
       </Port>
       <Port Id="888" SymbolName="" X="52000000bu" Y="108000000bu" Rot="180" Type="Pwr" NetName="+3.3V">
         <BitBucket>
           <Line Id="889" StartX="-1000000bu" StartY="0bu" EndX="1000000bu" EndY="0bu" />
           <SchText Id="890" String="$%%SCHPORTNETNAME" Rot="0" PtHeight="12" Justify="LowerCenter" Invisible="False" X="0bu" Y="100000bu" />
-          <Pin Id="891" SubNetRef="427" X="0bu" Y="-2000000bu" Name="" Num="" Ori="Bottom" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="891" SubNetRef="5266" X="0bu" Y="-2000000bu" Name="" Num="" Ori="Bottom" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
         </BitBucket>
         <Line Id="889" StartX="-1000000bu" StartY="0bu" EndX="1000000bu" EndY="0bu" />
         <SchText Id="890" String="$%%SCHPORTNETNAME" Rot="0" PtHeight="12" Justify="LowerCenter" Invisible="False" X="0bu" Y="100000bu" />
-        <Pin Id="891" SubNetRef="427" X="0bu" Y="-2000000bu" Name="" Num="" Ori="Bottom" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+        <Pin Id="891" SubNetRef="5266" X="0bu" Y="-2000000bu" Name="" Num="" Ori="Bottom" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
       </Port>
       <Port Id="892" SymbolName="" X="52000000bu" Y="118000000bu" Rot="180" Type="Pwr" NetName="+3.3V">
         <BitBucket>
           <Line Id="893" StartX="-1000000bu" StartY="0bu" EndX="1000000bu" EndY="0bu" />
           <SchText Id="894" String="$%%SCHPORTNETNAME" Rot="0" PtHeight="12" Justify="LowerCenter" Invisible="False" X="0bu" Y="100000bu" />
-          <Pin Id="895" SubNetRef="426" X="0bu" Y="-2000000bu" Name="" Num="" Ori="Bottom" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="895" SubNetRef="5257" X="0bu" Y="-2000000bu" Name="" Num="" Ori="Bottom" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
         </BitBucket>
         <Line Id="893" StartX="-1000000bu" StartY="0bu" EndX="1000000bu" EndY="0bu" />
         <SchText Id="894" String="$%%SCHPORTNETNAME" Rot="0" PtHeight="12" Justify="LowerCenter" Invisible="False" X="0bu" Y="100000bu" />
-        <Pin Id="895" SubNetRef="426" X="0bu" Y="-2000000bu" Name="" Num="" Ori="Bottom" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+        <Pin Id="895" SubNetRef="5257" X="0bu" Y="-2000000bu" Name="" Num="" Ori="Bottom" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
       </Port>
       <Port Id="896" SymbolName="" X="50000000bu" Y="97000000bu" Rot="0" Type="Pwr" NetName="+3.3V">
         <BitBucket>
           <Line Id="897" StartX="-1000000bu" StartY="0bu" EndX="1000000bu" EndY="0bu" />
           <SchText Id="898" String="$%%SCHPORTNETNAME" Rot="0" PtHeight="12" Justify="LowerCenter" Invisible="False" X="0bu" Y="100000bu" />
-          <Pin Id="899" SubNetRef="431" X="0bu" Y="-2000000bu" Name="" Num="" Ori="Bottom" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="899" SubNetRef="2553" X="0bu" Y="-2000000bu" Name="" Num="" Ori="Bottom" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
         </BitBucket>
         <Line Id="897" StartX="-1000000bu" StartY="0bu" EndX="1000000bu" EndY="0bu" />
         <SchText Id="898" String="$%%SCHPORTNETNAME" Rot="0" PtHeight="12" Justify="LowerCenter" Invisible="False" X="0bu" Y="100000bu" />
-        <Pin Id="899" SubNetRef="431" X="0bu" Y="-2000000bu" Name="" Num="" Ori="Bottom" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+        <Pin Id="899" SubNetRef="2553" X="0bu" Y="-2000000bu" Name="" Num="" Ori="Bottom" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
       </Port>
       <Port Id="900" SymbolName="" X="69000000bu" Y="130000000bu" Rot="180" Type="Pwr" NetName="+3.3V">
         <BitBucket>
@@ -2956,6 +2864,104 @@
         <SchText Id="902" String="$%%SCHPORTNETNAME" Rot="0" PtHeight="12" Justify="LowerCenter" Invisible="False" X="0bu" Y="100000bu" />
         <Pin Id="903" SubNetRef="432" X="0bu" Y="-2000000bu" Name="" Num="" Ori="Bottom" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
       </Port>
+      <Section Id="2495" SymbolName="" SectionName="" X="43000000bu" Y="94000000bu" Rot="0" Req="False" SwapId="0" OwningSymbolSet="2494">
+        <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
+        <Prop Val="U???" Nm="%%SCHREFDES" />
+        <Prop Val="RELAY_OUTPUTS_STACKED" Nm="%%SCHPARTNUM" />
+        <Prop Val="Val???" Nm="%%SCHPARTVALUE" />
+        <Prop Val="Tol???" Nm="%%SCHPARTTOL" />
+        <BitBucket>
+          <SchText Id="2496" String="$%%SCHPARTNUM" Rot="0" PtHeight="12" Justify="CenterCenter" Invisible="False" X="0bu" Y="-4000000bu">
+            <Prop Val="RELAY_OUTPUTS_STACKED" Nm="%%SCHPARTNUM" />
+          </SchText>
+          <SchText Id="2497" String="$%%SCHREFDES" Rot="0" PtHeight="12" Justify="CenterCenter" Invisible="False" X="1000000bu" Y="4000000bu">
+            <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
+          </SchText>
+          <Pin Id="2498" SubNetRef="2548" X="3000000bu" Y="2000000bu" Name="GND" Num="1" Ori="Right" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="2499" SubNetRef="2553" X="3000000bu" Y="1000000bu" Name="VCC" Num="2" Ori="Right" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="2500" SubNetRef="2562" X="3000000bu" Y="0bu" Name="L1" Num="3" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="2501" SubNetRef="2565" X="3000000bu" Y="-1000000bu" Name="L2" Num="4" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="2502" SubNetRef="2568" X="3000000bu" Y="-2000000bu" Name="P1" Num="5" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="2503" SubNetRef="2571" X="3000000bu" Y="-3000000bu" Name="P2" Num="6" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Rect Id="2504" X1="-3000000bu" Y1="-4000000bu" X2="1000000bu" Y2="3000000bu" />
+        </BitBucket>
+      </Section>
+      <Section Id="5159" SymbolName="" SectionName="" X="12000000bu" Y="121000000bu" Rot="0" Req="False" SwapId="0" OwningSymbolSet="5158">
+        <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
+        <Prop Val="U???" Nm="%%SCHREFDES" />
+        <Prop Val="3-PIN-HEADER" Nm="%%SCHPARTNUM" />
+        <Prop Val="Val???" Nm="%%SCHPARTVALUE" />
+        <Prop Val="Tol???" Nm="%%SCHPARTTOL" />
+        <BitBucket>
+          <SchText Id="5160" String="$%%SCHPARTNUM" Rot="0" PtHeight="12" Justify="CenterCenter" Invisible="False" X="0bu" Y="-3000000bu">
+            <Prop Val="3-PIN-HEADER" Nm="%%SCHPARTNUM" />
+          </SchText>
+          <SchText Id="5161" String="$%%SCHREFDES" Rot="0" PtHeight="12" Justify="CenterCenter" Invisible="False" X="0bu" Y="3000000bu">
+            <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
+          </SchText>
+          <Pin Id="5162" SubNetRef="5278" X="2000000bu" Y="1000000bu" Name="GND" Num="1" Ori="Right" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="5163" SubNetRef="5281" X="2000000bu" Y="0bu" Name="D" Num="2" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="5164" SubNetRef="5284" X="2000000bu" Y="-1000000bu" Name="VCC" Num="3" Ori="Right" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Rect Id="5165" X1="-2000000bu" Y1="-2000000bu" X2="0bu" Y2="2000000bu" />
+        </BitBucket>
+      </Section>
+      <Section Id="5178" SymbolName="" SectionName="" X="12000000bu" Y="111000000bu" Rot="0" Req="False" SwapId="0" OwningSymbolSet="5177">
+        <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
+        <Prop Val="U???" Nm="%%SCHREFDES" />
+        <Prop Val="3-PIN-HEADER" Nm="%%SCHPARTNUM" />
+        <Prop Val="Val???" Nm="%%SCHPARTVALUE" />
+        <Prop Val="Tol???" Nm="%%SCHPARTTOL" />
+        <BitBucket>
+          <SchText Id="5179" String="$%%SCHPARTNUM" Rot="0" PtHeight="12" Justify="CenterCenter" Invisible="False" X="0bu" Y="-3000000bu">
+            <Prop Val="3-PIN-HEADER" Nm="%%SCHPARTNUM" />
+          </SchText>
+          <SchText Id="5180" String="$%%SCHREFDES" Rot="0" PtHeight="12" Justify="CenterCenter" Invisible="False" X="0bu" Y="3000000bu">
+            <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
+          </SchText>
+          <Pin Id="5181" SubNetRef="5269" X="2000000bu" Y="1000000bu" Name="GND" Num="1" Ori="Right" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="5182" SubNetRef="5272" X="2000000bu" Y="0bu" Name="D" Num="2" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="5183" SubNetRef="5275" X="2000000bu" Y="-1000000bu" Name="VCC" Num="3" Ori="Right" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Rect Id="5184" X1="-2000000bu" Y1="-2000000bu" X2="0bu" Y2="2000000bu" />
+        </BitBucket>
+      </Section>
+      <Section Id="5197" SymbolName="" SectionName="" X="43000000bu" Y="121000000bu" Rot="0" Req="False" SwapId="0" OwningSymbolSet="5196">
+        <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
+        <Prop Val="U???" Nm="%%SCHREFDES" />
+        <Prop Val="3-PIN-HEADER" Nm="%%SCHPARTNUM" />
+        <Prop Val="Val???" Nm="%%SCHPARTVALUE" />
+        <Prop Val="Tol???" Nm="%%SCHPARTTOL" />
+        <BitBucket>
+          <SchText Id="5198" String="$%%SCHPARTNUM" Rot="0" PtHeight="12" Justify="CenterCenter" Invisible="False" X="0bu" Y="-3000000bu">
+            <Prop Val="3-PIN-HEADER" Nm="%%SCHPARTNUM" />
+          </SchText>
+          <SchText Id="5199" String="$%%SCHREFDES" Rot="0" PtHeight="12" Justify="CenterCenter" Invisible="False" X="0bu" Y="3000000bu">
+            <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
+          </SchText>
+          <Pin Id="5200" SubNetRef="5254" X="2000000bu" Y="1000000bu" Name="GND" Num="1" Ori="Right" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="5201" SubNetRef="5251" X="2000000bu" Y="0bu" Name="D" Num="2" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="5202" SubNetRef="5257" X="2000000bu" Y="-1000000bu" Name="VCC" Num="3" Ori="Right" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Rect Id="5203" X1="-2000000bu" Y1="-2000000bu" X2="0bu" Y2="2000000bu" />
+        </BitBucket>
+      </Section>
+      <Section Id="5216" SymbolName="" SectionName="" X="43000000bu" Y="111000000bu" Rot="0" Req="False" SwapId="0" OwningSymbolSet="5215">
+        <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
+        <Prop Val="U???" Nm="%%SCHREFDES" />
+        <Prop Val="3-PIN-HEADER" Nm="%%SCHPARTNUM" />
+        <Prop Val="Val???" Nm="%%SCHPARTVALUE" />
+        <Prop Val="Tol???" Nm="%%SCHPARTTOL" />
+        <BitBucket>
+          <SchText Id="5217" String="$%%SCHPARTNUM" Rot="0" PtHeight="12" Justify="CenterCenter" Invisible="False" X="0bu" Y="-3000000bu">
+            <Prop Val="3-PIN-HEADER" Nm="%%SCHPARTNUM" />
+          </SchText>
+          <SchText Id="5218" String="$%%SCHREFDES" Rot="0" PtHeight="12" Justify="CenterCenter" Invisible="False" X="0bu" Y="3000000bu">
+            <Prop Val="U" Nm="%%SCHREFDESPREFIX" />
+          </SchText>
+          <Pin Id="5219" SubNetRef="5260" X="2000000bu" Y="1000000bu" Name="GND" Num="1" Ori="Right" Type="Ground" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="5220" SubNetRef="5263" X="2000000bu" Y="0bu" Name="D" Num="2" Ori="Right" Type="Output" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Pin Id="5221" SubNetRef="5266" X="2000000bu" Y="-1000000bu" Name="VCC" Num="3" Ori="Right" Type="Power" Shape="Normal" NmOffX="0bu" NmOffY="0bu" NumOffX="0bu" NumOffY="0bu" />
+          <Rect Id="5222" X1="-2000000bu" Y1="-2000000bu" X2="0bu" Y2="2000000bu" />
+        </BitBucket>
+      </Section>
       <Wire Id="904" StartRef="449" EndRef="447">
         <Crn X="38000000bu" Y="143000000bu" />
         <Crn X="39000000bu" Y="143000000bu" />
@@ -3072,22 +3078,6 @@
         <Crn X="30000000bu" Y="83000000bu" />
         <Crn X="30000000bu" Y="86000000bu" />
       </Wire>
-      <Wire Id="931" StartRef="498" EndRef="756">
-        <Crn X="47000000bu" Y="121000000bu" />
-        <Crn X="45000000bu" Y="121000000bu" />
-      </Wire>
-      <Wire Id="932" StartRef="494" EndRef="750">
-        <Crn X="47000000bu" Y="111000000bu" />
-        <Crn X="45000000bu" Y="111000000bu" />
-      </Wire>
-      <Wire Id="933" StartRef="531" EndRef="743">
-        <Crn X="16000000bu" Y="111000000bu" />
-        <Crn X="14000000bu" Y="111000000bu" />
-      </Wire>
-      <Wire Id="934" StartRef="571" EndRef="736">
-        <Crn X="16000000bu" Y="121000000bu" />
-        <Crn X="14000000bu" Y="121000000bu" />
-      </Wire>
       <Wire Id="935" StartRef="440" EndRef="634">
         <Prop Val="4278190335" Nm="%%SCHWIRECOLOR" />
         <Crn X="42000000bu" Y="151000000bu" />
@@ -3136,26 +3126,6 @@
       <Wire Id="945" StartRef="823" EndRef="778">
         <Crn X="44000000bu" Y="71000000bu" />
         <Crn X="46000000bu" Y="71000000bu" />
-      </Wire>
-      <Wire Id="946" StartRef="653" EndRef="837">
-        <Crn X="48000000bu" Y="98000000bu" />
-        <Crn X="48000000bu" Y="96000000bu" />
-      </Wire>
-      <Wire Id="947" StartRef="657" EndRef="839">
-        <Crn X="49000000bu" Y="94000000bu" />
-        <Crn X="48000000bu" Y="94000000bu" />
-      </Wire>
-      <Wire Id="948" StartRef="661" EndRef="840">
-        <Crn X="49000000bu" Y="93000000bu" />
-        <Crn X="48000000bu" Y="93000000bu" />
-      </Wire>
-      <Wire Id="949" StartRef="665" EndRef="841">
-        <Crn X="49000000bu" Y="92000000bu" />
-        <Crn X="48000000bu" Y="92000000bu" />
-      </Wire>
-      <Wire Id="950" StartRef="669" EndRef="842">
-        <Crn X="49000000bu" Y="91000000bu" />
-        <Crn X="48000000bu" Y="91000000bu" />
       </Wire>
       <Wire Id="951" StartRef="478" EndRef="800">
         <Crn X="59000000bu" Y="69000000bu" />
@@ -3229,38 +3199,6 @@
         <Crn X="40000000bu" Y="54000000bu" />
         <Crn X="46000000bu" Y="54000000bu" />
       </Wire>
-      <Wire Id="969" StartRef="860" EndRef="749">
-        <Crn X="47000000bu" Y="112000000bu" />
-        <Crn X="45000000bu" Y="112000000bu" />
-      </Wire>
-      <Wire Id="970" StartRef="755" EndRef="865">
-        <Crn X="45000000bu" Y="122000000bu" />
-        <Crn X="47000000bu" Y="122000000bu" />
-      </Wire>
-      <Wire Id="971" StartRef="870" EndRef="742">
-        <Crn X="16000000bu" Y="112000000bu" />
-        <Crn X="14000000bu" Y="112000000bu" />
-      </Wire>
-      <Wire Id="972" StartRef="875" EndRef="735">
-        <Crn X="16000000bu" Y="122000000bu" />
-        <Crn X="14000000bu" Y="122000000bu" />
-      </Wire>
-      <Wire Id="973" StartRef="895" EndRef="757">
-        <Crn X="52000000bu" Y="120000000bu" />
-        <Crn X="45000000bu" Y="120000000bu" />
-      </Wire>
-      <Wire Id="974" StartRef="751" EndRef="891">
-        <Crn X="45000000bu" Y="110000000bu" />
-        <Crn X="52000000bu" Y="110000000bu" />
-      </Wire>
-      <Wire Id="975" StartRef="887" EndRef="744">
-        <Crn X="21000000bu" Y="110000000bu" />
-        <Crn X="14000000bu" Y="110000000bu" />
-      </Wire>
-      <Wire Id="976" StartRef="737" EndRef="883">
-        <Crn X="14000000bu" Y="120000000bu" />
-        <Crn X="21000000bu" Y="120000000bu" />
-      </Wire>
       <Wire Id="977" StartRef="879" EndRef="646">
         <Crn X="21000000bu" Y="133000000bu" />
         <Crn X="16000000bu" Y="133000000bu" />
@@ -3289,26 +3227,95 @@
         <Crn X="42000000bu" Y="156000000bu" />
         <Crn X="50000000bu" Y="156000000bu" />
       </Wire>
-      <Wire Id="983" StartRef="899" EndRef="838">
-        <Crn X="50000000bu" Y="95000000bu" />
-        <Crn X="48000000bu" Y="95000000bu" />
-      </Wire>
       <Wire Id="984" StartRef="903" EndRef="590">
         <Crn X="69000000bu" Y="132000000bu" />
         <Crn X="67000000bu" Y="132000000bu" />
       </Wire>
+      <Wire Id="2557" StartRef="2499" EndRef="899">
+        <Crn X="46000000bu" Y="95000000bu" />
+        <Crn X="50000000bu" Y="95000000bu" />
+      </Wire>
+      <Wire Id="2558" StartRef="2498" EndRef="653">
+        <Crn X="46000000bu" Y="96000000bu" />
+        <Crn X="48000000bu" Y="96000000bu" />
+        <Crn X="48000000bu" Y="98000000bu" />
+      </Wire>
+      <Wire Id="2563" StartRef="657" EndRef="2500">
+        <Crn X="49000000bu" Y="94000000bu" />
+        <Crn X="46000000bu" Y="94000000bu" />
+      </Wire>
+      <Wire Id="2566" StartRef="661" EndRef="2501">
+        <Crn X="49000000bu" Y="93000000bu" />
+        <Crn X="46000000bu" Y="93000000bu" />
+      </Wire>
+      <Wire Id="2569" StartRef="665" EndRef="2502">
+        <Crn X="49000000bu" Y="92000000bu" />
+        <Crn X="46000000bu" Y="92000000bu" />
+      </Wire>
+      <Wire Id="2572" StartRef="669" EndRef="2503">
+        <Crn X="49000000bu" Y="91000000bu" />
+        <Crn X="46000000bu" Y="91000000bu" />
+      </Wire>
+      <Wire Id="5252" StartRef="498" EndRef="5201">
+        <Crn X="47000000bu" Y="121000000bu" />
+        <Crn X="45000000bu" Y="121000000bu" />
+      </Wire>
+      <Wire Id="5255" StartRef="865" EndRef="5200">
+        <Crn X="47000000bu" Y="122000000bu" />
+        <Crn X="45000000bu" Y="122000000bu" />
+      </Wire>
+      <Wire Id="5258" StartRef="895" EndRef="5202">
+        <Crn X="52000000bu" Y="120000000bu" />
+        <Crn X="45000000bu" Y="120000000bu" />
+      </Wire>
+      <Wire Id="5261" StartRef="860" EndRef="5219">
+        <Crn X="47000000bu" Y="112000000bu" />
+        <Crn X="45000000bu" Y="112000000bu" />
+      </Wire>
+      <Wire Id="5264" StartRef="494" EndRef="5220">
+        <Crn X="47000000bu" Y="111000000bu" />
+        <Crn X="45000000bu" Y="111000000bu" />
+      </Wire>
+      <Wire Id="5267" StartRef="891" EndRef="5221">
+        <Crn X="52000000bu" Y="110000000bu" />
+        <Crn X="45000000bu" Y="110000000bu" />
+      </Wire>
+      <Wire Id="5270" StartRef="870" EndRef="5181">
+        <Crn X="16000000bu" Y="112000000bu" />
+        <Crn X="14000000bu" Y="112000000bu" />
+      </Wire>
+      <Wire Id="5273" StartRef="531" EndRef="5182">
+        <Crn X="16000000bu" Y="111000000bu" />
+        <Crn X="14000000bu" Y="111000000bu" />
+      </Wire>
+      <Wire Id="5276" StartRef="887" EndRef="5183">
+        <Crn X="21000000bu" Y="110000000bu" />
+        <Crn X="14000000bu" Y="110000000bu" />
+      </Wire>
+      <Wire Id="5279" StartRef="875" EndRef="5162">
+        <Crn X="16000000bu" Y="122000000bu" />
+        <Crn X="14000000bu" Y="122000000bu" />
+      </Wire>
+      <Wire Id="5282" StartRef="571" EndRef="5163">
+        <Crn X="16000000bu" Y="121000000bu" />
+        <Crn X="14000000bu" Y="121000000bu" />
+      </Wire>
+      <Wire Id="5285" StartRef="883" EndRef="5164">
+        <Crn X="21000000bu" Y="120000000bu" />
+        <Crn X="14000000bu" Y="120000000bu" />
+      </Wire>
     </SchPage>
   </Schematic>
   <Board Id="1069">
-    <Prop Val="Mm" Nm="%%PCBCURRENTUNITS" />
-    <Prop Val="Top" Nm="%%PCBCURRENTLAYER" />
-    <Prop Val="50000bu,50000bu" Nm="%%PCBGRIDSIZE" />
+    <Prop Val="In" Nm="%%PCBCURRENTUNITS" />
+    <Prop Val="Bot" Nm="%%PCBCURRENTLAYER" />
+    <Prop Val="100000bu,100000bu" Nm="%%PCBGRIDSIZE" />
     <Prop Val="False" Nm="%%PCBHICONTRAST" />
     <Prop Val="65312" Nm="%%PCBHICONTRASTCOLOR" />
     <Prop Val="4279505940" Nm="%%PCBDIMCOLOR" />
-    <Prop Val="32736" Nm="%%PCBPICKFLAGS" />
-    <Prop Val="19902196bu,13114226bu" Nm="%%PCBVIEWCENTER" />
-    <Prop Val="20060579bu" Nm="%%PCBVIEWRADIUS" />
+    <Prop Val="32762" Nm="%%PCBPICKFLAGS" />
+    <Prop Val="15706682bu,15251300bu" Nm="%%PCBVIEWCENTER" />
+    <Prop Val="4734731bu" Nm="%%PCBVIEWRADIUS" />
     <Prop Val="4278255360" Nm="%%PCBGRIDCOLOR" />
     <Prop Val="16777215" Nm="%%PCBPINNAMECOLOR" />
     <Prop Val="16777215" Nm="%%PCBNETNAMECOLOR" />
@@ -3810,8 +3817,8 @@
     <Text Id="1155" String="rev5" Rot="0" TextHeight="800000bu" LineWidth="80000bu" Mirrored="False" Layer="SsTop" X="1775000bu" Y="7100000bu" />
     <Text Id="1156" String="Tim Eastwood" Rot="0" TextHeight="500000bu" LineWidth="80000bu" Mirrored="False" Layer="SsTop" X="950000bu" Y="6575000bu" />
     <Text Id="1157" String="FLOAT" Rot="90" TextHeight="500000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="14450000bu" Y="23025000bu" />
-    <Text Id="1158" String="FLOW" Rot="90" TextHeight="500000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="14200000bu" Y="15775000bu" />
-    <Text Id="1159" String="TEMP" Rot="90" TextHeight="500000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="14250000bu" Y="19725000bu" />
+    <Text Id="1158" String="FLOW" Rot="90" TextHeight="500000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="14000000bu" Y="15275000bu" />
+    <Text Id="1159" String="TEMP" Rot="90" TextHeight="500000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="14050000bu" Y="19225000bu" />
     <Text Id="1160" String="2  1" Rot="0" TextHeight="700000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="14825000bu" Y="21875000bu" />
     <Text Id="1161" String="2  1" Rot="0" TextHeight="700000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="14825000bu" Y="17875000bu" />
     <Poly Id="1162" Name="" Type="BadType" Layer="Bot" LineWidth="100000bu">
@@ -4372,82 +4379,6 @@
       </Poly>
       <Text Id="1232" String="$%%REFDES" Rot="0" TextHeight="750000bu" LineWidth="80000bu" Mirrored="False" Layer="SsTop" X="-506250bu" Y="-25000bu" />
     </Comp>
-    <Comp Id="1233" RefDes="U3" X="15000000bu" Y="16500000bu" Rot="270" Bot="False">
-      <Prop Val="True" Nm="%%COMPPLACEDBYUSER" />
-      <Prop Val="358" Nm="%%SCHUID" />
-      <Pad Id="1234" X="-1000000bu" Y="0bu" Name="1" Width="531496bu" Height="531496bu" Drill="314961bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
-      <Pad Id="1235" X="0bu" Y="0bu" Name="2" Width="531496bu" Height="531496bu" Drill="314961bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
-      <Pad Id="1236" X="1000000bu" Y="0bu" Name="3" Width="531496bu" Height="531496bu" Drill="314961bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="False" Thermals="True" />
-      <Poly Id="1237" Name="" Type="Outline" Layer="SsTop" LineWidth="100000bu">
-        <Crn X="-1400000bu" Y="400000bu" />
-        <Crn X="-1400000bu" Y="-400000bu" />
-        <Crn X="1400000bu" Y="-400000bu" />
-        <Crn X="1400000bu" Y="400000bu" />
-        <Crn X="-1400000bu" Y="400000bu" />
-        <Crn X="-1400000bu" Y="400000bu" />
-      </Poly>
-      <Text Id="1238" String="GND" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="-800000bu" Y="-1400000bu" />
-      <Text Id="1239" String="D" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="200000bu" Y="-800000bu" />
-      <Text Id="1240" String="VCC" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="1200000bu" Y="-1500000bu" />
-      <Text Id="1241" String="$%%REFDES" Rot="0" TextHeight="750000bu" LineWidth="80000bu" Mirrored="False" Layer="SsTop" X="-650000bu" Y="-450000bu" />
-    </Comp>
-    <Comp Id="1242" RefDes="U5" X="16000000bu" Y="16500000bu" Rot="270" Bot="False">
-      <Prop Val="True" Nm="%%COMPPLACEDBYUSER" />
-      <Prop Val="360" Nm="%%SCHUID" />
-      <Pad Id="1243" X="-1000000bu" Y="0bu" Name="1" Width="531496bu" Height="531496bu" Drill="314961bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
-      <Pad Id="1244" X="0bu" Y="0bu" Name="2" Width="531496bu" Height="531496bu" Drill="314961bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
-      <Pad Id="1245" X="1000000bu" Y="0bu" Name="3" Width="531496bu" Height="531496bu" Drill="314961bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="False" Thermals="True" />
-      <Poly Id="1246" Name="" Type="Outline" Layer="SsTop" LineWidth="100000bu">
-        <Crn X="-1400000bu" Y="400000bu" />
-        <Crn X="-1400000bu" Y="-400000bu" />
-        <Crn X="1400000bu" Y="-400000bu" />
-        <Crn X="1400000bu" Y="400000bu" />
-        <Crn X="-1400000bu" Y="400000bu" />
-        <Crn X="-1400000bu" Y="400000bu" />
-      </Poly>
-      <Text Id="1247" String="GND" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="-800000bu" Y="-1400000bu" />
-      <Text Id="1248" String="D" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="200000bu" Y="-800000bu" />
-      <Text Id="1249" String="VCC" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="1200000bu" Y="-1500000bu" />
-      <Text Id="1250" String="$%%REFDES" Rot="0" TextHeight="750000bu" LineWidth="80000bu" Mirrored="False" Layer="SsTop" X="-631250bu" Y="-450000bu" />
-    </Comp>
-    <Comp Id="1251" RefDes="U6" X="16000000bu" Y="20500000bu" Rot="270" Bot="False">
-      <Prop Val="True" Nm="%%COMPPLACEDBYUSER" />
-      <Prop Val="362" Nm="%%SCHUID" />
-      <Pad Id="1252" X="-1000000bu" Y="0bu" Name="1" Width="531496bu" Height="531496bu" Drill="314961bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
-      <Pad Id="1253" X="0bu" Y="0bu" Name="2" Width="531496bu" Height="531496bu" Drill="314961bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
-      <Pad Id="1254" X="1000000bu" Y="0bu" Name="3" Width="531496bu" Height="531496bu" Drill="314961bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="False" Thermals="True" />
-      <Poly Id="1255" Name="" Type="Outline" Layer="SsTop" LineWidth="100000bu">
-        <Crn X="-1400000bu" Y="400000bu" />
-        <Crn X="-1400000bu" Y="-400000bu" />
-        <Crn X="1400000bu" Y="-400000bu" />
-        <Crn X="1400000bu" Y="400000bu" />
-        <Crn X="-1400000bu" Y="400000bu" />
-        <Crn X="-1400000bu" Y="400000bu" />
-      </Poly>
-      <Text Id="1256" String="GND" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="-800000bu" Y="-1400000bu" />
-      <Text Id="1257" String="D" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="200000bu" Y="-800000bu" />
-      <Text Id="1258" String="VCC" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="1200000bu" Y="-1500000bu" />
-      <Text Id="1259" String="$%%REFDES" Rot="0" TextHeight="750000bu" LineWidth="80000bu" Mirrored="False" Layer="SsTop" X="-525000bu" Y="-450000bu" />
-    </Comp>
-    <Comp Id="1260" RefDes="U10" X="15000000bu" Y="20500000bu" Rot="270" Bot="False">
-      <Prop Val="True" Nm="%%COMPPLACEDBYUSER" />
-      <Prop Val="364" Nm="%%SCHUID" />
-      <Pad Id="1261" X="-1000000bu" Y="0bu" Name="1" Width="531496bu" Height="531496bu" Drill="314961bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
-      <Pad Id="1262" X="0bu" Y="0bu" Name="2" Width="531496bu" Height="531496bu" Drill="314961bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
-      <Pad Id="1263" X="1000000bu" Y="0bu" Name="3" Width="531496bu" Height="531496bu" Drill="314961bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="False" Thermals="True" />
-      <Poly Id="1264" Name="" Type="Outline" Layer="SsTop" LineWidth="100000bu">
-        <Crn X="-1400000bu" Y="400000bu" />
-        <Crn X="-1400000bu" Y="-400000bu" />
-        <Crn X="1400000bu" Y="-400000bu" />
-        <Crn X="1400000bu" Y="400000bu" />
-        <Crn X="-1400000bu" Y="400000bu" />
-        <Crn X="-1400000bu" Y="400000bu" />
-      </Poly>
-      <Text Id="1265" String="GND" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="-800000bu" Y="-1400000bu" />
-      <Text Id="1266" String="D" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="200000bu" Y="-800000bu" />
-      <Text Id="1267" String="VCC" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="1200000bu" Y="-1500000bu" />
-      <Text Id="1268" String="$%%REFDES" Rot="0" TextHeight="750000bu" LineWidth="80000bu" Mirrored="False" Layer="SsTop" X="-768750bu" Y="-450000bu" />
-    </Comp>
     <Comp Id="1269" RefDes="U4" X="5250000bu" Y="21750000bu" Rot="270" Bot="True">
       <Prop Val="True" Nm="%%COMPPLACEDBYUSER" />
       <Prop Val="366" Nm="%%SCHUID" />
@@ -4513,35 +4444,107 @@
       <Text Id="1315" String="ANTENNA" Rot="0" TextHeight="500000bu" LineWidth="100000bu" Mirrored="True" Layer="SsBot" X="2875000bu" Y="3625000bu" />
       <Text Id="1316" String="$%%REFDES" Rot="0" TextHeight="750000bu" LineWidth="80000bu" Mirrored="True" Layer="SsBot" X="-1056250bu" Y="-8350000bu" />
     </Comp>
-    <Comp Id="1317" RefDes="U7" X="15500000bu" Y="12500000bu" Rot="270" Bot="False">
+    <Text Id="1332" String="BTN" Rot="0" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="450000bu" Y="9200000bu" />
+    <Pad Id="1333" X="13100000bu" Y="24450000bu" Name="PAD2" Width="1377953bu" Height="1377953bu" Drill="1259843bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
+    <Pad Id="1334" X="3950000bu" Y="9850000bu" Name="PAD3" Width="1377953bu" Height="1377953bu" Drill="1259843bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
+    <Text Id="1335" String="!! INSTALL TOP COMPONENTS FIRST !!" Rot="0" TextHeight="400000bu" LineWidth="100000bu" Mirrored="True" Layer="SsBot" X="11650000bu" Y="13250000bu" />
+    <Comp Id="2573" RefDes="U7" X="15500000bu" Y="12500000bu" Rot="270" Bot="False">
       <Prop Val="True" Nm="%%COMPPLACEDBYUSER" />
-      <Prop Val="368" Nm="%%SCHUID" />
-      <Pad Id="1318" X="-1000000bu" Y="500000bu" Name="1" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
-      <Pad Id="1319" X="-1000000bu" Y="-500000bu" Name="2" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="False" Thermals="True" />
-      <Pad Id="1320" X="0bu" Y="500000bu" Name="3" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="False" />
-      <Pad Id="1321" X="0bu" Y="-500000bu" Name="4" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="False" />
-      <Pad Id="1322" X="1000000bu" Y="500000bu" Name="5" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="False" />
-      <Pad Id="1323" X="1000000bu" Y="-500000bu" Name="6" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="False" />
-      <Poly Id="1324" Name="" Type="Outline" Layer="SsTop" LineWidth="100000bu">
+      <Prop Val="2493" Nm="%%SCHUID" />
+      <Poly Id="2574" Name="" Type="Outline" Layer="SsTop" LineWidth="100000bu">
         <Crn X="-1375000bu" Y="875000bu" />
         <Crn X="-1375000bu" Y="-875000bu" />
         <Crn X="1375000bu" Y="-875000bu" />
         <Crn X="1375000bu" Y="875000bu" />
         <Crn X="-1375000bu" Y="875000bu" />
       </Poly>
-      <Text Id="1325" String="GND" Rot="0" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="-1500000bu" Y="-1375000bu" />
-      <Text Id="1326" String="VCC" Rot="0" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="-1625000bu" Y="-1875000bu" />
-      <Text Id="1327" String="P1" Rot="0" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="750000bu" Y="-1375000bu" />
-      <Text Id="1328" String="P2" Rot="0" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="750000bu" Y="-1875000bu" />
-      <Text Id="1329" String="L1" Rot="0" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="-250000bu" Y="-1375000bu" />
-      <Text Id="1330" String="L2" Rot="0" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="-250000bu" Y="-1875000bu" />
-      <Text Id="1331" String="$%%REFDES" Rot="0" TextHeight="750000bu" LineWidth="80000bu" Mirrored="False" Layer="SsTop" X="-625000bu" Y="-225000bu" />
+      <Text Id="2575" String="GND" Rot="0" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="-1500000bu" Y="-1375000bu" />
+      <Text Id="2576" String="VCC" Rot="0" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="-1625000bu" Y="-1875000bu" />
+      <Text Id="2577" String="P1" Rot="0" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="750000bu" Y="-1375000bu" />
+      <Text Id="2578" String="P2" Rot="0" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="750000bu" Y="-1875000bu" />
+      <Text Id="2579" String="L1" Rot="0" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="-250000bu" Y="-1375000bu" />
+      <Text Id="2580" String="L2" Rot="0" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="-250000bu" Y="-1875000bu" />
+      <Pad Id="2581" X="-1000000bu" Y="500000bu" Name="1" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
+      <Pad Id="2582" X="-1000000bu" Y="-500000bu" Name="2" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="False" Thermals="True" />
+      <Pad Id="2583" X="0bu" Y="500000bu" Name="3" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
+      <Pad Id="2584" X="0bu" Y="-500000bu" Name="4" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
+      <Pad Id="2585" X="1000000bu" Y="500000bu" Name="5" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
+      <Pad Id="2586" X="1000000bu" Y="-500000bu" Name="6" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
+      <Text Id="2587" String="$%%REFDES" Rot="0" TextHeight="750000bu" LineWidth="80000bu" Mirrored="False" Layer="SsTop" X="-625000bu" Y="1025000bu" />
     </Comp>
-    <Text Id="1332" String="BTN" Rot="0" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="450000bu" Y="9200000bu" />
-    <Pad Id="1333" X="13100000bu" Y="24450000bu" Name="PAD2" Width="1377953bu" Height="1377953bu" Drill="1259843bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
-    <Pad Id="1334" X="3950000bu" Y="9850000bu" Name="PAD3" Width="1377953bu" Height="1377953bu" Drill="1259843bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
-    <Text Id="1335" String="!! INSTALL TOP COMPONENTS FIRST !!" Rot="0" TextHeight="400000bu" LineWidth="100000bu" Mirrored="True" Layer="SsBot" X="11650000bu" Y="13250000bu" />
-    <Net Id="1446" Name="AGND" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
+    <Comp Id="5286" RefDes="U3" X="15000000bu" Y="16000000bu" Rot="270" Bot="False">
+      <Prop Val="True" Nm="%%COMPPLACEDBYUSER" />
+      <Prop Val="5157" Nm="%%SCHUID" />
+      <Poly Id="5287" Name="" Type="Outline" Layer="SsTop" LineWidth="100000bu">
+        <Crn X="-1500000bu" Y="500000bu" />
+        <Crn X="-1500000bu" Y="-500000bu" />
+        <Crn X="1500000bu" Y="-500000bu" />
+        <Crn X="1500000bu" Y="500000bu" />
+        <Crn X="-1500000bu" Y="500000bu" />
+      </Poly>
+      <Text Id="5288" String="GND" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="-700000bu" Y="-1500000bu" />
+      <Text Id="5289" String="D" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="300000bu" Y="-1000000bu" />
+      <Text Id="5290" String="VCC" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="1200000bu" Y="-1600000bu" />
+      <Pad Id="5291" X="-1000000bu" Y="0bu" Name="1" Width="750000bu" Height="753000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
+      <Pad Id="5292" X="0bu" Y="0bu" Name="2" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
+      <Pad Id="5293" X="1000000bu" Y="0bu" Name="3" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="False" Thermals="True" />
+      <Text Id="5294" String="$%%REFDES" Rot="0" TextHeight="750000bu" LineWidth="80000bu" Mirrored="False" Layer="SsTop" X="-525000bu" Y="650000bu" />
+    </Comp>
+    <Comp Id="5295" RefDes="U5" X="16000000bu" Y="16000000bu" Rot="270" Bot="False">
+      <Prop Val="True" Nm="%%COMPPLACEDBYUSER" />
+      <Prop Val="5176" Nm="%%SCHUID" />
+      <Poly Id="5296" Name="" Type="Outline" Layer="SsTop" LineWidth="100000bu">
+        <Crn X="-1500000bu" Y="500000bu" />
+        <Crn X="-1500000bu" Y="-500000bu" />
+        <Crn X="1500000bu" Y="-500000bu" />
+        <Crn X="1500000bu" Y="500000bu" />
+        <Crn X="-1500000bu" Y="500000bu" />
+      </Poly>
+      <Text Id="5297" String="GND" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="-700000bu" Y="-1500000bu" />
+      <Text Id="5298" String="D" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="300000bu" Y="-1000000bu" />
+      <Text Id="5299" String="VCC" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="1200000bu" Y="-1600000bu" />
+      <Pad Id="5300" X="-1000000bu" Y="0bu" Name="1" Width="750000bu" Height="753000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
+      <Pad Id="5301" X="0bu" Y="0bu" Name="2" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
+      <Pad Id="5302" X="1000000bu" Y="0bu" Name="3" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="False" Thermals="True" />
+      <Text Id="5303" String="$%%REFDES" Rot="0" TextHeight="750000bu" LineWidth="80000bu" Mirrored="False" Layer="SsTop" X="-506250bu" Y="650000bu" />
+    </Comp>
+    <Comp Id="5304" RefDes="U6" X="16000000bu" Y="20000000bu" Rot="270" Bot="False">
+      <Prop Val="True" Nm="%%COMPPLACEDBYUSER" />
+      <Prop Val="5195" Nm="%%SCHUID" />
+      <Poly Id="5305" Name="" Type="Outline" Layer="SsTop" LineWidth="100000bu">
+        <Crn X="-1500000bu" Y="500000bu" />
+        <Crn X="-1500000bu" Y="-500000bu" />
+        <Crn X="1500000bu" Y="-500000bu" />
+        <Crn X="1500000bu" Y="500000bu" />
+        <Crn X="-1500000bu" Y="500000bu" />
+      </Poly>
+      <Text Id="5306" String="GND" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="-700000bu" Y="-1500000bu" />
+      <Text Id="5307" String="D" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="300000bu" Y="-1000000bu" />
+      <Text Id="5308" String="VCC" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="1200000bu" Y="-1600000bu" />
+      <Pad Id="5309" X="-1000000bu" Y="0bu" Name="1" Width="750000bu" Height="753000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
+      <Pad Id="5310" X="0bu" Y="0bu" Name="2" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
+      <Pad Id="5311" X="1000000bu" Y="0bu" Name="3" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="False" Thermals="True" />
+      <Text Id="5312" String="$%%REFDES" Rot="0" TextHeight="750000bu" LineWidth="80000bu" Mirrored="False" Layer="SsTop" X="-525000bu" Y="650000bu" />
+    </Comp>
+    <Comp Id="5313" RefDes="U10" X="15000000bu" Y="20000000bu" Rot="270" Bot="False">
+      <Prop Val="True" Nm="%%COMPPLACEDBYUSER" />
+      <Prop Val="5214" Nm="%%SCHUID" />
+      <Poly Id="5314" Name="" Type="Outline" Layer="SsTop" LineWidth="100000bu">
+        <Crn X="-1500000bu" Y="500000bu" />
+        <Crn X="-1500000bu" Y="-500000bu" />
+        <Crn X="1500000bu" Y="-500000bu" />
+        <Crn X="1500000bu" Y="500000bu" />
+        <Crn X="-1500000bu" Y="500000bu" />
+      </Poly>
+      <Text Id="5315" String="GND" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="-700000bu" Y="-1500000bu" />
+      <Text Id="5316" String="D" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="300000bu" Y="-1000000bu" />
+      <Text Id="5317" String="VCC" Rot="90" TextHeight="400000bu" LineWidth="100000bu" Mirrored="False" Layer="SsTop" X="1200000bu" Y="-1600000bu" />
+      <Pad Id="5318" X="-1000000bu" Y="0bu" Name="1" Width="750000bu" Height="753000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
+      <Pad Id="5319" X="0bu" Y="0bu" Name="2" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="True" Thermals="True" />
+      <Pad Id="5320" X="1000000bu" Y="0bu" Name="3" Width="750000bu" Height="750000bu" Drill="400000bu" IsDrillOffset="False" Layer="AllLayers" Rot="0" IsRound="False" Thermals="True" />
+      <Text Id="5321" String="$%%REFDES" Rot="0" TextHeight="750000bu" LineWidth="80000bu" Mirrored="False" Layer="SsTop" X="-768750bu" Y="650000bu" />
+    </Comp>
+    <Net Id="6829" Name="AGND" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
       <Poly Id="1337" Name="" Type="Filled" Layer="Bot" LineWidth="100000bu">
         <Crn X="0bu" Y="0bu" />
         <Crn X="16750000bu" Y="0bu" />
@@ -4553,92 +4556,92 @@
         <Crn X="0bu" Y="11000000bu" />
         <Crn X="0bu" Y="0bu" />
       </Poly>
-      <Track Id="1466" Start="1145" End="1140">
+      <Track Id="7375" Start="5291" End="5300">
+        <Crn X="15000000bu" Y="17000000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
+        <Crn X="16000000bu" Y="17000000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
+      </Track>
+      <Track Id="7376" Start="1145" End="1140">
         <Crn X="15000000bu" Y="23500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
         <Crn X="16000000bu" Y="23500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
-      <Track Id="1467" Start="1261" End="1252">
-        <Crn X="15000000bu" Y="21500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
-        <Crn X="16000000bu" Y="21500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
+      <Track Id="7377" Start="5318" End="5309">
+        <Crn X="15000000bu" Y="21000000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
+        <Crn X="16000000bu" Y="21000000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
-      <Track Id="1468" Start="1234" End="1243">
-        <Crn X="15000000bu" Y="17500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
-        <Crn X="16000000bu" Y="17500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
-      </Track>
-      <Track Id="1469" Start="1296" End="1223">
+      <Track Id="7378" Start="1296" End="1223">
         <Crn X="9250000bu" Y="12750000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
         <Crn X="9500000bu" Y="14250000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
-      <Track Id="1470" Start="1252" End="1140">
-        <Crn X="16000000bu" Y="21500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
+      <Track Id="7379" Start="5309" End="1140">
+        <Crn X="16000000bu" Y="21000000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
         <Crn X="16000000bu" Y="23500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
-      <Track Id="1471" Start="1296" End="1122">
+      <Track Id="7380" Start="1296" End="1122">
         <Crn X="9250000bu" Y="12750000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
         <Crn X="8750000bu" Y="10250000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
-      <Track Id="1472" Start="1270" End="1072">
+      <Track Id="7381" Start="1270" End="1072">
         <Crn X="3250000bu" Y="22750000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
         <Crn X="900000bu" Y="24050000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
-      <Track Id="1473" Start="1300" End="1150">
+      <Track Id="7382" Start="1300" End="1150">
         <Crn X="3250000bu" Y="11750000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
         <Crn X="1000000bu" Y="10200000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
-      <Track Id="1474" Start="1223" End="1079">
+      <Track Id="7383" Start="1223" End="1079">
         <Crn X="9500000bu" Y="14250000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
         <Crn X="11750000bu" Y="16250000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
-      <Track Id="1475" Start="1115" End="1229">
+      <Track Id="7384" Start="1115" End="1229">
         <Crn X="8300000bu" Y="17150000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
         <Crn X="9500000bu" Y="20000000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
-      <Track Id="1476" Start="1223" End="1115">
+      <Track Id="7385" Start="1223" End="1115">
         <Crn X="9500000bu" Y="14250000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
         <Crn X="8300000bu" Y="17150000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
-      <Track Id="1477" Start="1131" End="1112">
+      <Track Id="7386" Start="5291" End="1079">
+        <Crn X="15000000bu" Y="17000000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
+        <Crn X="11750000bu" Y="16250000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
+      </Track>
+      <Track Id="7387" Start="1131" End="1112">
         <Crn X="6000000bu" Y="20000000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
         <Crn X="4000000bu" Y="17250000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
-      <Track Id="1478" Start="1234" End="1079">
-        <Crn X="15000000bu" Y="17500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
-        <Crn X="11750000bu" Y="16250000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
-      </Track>
-      <Track Id="1479" Start="1223" End="1136">
+      <Track Id="7388" Start="1223" End="1136">
         <Crn X="9500000bu" Y="14250000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
         <Crn X="6000000bu" Y="14250000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
-      <Track Id="1480" Start="1229" End="1131">
+      <Track Id="7389" Start="5300" End="2581">
+        <Crn X="16000000bu" Y="17000000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
+        <Crn X="16000000bu" Y="13500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
+      </Track>
+      <Track Id="7390" Start="1229" End="1131">
         <Crn X="9500000bu" Y="20000000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
         <Crn X="6000000bu" Y="20000000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
-      <Track Id="1481" Start="1300" End="1136">
+      <Track Id="7391" Start="1300" End="1136">
         <Crn X="3250000bu" Y="11750000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
         <Crn X="6000000bu" Y="14250000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
-      <Track Id="1482" Start="1270" End="1087">
+      <Track Id="7392" Start="1270" End="1087">
         <Crn X="3250000bu" Y="22750000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
         <Crn X="6750000bu" Y="24250000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
-      <Track Id="1483" Start="1270" End="1131">
+      <Track Id="7393" Start="1270" End="1131">
         <Crn X="3250000bu" Y="22750000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
         <Crn X="6000000bu" Y="20000000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
-      <Track Id="1484" Start="1243" End="1318">
-        <Crn X="16000000bu" Y="17500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
-        <Crn X="16000000bu" Y="13500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
+      <Track Id="7394" Start="5300" End="5309">
+        <Crn X="16000000bu" Y="17000000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
+        <Crn X="16000000bu" Y="21000000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
-      <Track Id="1485" Start="1234" End="1261">
-        <Crn X="15000000bu" Y="17500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
-        <Crn X="15000000bu" Y="21500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
-      </Track>
-      <Track Id="1486" Start="1100" End="1150">
+      <Track Id="7395" Start="1100" End="1150">
         <Crn X="2250000bu" Y="3051206bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
         <Crn X="1000000bu" Y="10200000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
     </Net>
-    <Net Id="1447" Name="SCL" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
+    <Net Id="6830" Name="SCL" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
       <Track Id="1360" Start="1119" End="1292">
         <Crn X="11750000bu" Y="10250000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
         <Crn X="13500000bu" Y="10250000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
@@ -4668,7 +4671,7 @@
         <Crn X="5250000bu" Y="12750000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
     </Net>
-    <Net Id="1448" Name="SDA" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
+    <Net Id="6831" Name="SDA" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
       <Track Id="1363" Start="1120" End="1293">
         <Crn X="10750000bu" Y="10250000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
         <Crn X="11400000bu" Y="10900000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
@@ -4701,7 +4704,7 @@
         <Crn X="6250000bu" Y="12750000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
     </Net>
-    <Net Id="1449" Name="N_1_24871" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
+    <Net Id="6832" Name="N_1_24871" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
       <Track Id="1366" Start="1073" End="1105">
         <Crn X="1900000bu" Y="24050000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
         <Crn X="1900000bu" Y="24700000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
@@ -4711,13 +4714,13 @@
         <Crn X="2750000bu" Y="24250000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
     </Net>
-    <Net Id="1450" Name="LED" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
+    <Net Id="6833" Name="LED" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
       <Track Id="1368" Start="1106" End="1274">
         <Crn X="5750000bu" Y="24250000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
         <Crn X="7250000bu" Y="22750000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
     </Net>
-    <Net Id="1451" Name="VIN" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
+    <Net Id="6834" Name="VIN" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
       <Track Id="1370" Start="1111" End="1135">
         <Crn X="4000000bu" Y="16250000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
         <Crn X="4000000bu" Y="14250000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
@@ -4741,7 +4744,7 @@
         <Crn X="4000000bu" Y="14250000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
     </Net>
-    <Net Id="1452" Name="+5V" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
+    <Net Id="6835" Name="+5V" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
       <Track Id="1374" Start="1113" End="1130">
         <Crn X="4000000bu" Y="18250000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
         <Crn X="4000000bu" Y="20000000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
@@ -4766,7 +4769,7 @@
         <Crn X="7500000bu" Y="20000000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
     </Net>
-    <Net Id="1453" Name="BTN" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
+    <Net Id="6836" Name="BTN" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
       <Track Id="1378" Start="1151" End="1272">
         <Crn X="2000000bu" Y="10200000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
         <Crn X="2550000bu" Y="10200000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
@@ -4781,63 +4784,7 @@
         <Crn X="5250000bu" Y="22750000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
     </Net>
-    <Net Id="1454" Name="DHT2" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
-      <Track Id="1380" Start="1262" End="1294">
-        <Crn X="15000000bu" Y="20500000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="14550000bu" Y="20500000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="13950000bu" Y="19900000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="13950000bu" Y="17100000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="11150000bu" Y="14300000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" FanoutVia="True" />
-        <Crn X="11150000bu" Y="14250000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="10750000bu" Y="13850000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="10400000bu" Y="13850000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="10100000bu" Y="13550000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="8300000bu" Y="13550000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="8100000bu" Y="13350000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="7850000bu" Y="13350000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="7250000bu" Y="12750000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
-      </Track>
-    </Net>
-    <Net Id="1455" Name="DHT1" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
-      <Track Id="1382" Start="1295" End="1253">
-        <Crn X="8250000bu" Y="12750000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="8850000bu" Y="13350000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="10250000bu" Y="13350000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="10550000bu" Y="13650000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="10800000bu" Y="13650000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="11300000bu" Y="14150000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="11300000bu" Y="14200000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" FanoutVia="True" />
-        <Crn X="14150000bu" Y="17050000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="14150000bu" Y="19600000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="14550000bu" Y="20000000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="15500000bu" Y="20000000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="16000000bu" Y="20500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
-      </Track>
-    </Net>
-    <Net Id="1456" Name="FLOW1" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
-      <Track Id="1384" Start="1302" End="1244">
-        <Crn X="5250000bu" Y="11750000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="6200000bu" Y="10800000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="12800000bu" Y="10800000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="13200000bu" Y="11200000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="13200000bu" Y="14600000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="14600000bu" Y="16000000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="15500000bu" Y="16000000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="16000000bu" Y="16500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
-      </Track>
-    </Net>
-    <Net Id="1457" Name="FLOW2" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
-      <Track Id="1386" Start="1303" End="1235">
-        <Crn X="6250000bu" Y="11750000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="7000000bu" Y="11000000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="12750000bu" Y="11000000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="13000000bu" Y="11250000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="13000000bu" Y="14750000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="14750000bu" Y="16500000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
-        <Crn X="15000000bu" Y="16500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
-      </Track>
-    </Net>
-    <Net Id="1458" Name="FLOAT1" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
+    <Net Id="6837" Name="FLOAT1" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
       <Track Id="1388" Start="1286" End="1146">
         <Crn X="9250000bu" Y="21750000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
         <Crn X="9800000bu" Y="21200000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
@@ -4847,7 +4794,7 @@
         <Crn X="15000000bu" Y="24500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
     </Net>
-    <Net Id="1459" Name="FLOAT2" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
+    <Net Id="6838" Name="FLOAT2" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
       <Track Id="1390" Start="1285" End="1141">
         <Crn X="8250000bu" Y="21750000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
         <Crn X="9000000bu" Y="21000000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
@@ -4859,7 +4806,7 @@
         <Crn X="16000000bu" Y="24500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
     </Net>
-    <Net Id="1460" Name="BUZZ" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
+    <Net Id="6839" Name="BUZZ" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
       <Track Id="1392" Start="1273" End="1080">
         <Crn X="6250000bu" Y="22750000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
         <Crn X="6750000bu" Y="22250000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
@@ -4874,83 +4821,135 @@
         <Crn X="11750000bu" Y="18250000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
     </Net>
-    <Net Id="1461" Name="LAMP1" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
-      <Track Id="1394" Start="1320" End="1284">
-        <Crn X="16000000bu" Y="12500000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="15500000bu" Y="13000000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="15500000bu" Y="14100000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="14800000bu" Y="14800000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="14600000bu" Y="14800000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="14200000bu" Y="15200000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="14200000bu" Y="16200000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="13600000bu" Y="16800000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="13600000bu" Y="18500000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="10900000bu" Y="21200000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="7800000bu" Y="21200000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="7250000bu" Y="21750000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
+    <Net Id="6840" Name="DHT2" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
+      <Track Id="6870" Start="5310" End="1294">
+        <Crn X="16000000bu" Y="20000000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="15500000bu" Y="20500000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="14400000bu" Y="20500000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="13700000bu" Y="19800000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="13700000bu" Y="17300000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="12600000bu" Y="16200000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="12600000bu" Y="15600000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="11900000bu" Y="14900000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="11900000bu" Y="14400000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="11400000bu" Y="13900000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="10600000bu" Y="13900000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="10300000bu" Y="13600000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="8800000bu" Y="13600000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="8500000bu" Y="13300000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="7800000bu" Y="13300000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="7250000bu" Y="12750000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
     </Net>
-    <Net Id="1462" Name="LAMP2" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
-      <Track Id="1396" Start="1321" End="1283">
-        <Crn X="15000000bu" Y="12500000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="14500000bu" Y="12500000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="14300000bu" Y="12700000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="14300000bu" Y="13800000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="14600000bu" Y="14100000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="14600000bu" Y="14500000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="14000000bu" Y="15100000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="14000000bu" Y="16200000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="13400000bu" Y="16800000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="13400000bu" Y="18400000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="10800000bu" Y="21000000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="7800000bu" Y="21000000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="7700000bu" Y="21100000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="6900000bu" Y="21100000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="6250000bu" Y="21750000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
+    <Net Id="6841" Name="DHT1" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
+      <Track Id="6871" Start="1295" End="5319">
+        <Crn X="8250000bu" Y="12750000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="8900000bu" Y="13400000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="10400000bu" Y="13400000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="10700000bu" Y="13700000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="11500000bu" Y="13700000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="12100000bu" Y="14300000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="12100000bu" Y="14800000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="12800000bu" Y="15500000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="12800000bu" Y="15800000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="14100000bu" Y="17100000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="14100000bu" Y="19700000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="14400000bu" Y="20000000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="15000000bu" Y="20000000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
     </Net>
-    <Net Id="1463" Name="PUMP1" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
-      <Track Id="1398" Start="1322" End="1282">
+    <Net Id="6842" Name="FLOW1" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
+      <Track Id="7142" Start="1302" End="5301">
+        <Crn X="5250000bu" Y="11750000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="6100000bu" Y="10900000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="13100000bu" Y="10900000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="14200000bu" Y="12000000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="14200000bu" Y="14000000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="14500000bu" Y="14300000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="15300000bu" Y="14300000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="15500000bu" Y="14500000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="15500000bu" Y="15500000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="16000000bu" Y="16000000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
+      </Track>
+    </Net>
+    <Net Id="6843" Name="FLOW2" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
+      <Track Id="7396" Start="1303" End="5292">
+        <Crn X="6250000bu" Y="11750000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="6900000bu" Y="11100000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="12900000bu" Y="11100000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="13900000bu" Y="12100000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="13900000bu" Y="15500000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="14400000bu" Y="16000000bu" Width="80000bu" Layer="Top" DrillWidth="0bu" />
+        <Crn X="15000000bu" Y="16000000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
+      </Track>
+    </Net>
+    <Net Id="6844" Name="PUMP2" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
+      <Track Id="4015" Start="1281" End="2586">
+        <Crn X="4250000bu" Y="21750000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="5400000bu" Y="20600000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="10300000bu" Y="20600000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="11100000bu" Y="19800000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="11400000bu" Y="19800000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="13500000bu" Y="17700000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="13500000bu" Y="15800000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="13600000bu" Y="15700000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="13600000bu" Y="14700000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="13900000bu" Y="14400000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="13900000bu" Y="12000000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="14400000bu" Y="11500000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="15000000bu" Y="11500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
+      </Track>
+    </Net>
+    <Net Id="6845" Name="PUMP1" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
+      <Track Id="4014" Start="2585" End="1282">
         <Crn X="16000000bu" Y="11500000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
         <Crn X="15500000bu" Y="12000000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
         <Crn X="14600000bu" Y="12000000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
         <Crn X="14100000bu" Y="12500000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="14100000bu" Y="13900000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="14400000bu" Y="14200000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="14400000bu" Y="14400000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="13800000bu" Y="15000000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="13800000bu" Y="16100000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="13200000bu" Y="16700000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="13200000bu" Y="18300000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="10700000bu" Y="20800000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="7750000bu" Y="20800000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="7650000bu" Y="20900000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="6100000bu" Y="20900000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="14100000bu" Y="14600000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="13900000bu" Y="14800000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="13900000bu" Y="17700000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="10800000bu" Y="20800000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="6200000bu" Y="20800000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
         <Crn X="5250000bu" Y="21750000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
     </Net>
-    <Net Id="1464" Name="PUMP2" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
-      <Track Id="1400" Start="1323" End="1281">
-        <Crn X="15000000bu" Y="11500000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="14500000bu" Y="11500000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="13900000bu" Y="12100000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="13900000bu" Y="14000000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="14100000bu" Y="14200000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="14100000bu" Y="14400000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="13600000bu" Y="14900000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="13600000bu" Y="16000000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="13000000bu" Y="16600000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="13000000bu" Y="18200000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="10600000bu" Y="20600000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="7650000bu" Y="20600000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="7550000bu" Y="20700000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="5900000bu" Y="20700000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="5600000bu" Y="21000000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="5000000bu" Y="21000000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
-        <Crn X="4250000bu" Y="21750000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
+    <Net Id="6846" Name="LAMP2" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
+      <Track Id="4013" Start="1283" End="2584">
+        <Crn X="6250000bu" Y="21750000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="7000000bu" Y="21000000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="11600000bu" Y="21000000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="12500000bu" Y="20100000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="12500000bu" Y="19500000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="14100000bu" Y="17900000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="14100000bu" Y="14900000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="14300000bu" Y="14700000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="14300000bu" Y="13100000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="15000000bu" Y="12400000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="15000000bu" Y="12500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
     </Net>
-    <Net Id="1465" Name="+3.3V" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
+    <Net Id="6847" Name="LAMP1" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
+      <Track Id="4012" Start="2583" End="1284">
+        <Crn X="16000000bu" Y="12500000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="15500000bu" Y="13000000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="15500000bu" Y="14100000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="15400000bu" Y="14200000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="15200000bu" Y="14200000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="15100000bu" Y="14300000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="14700000bu" Y="14300000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="14500000bu" Y="14500000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="14500000bu" Y="14900000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="14400000bu" Y="15000000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="14400000bu" Y="18000000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="12800000bu" Y="19600000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="12800000bu" Y="20200000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="11800000bu" Y="21200000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="7800000bu" Y="21200000bu" Width="80000bu" Layer="Bot" DrillWidth="0bu" />
+        <Crn X="7250000bu" Y="21750000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
+      </Track>
+    </Net>
+    <Net Id="6848" Name="+3.3V" Width="80000bu" Space="120000bu" WidthExplicitlySet="False" SpacingExplicitlySet="False">
       <Poly Id="1402" Name="" Type="Filled" Layer="Top" LineWidth="100000bu">
         <Crn X="0bu" Y="25500000bu" />
         <Crn X="0bu" Y="23500000bu" />
@@ -4962,31 +4961,31 @@
         <Crn X="16750000bu" Y="25500000bu" />
         <Crn X="0bu" Y="25500000bu" />
       </Poly>
-      <Track Id="1487" Start="1236" End="1245">
-        <Crn X="15000000bu" Y="15500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
-        <Crn X="16000000bu" Y="15500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
+      <Track Id="7397" Start="5320" End="5311">
+        <Crn X="15000000bu" Y="19000000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
+        <Crn X="16000000bu" Y="19000000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
-      <Track Id="1488" Start="1254" End="1263">
-        <Crn X="16000000bu" Y="19500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
-        <Crn X="15000000bu" Y="19500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
+      <Track Id="7398" Start="5293" End="5302">
+        <Crn X="15000000bu" Y="15000000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
+        <Crn X="16000000bu" Y="15000000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
-      <Track Id="1489" Start="1319" End="1236">
+      <Track Id="7399" Start="5293" End="2582">
+        <Crn X="15000000bu" Y="15000000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
         <Crn X="15000000bu" Y="13500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
-        <Crn X="15000000bu" Y="15500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
-      <Track Id="1490" Start="1088" End="1287">
+      <Track Id="7400" Start="1088" End="1287">
         <Crn X="7750000bu" Y="24250000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
         <Crn X="10250000bu" Y="21750000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
-      <Track Id="1491" Start="1245" End="1254">
-        <Crn X="16000000bu" Y="15500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
-        <Crn X="16000000bu" Y="19500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
+      <Track Id="7401" Start="5302" End="5311">
+        <Crn X="16000000bu" Y="15000000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
+        <Crn X="16000000bu" Y="19000000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
-      <Track Id="1492" Start="1263" End="1287">
-        <Crn X="15000000bu" Y="19500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
+      <Track Id="7402" Start="5320" End="1287">
+        <Crn X="15000000bu" Y="19000000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
         <Crn X="10250000bu" Y="21750000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
-      <Track Id="1493" Start="1319" End="1121">
+      <Track Id="7403" Start="2582" End="1121">
         <Crn X="15000000bu" Y="13500000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
         <Crn X="9750000bu" Y="10250000bu" Width="0bu" Layer="Rats" DrillWidth="0bu" />
       </Track>
