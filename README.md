@@ -3,11 +3,11 @@
 
 *Current revision: rev5*
 
-(rev4 pictured below)
+(rev3 pictured below)
 
 ![alt-text](https://i.imgur.com/RJYCEXgl.jpg "Image")
 
-(rev3 pictured below)
+(rev4 pictured below)
 
 ![alt-text](https://i.imgur.com/qcLx93il.jpg "Image")
 
