@@ -6,6 +6,23 @@
  * 
  */
 
+// PIN ASSIGNMENTS - ESP32
+#define floatSw1Pin 5
+#define floatSw2Pin 23
+#define dht1Pin 16
+#define dht2Pin 17
+#define flow1Pin 25
+#define flow2Pin 32
+#define lamp1Pin 19
+#define lamp2Pin 18
+#define pump1Pin 26
+#define pump2Pin 36
+
+#define ledPin 33
+#define buzzPin 35
+#define buttonPin 39
+// END PIN ASSIGNMENTS
+
 #define SERIAL_DEBUG //print output to serial
 //#define RTC_SET //sets the time on the RTC to the time the sketch is compiled - upload the sketch, then ensure the sketch is re-uploaded with this commented-out afterwards otherwise the RTC will reset when the unit is powered on
 
@@ -18,7 +35,7 @@
 const char* ssid = "TanglesS8";
 const char* passphrase =  "jiblet123";
 
-#define uploadFrequency 10 //how often to upload data, in seconds
+#define uploadFrequency 60 //how often to upload data, in seconds
 
 #define lamp1OnHour 7
 #define lamp1OffHour 21
@@ -38,22 +55,6 @@ const char* passphrase =  "jiblet123";
 //#define invertFloatSensorLogic // uncomment for use with a normally-closed float sensor, or to detect emptyness with float sensors designed for detecting fullness. Note that installing a jumper is a good idea if the float alarm is enabled and the unit will be powered on without the float sensor connected
 #define enableFloatAlarm // uncomment to sound an alarm when the float sensor is triggered
 
-// PIN ASSIGNMENTS
-#define floatSw1Pin 5
-#define floatSw2Pin 23
-#define dht1Pin 16
-#define dht2Pin 17
-#define flow1Pin 25
-#define flow2Pin 32
-#define lamp1Pin 19
-#define lamp2Pin 18
-#define pump1Pin 26
-#define pump2Pin 36
-
-#define ledPin 33
-#define buzzPin 35
-#define buttonPin 39
-// END PIN ASSIGNMENTS
 
 //ESP Includes
 #include <WiFi.h>

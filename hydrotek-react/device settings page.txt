@@ -1,0 +1,69 @@
+temp / humidity sensor 1 enable / disable
+	lamp over-temp shutoff enable / disable
+		max temperature
+	high temp alert enable / disable
+		temperature
+		send email enable / disable (one must be selected)
+		sound alarm enable / disable
+	low temp alert enable / disable
+		temperature
+		send email enable / disable (one must be selected)
+		sound alarm enable / disable
+temp / humidity sensor 2 enable / disable
+	lamp over-temp shutoff enable / disable
+		max temperature
+	high temp alert enable / disable
+		temperature
+		send email enable / disable (one must be selected)
+		sound alarm enable / disable
+	low temp alert enable / disable
+		temperature
+		send email enable / disable (one must be selected)
+		sound alarm enable / disable
+lamp 1 enable / disable
+	heater mode enable / disable
+		target temperature
+	start time (veg)
+	end time (veg)
+	veg / flower mode
+		start time (flower)
+		end time (flower)
+	invert relay logic enable / disable
+lamp 2 enable / disable
+	heater mode enable / disable
+		target temperature
+	start time (veg)
+	end time (veg)
+	veg / flower mode
+		start time (flower)
+		end time (flower)
+	invert relay logic enable / disable
+nutrient pump 1 enable / disable
+	mode flow / duration
+		flow milli-litres
+		send email if flow not achieved in time enable / disable
+		sound alarm if flow not achieved in time enable / disable
+	duration / max duration
+	frequency (minutes)
+	invert relay logic enable / disable
+nutrient pump 2 enable / disable
+	mode flow / duration
+		flow milli-litres
+		send email if flow not achieved in time enable / disable
+		sound alarm if flow not achieved in time enable / disable
+	duration / max duration
+	frequency (minutes)
+	invert relay logic enable / disable
+float sensor 1 enable / disable
+	audible alarm enable / disable
+	pump 1 shutoff enable / disable
+	invert sensor logic enable / disable
+float sensor 2 enable / disable
+	audible alarm enable / disable
+	pump 2 shutoff enable / disable
+	invert sensor logic enable / disable
+flow sensor 1 enable / disable
+flow sensor 2 enable / disable
+
+data upload frequency (seconds)
+email address for alerts
