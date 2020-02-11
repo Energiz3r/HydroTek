@@ -11,6 +11,10 @@
 
 ![alt-text](https://i.imgur.com/qcLx93il.jpg "Image")
 
+(rev5 pictured below)
+
+![alt-text](https://i.imgur.com/Od8aEW4l.jpg "Image")
+
 ---
 ### Update:
 
