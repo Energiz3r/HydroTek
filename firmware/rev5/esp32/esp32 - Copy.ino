@@ -26,6 +26,8 @@
 #define webEndpoint "http://noobs.wtf/plants/endpoint.php" //the php script that the ESP8266 will connect to for uploading data
 #define lampHeaterTempVariance 1.5 // how much to allow the temp to vary from the desired setting before switching the state of the heater (lamp)
 #define postIdentifierString "user=" webUsername "&password=" webPassword "&device=" deviceId "&"
+#define buttonShortTime 30 //ms
+#define buttonLongTime 250 //ms
 
 // ESP WiFi Includes
 #include <WiFi.h>
@@ -122,6 +124,12 @@ bool configFloat2InvertLogic = false;
 bool configFlow1Enable = false;
 //flow 2
 bool configFlow2Enable = false;
+
+//vairables to hold
+float temp1;
+float temp2;
+float humidity1;
+float humidity2;
 
 void webConfigRead() {
   webUsername = preferences.getString("webUser", "");
@@ -283,12 +291,12 @@ void lampSetState (int lampNum, String stateStr) {
   int lampPin = (lampNum == 1 ? lamp1Pin : lamp2Pin);
   bool invertLogic = (lampNum == 1 ? configLamp1InvertLogic : configLamp2InvertLogic);
   bool tempOverride = false;
-  if (configTemp1Enable && configTemp1LampShutoff && TEMP1 > configTemp1LampShutoffTemp) {
+  if (!configLamp1HeaterMode && configTemp1Enable && configTemp1LampShutoff && temp1 > configTemp1LampShutoffTemp) {
     if (lampNum == 1) {
       tempOverride = true;
     }
   }
-  if (configTemp2Enable && configTemp2LampShutoff && TEMP2 > configTemp2LampShutoffTemp) {
+  if (!configLamp2HeaterMode && configTemp2Enable && configTemp2LampShutoff && temp2 > configTemp2LampShutoffTemp) {
     if (lampNum == 2) {
       tempOverride = true;
     }
@@ -313,9 +321,9 @@ void lampCheckState (int currentHour) {
   if (configLamp1Enable) {
     if (configLamp1HeaterMode) {
       if (configTemp1Enable) {
-        if (TEMP1 > configLamp1HeaterTemp + lampHeaterTempVariance) {
+        if (temp1 > configLamp1HeaterTemp + lampHeaterTempVariance) {
           lampSetState(1, "OFF");
-        } else if (TEMP1 < configLamp1HeaterTemp - lampHeaterTempVariance) {
+        } else if (temp1 < configLamp1HeaterTemp - lampHeaterTempVariance) {
           lampSetState(1, "ON");
         }
       }
@@ -340,9 +348,9 @@ void lampCheckState (int currentHour) {
   if (configLamp2Enable) {
     if (configLamp2HeaterMode) {
       if (configTemp2Enable) {
-        if (TEMP2 > configLamp2HeaterTemp + lampHeaterTempVariance) {
+        if (temp2 > configLamp2HeaterTemp + lampHeaterTempVariance) {
           lampSetState(2, "OFF");
-        } else if (TEMP2 < configLamp2HeaterTemp - lampHeaterTempVariance) {
+        } else if (temp2 < configLamp2HeaterTemp - lampHeaterTempVariance) {
           lampSetState(2, "ON");
         }
       }
@@ -390,24 +398,68 @@ void setup() {
   preferences.begin("hydrotek", false);
   flashRead();
 
-  #ifdef RTC_SET
-    if (! RTC.isrunning()) {
-      // following line sets the RTC to the date & time this sketch was compiled
-      RTC.adjust(DateTime(__DATE__, __TIME__));
-    }
-  #endif
+  if (! RTC.isrunning()) {
+    // following line sets the RTC to the date & time this sketch was compiled
+    RTC.adjust(DateTime(__DATE__, __TIME__));
+  }
 
   delay(4000);   //Delay needed before calling WiFi.begin
   WiFi.begin(wifiSSID, wifiPassphrase); 
 
 }
 
+//sounds alarm if conditions are met
+String alarmCheckState(){
+  bool shouldSoundAlarm = false;
+  String alarmReason = '';
+  if (configTemp1Enable && configTemp1HighTempAlarm && temp1 > configTemp1HighTemp) {
+    shouldSoundAlarm = true;
+    alarmReason = "Temp 1 HIGH";
+  }
+  if (configTemp2Enable && configTemp2HighTempAlarm && temp2 > configTemp2HighTemp) {
+    shouldSoundAlarm = true;
+    alarmReason = "Temp 2 HIGH";
+  }
+  if (configPump1Enable && configFlow1Enable && configPump1FlowMode && flow1LastVolume < configPump1FlowMl) {
+    shouldSoundAlarm = true;
+    alarmReason = "Pump 1 NO FLOW";
+  }
+  if (configPump2Enable && configFlow2Enable && configPump2FlowMode && flow2LastVolume < configPump2FlowMl) {
+    shouldSoundAlarm = true;
+    alarmReason = "Pump 2 NO FLOW";
+  }
+  if (configFloat1Enable && configFloat1Alarm) {
+    shouldSoundAlarm = true;
+    alarmReason = "Tank 1 FULL/EMPTY";
+  }
+  if (configFloat2Enable && configFloat2Alarm) {
+    shouldSoundAlarm = true;
+    alarmReason = "Tank 2 FULL/EMPTY";
+  }
+  if (shouldSoundAlarm) {
+    tone(buzzPin, 800, 500);
+  }
+  return alarmReason;
+}
+
+bool inMenu = false;
+void onButtonPress(bool longPress) {
+  if (!inMenu && longPress) {
+    inMenu = true;
+  }
+}
+
 bool flow1LastState = false;
 bool flow2LastState = false;
 int flow1PulseCount = 0;
 int flow2PulseCount = 0;
-
+bool float1triggered = false;
+bool float2triggered = false;
+bool buttonLastState = false;
+int long unsigned buttonStartTime = 0;
 void loop () {
+
+  curMillis = millis();
 
   //monitor for changes to state on the flow sensor inputs
   // this *should* be an interrupt but the loop runs fast enough that it isn't really an issue, and in this case the accuracy of the flow sensor was already poor
@@ -424,6 +476,63 @@ void loop () {
     }
   }
 
+  //button down
+  if (digitalRead(buttonPin) == LOW && !buttonLastState) {
+    buttonStartTime = curMillis;
+    buttonLastState = true;
+  }
+  //button released
+  if (digitalRead(buttonPin) == HIGH && buttonLastState) {
+    if (curMillis - buttonStartTime > buttonShortTime) {
+      if (curMillis - buttonStartTime > buttonLongTime) {
+        tone(buzzPin, 800, 250);
+        onButtonPress(true);
+      } else {
+        onButtonPress(false);
+        tone(buzzPin, 800, 50);
+      }
+    }
+    buttonLastState = false;
+  }
+
+  //advance the page and update sensors etc every x ms
+  if (curMillis - lastUpdateLoop > updateFrequency || lastUpdateLoop == 0) {
+    lastUpdateLoop = curMillis;
+
+    //get temp and humidity readings
+    if (configTemp1Enable) {
+      temp1 = dht1.readTemperature(); //read temperature as Celsius (the default)
+      humidity1 = dht1.readHumidity(); //read humidity
+    }
+    if (configTemp2Enable) {
+      temp2 = dht2.readTemperature();
+      humidity2 = dht2.readHumidity();
+    }
+    
+    //get float switch statuses
+    if (configFloat1Enable) {
+      if (configFloat1InvertLogic) {
+        float1triggered = digitalRead(floatSw1Pin);
+      } else {
+        float1triggered = !digitalRead(floatSw1Pin);
+      }
+    }
+    if (configFloat2Enable) {
+      if (configFloat2InvertLogic) {
+        float2triggered = digitalRead(floatSw2Pin);
+      } else {
+        float2triggered = !digitalRead(floatSw2Pin);
+      }
+    }
+
+    String alarmReason = alarmCheckState();
+
+    //update lamp states
+    lampCheckState();
+
+    
+
+  }
 
   // flowLitresPerHour = (flow_frequency * 60 / 7.5); //the LPH calculation for flow sensors
 }
