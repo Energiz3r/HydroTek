@@ -28,6 +28,8 @@
 #define postIdentifierString "user=" webUsername "&password=" webPassword "&device=" deviceId "&"
 #define buttonShortTime 30 //ms
 #define buttonLongTime 250 //ms
+#define flowPulsesPerMl 0.45 //flow sensor pulses per mL of liquid (YF-S201 sensor)
+// #define SET_RTC_MANUAL // uncomment to force setting the RTC time to the sketch compile time
 
 // ESP WiFi Includes
 #include <WiFi.h>
@@ -61,9 +63,8 @@ String webDeviceID = "";
 char* wifiSSID = "";
 char* wifiPassphrase =  "";
 
-//the below values are the configuration for the device which is loaded from the web portal
-
-int uploadFrequencySec = 0;
+//the below values are loaded from the web portal
+int configUploadFrequencySec = 0;
 //temp 1
 bool configTemp1Enable = false;
 bool configTemp1LampShutoff = false;
@@ -125,12 +126,6 @@ bool configFlow1Enable = false;
 //flow 2
 bool configFlow2Enable = false;
 
-//vairables to hold
-float temp1;
-float temp2;
-float humidity1;
-float humidity2;
-
 void webConfigRead() {
   webUsername = preferences.getString("webUser", "");
   webPassword = preferences.getString("webPass", "");
@@ -147,7 +142,7 @@ void webConfigWrite() {
 }
 
 void flashRead() {
-  uploadFrequencySec            = preferences.getUInt("uploadFreq", 0);
+  configUploadFrequencySec            = preferences.getUInt("uploadFreq", 0);
   //temp 1
   configTemp1Enable             = preferences.getBool("t1enable", false);
   configTemp1LampShutoff        = preferences.getBool("t1lampshutoff", false);
@@ -211,7 +206,7 @@ void flashRead() {
 }
 
 void flashWrite() {
-  preferences.putUInt("uploadFreq", uploadFrequencySec);
+  preferences.putUInt("uploadFreq", configUploadFrequencySec);
   //temp 1
   preferences.putBool("t1enable", configTemp1Enable);
   preferences.putBool("t1lampshutoff", configTemp1LampShutoff);
@@ -274,7 +269,85 @@ void flashWrite() {
   preferences.putBool("flw2enable", configFlow2Enable);
 }
 
-//draws the border and title
+//update config from online
+void handleReceiveConfig(String webResponse) {
+  configUploadFrequencySec      = 0;
+  //temp 1
+  configTemp1Enable             = false;
+  configTemp1LampShutoff        = false;
+  configTemp1LampShutoffTemp    = 0.0;
+  configTemp1HighTempAlarm      = false;
+  configTemp1HighTemp           = 0.0;
+  configTemp1LowTempAlarm       = false;
+  configTemp1LowTemp            = 0.0;
+  //temp 2
+  configTemp2Enable             = false;
+  configTemp2LampShutoff        = false;
+  configTemp2LampShutoffTemp    = 0.0;
+  configTemp2HighTempAlarm      = false;
+  configTemp2HighTemp           = 0.0;
+  configTemp2LowTempAlarm       = false;
+  configTemp2LowTemp            = 0.0;
+  //lamp 1
+  configLamp1Enable             = false;
+  configLamp1HeaterMode         = false;
+  configLamp1HeaterTemp         = 0.0;
+  configLamp1StartHour          = 0;
+  configLamp1EndHour            = 0;
+  configLamp1InvertLogic        = false;
+  //lamp 2
+  configLamp2Enable             = false;
+  configLamp2HeaterMode         = false;
+  configLamp2HeaterTemp         = 0.0;
+  configLamp2StartHour          = 0;
+  configLamp2EndHour            = 0;
+  configLamp2InvertLogic        = false;
+  //pump 1
+  configPump1Enable             = false;
+  configPump1FlowMode           = false;
+  configPump1FlowMl             = 0;
+  configPump1FlowAlarm          = false;
+  configPump1DurationSec        = 0;
+  configPump1FrequencyMin       = 0;
+  configPump1InvertLogic        = false;
+  //pump 2
+  configPump2Enable             = false;
+  configPump2FlowMode           = false;
+  configPump2FlowMl             = 0;
+  configPump2FlowAlarm          = false;
+  configPump2DurationSec        = 0;
+  configPump2FrequencyMin       = 0;
+  configPump2InvertLogic        = false;
+  //float 1
+  configFloat1Enable            = false;
+  configFloat1Alarm             = false;
+  configFloat1PumpShutoff       = false;
+  configFloat1InvertLogic       = false;
+  //float 2
+  configFloat2Enable            = false;
+  configFloat2Alarm             = false;
+  configFloat2PumpShutoff       = false;
+  configFloat2InvertLogic       = false;
+  //flow 1
+  configFlow1Enable             = false;
+  //flow 2
+  configFlow2Enable             = false;
+
+  flashWrite();
+}
+
+#define firstCoordinate 0
+#define charHeight 5
+#define titleBarHeight 12
+#define lineX 1
+int lineY(int line) { 
+  if (line == 1) { return firstCoordinate + titleBarHeight + 1 }
+  if (line == 2) { return lineY(1) + charHeight }
+  if (line > 2) { return lineY(line - 1) + charHeight }
+}
+
+//draws the border and title etc
+bool wifiConnected = false;
 void drawInitial() {
   display.clearDisplay();
   display.drawRoundRect(0,0,display.width(),display.height(), 2, WHITE); //x, y, x, y, radius, color
@@ -282,7 +355,24 @@ void drawInitial() {
   display.setTextColor(BLACK); // Draw black text (background transparent by default)
   display.setCursor(30, 2); //title line
   display.print("HydroTek rev5");
+  display.setCursor(30, 118); //title line
+  if (wifiConnected) { display.print("+"); } else { display.print("-"); }
   display.setTextColor(WHITE, BLACK); // Draw white text with a black background 
+}
+
+float temp1;
+float temp2;
+float humidity1;
+float humidity2;
+void tempCheckState() {
+  if (configTemp1Enable) {
+    temp1 = dht1.readTemperature(); //read temperature as Celsius (the default)
+    humidity1 = dht1.readHumidity(); //read humidity
+  }
+  if (configTemp2Enable) {
+    temp2 = dht2.readTemperature();
+    humidity2 = dht2.readHumidity();
+  }
 }
 
 //turn lamp relay(s) on / off
@@ -373,7 +463,307 @@ void lampCheckState (int currentHour) {
   }
 }
 
-bool wifiConnected = false;
+
+//sounds alarm if conditions are met
+bool pump1MissedFlowTarget = false;
+bool pump2MissedFlowTarget = false;
+String alarmReason = '';
+String alarmCheckState(){
+  bool shouldSoundAlarm = false;
+  alarmReason = '';
+  if (configTemp1Enable && configTemp1HighTempAlarm && temp1 > configTemp1HighTemp) {
+    shouldSoundAlarm = true;
+    alarmReason = "Temp 1 HIGH";
+  }
+  if (configTemp2Enable && configTemp2HighTempAlarm && temp2 > configTemp2HighTemp) {
+    shouldSoundAlarm = true;
+    alarmReason = "Temp 2 HIGH";
+  }
+  if (configPump1Enable && configFlow1Enable && configPump1FlowMode && flow1LastVolume < configPump1FlowMl) {
+    shouldSoundAlarm = true;
+    alarmReason = "Pump 1 NO FLOW";
+  }
+  if (configPump2Enable && configFlow2Enable && configPump2FlowMode && flow2LastVolume < configPump2FlowMl) {
+    shouldSoundAlarm = true;
+    alarmReason = "Pump 2 NO FLOW";
+  }
+  if (configFloat1Enable && configFloat1Alarm) {
+    shouldSoundAlarm = true;
+    alarmReason = "Tank 1 FULL/EMPTY";
+  }
+  if (configFloat2Enable && configFloat2Alarm) {
+    shouldSoundAlarm = true;
+    alarmReason = "Tank 2 FULL/EMPTY";
+  }
+  if (pump1MissedFlowTarget) {
+    shouldSoundAlarm = true;
+    alarmReason = "Pump 1 LOW FLOW";
+  }
+  if (pump2MissedFlowTarget) {
+    shouldSoundAlarm = true;
+    alarmReason = "Pump 2 LOW FLOW";
+  }
+  if (shouldSoundAlarm) {
+    tone(buzzPin, 800, 500);
+  }
+}
+
+void pumpSetState(int pump, String state) {
+  if (pump == 1) {
+    if (!configPump1InvertLogic && state == "ON") {
+      digitalWrite(pump1Pin, LOW);
+    } else if (!configPump1InvertLogic && state == "OFF") {
+      digitalWrite(pump1Pin, HIGH);
+    } else if (configPump1InvertLogic && state == "ON") {
+      digitalWrite(pump1Pin, HIGH);
+    } else if (configPump1InvertLogic && state == "OFF") {
+      digitalWrite(pump1Pin, LOW);
+    }
+  } else if (pump == 2) {
+    if (!configPump2InvertLogic && state == "ON") {
+      digitalWrite(pump2Pin, LOW);
+    } else if (!configPump2InvertLogic && state == "OFF") {
+      digitalWrite(pump2Pin, HIGH);
+    } else if (configPump2InvertLogic && state == "ON") {
+      digitalWrite(pump2Pin, HIGH);
+    } else if (configPump2InvertLogic && state == "OFF") {
+      digitalWrite(pump2Pin, LOW);
+    }
+  }
+}
+
+unsigned int pump1MeasuredFlowMl = 0;
+int pump1MissedTargetByMl = 0;
+unsigned int pump1MeasuredFlowMl = 0;
+int pump2MissedTargetByMl = 0;
+void pumpCheckState(DateTime now) {
+  currentSecond = now.hour() * 60 * 60 + now.minute() * 60 + now.second();
+  //pump1
+  if (configPump1Enable) {
+    bool pumpShouldRun = false;
+    for (int i = 0; i <= 86400; i = i + configPump1FrequencyMin * 60) {
+      if (currentSecond >= i && currentSecond <= i + configPump1DurationSec) {
+        if (configPump1FlowMode) {
+          if (pump1MeasuredFlowMl < configPump1FlowMl) {
+            pumpShouldRun = true;
+          }
+          //if it's within the last second of run time and the flow hasn't met the target by more than 5ml, consider the flow target not met
+          if (currentSecond > i + configPump1DurationSec - 2 && configPump1FlowMl - pump1MeasuredFlowMl > 5) {
+            pump1MissedFlowTarget = true;
+            pump1MissedTargetByMl = configPump1FlowMl - pump1MeasuredFlowMl;
+          }
+        } else {
+          pumpShouldRun = true;
+        }
+      }
+    }
+    if (pumpShouldRun) {
+      pumpSetState(1, "ON");
+    } else {
+      pumpSetState(1, "OFF");
+      pump1MeasuredFlowMl = 0;
+    }
+  }
+  //pump2
+  if (configPump2Enable) {
+    bool pumpShouldRun = false;
+    for (int i = 0; i <= 86400; i = i + configPump2FrequencyMin * 60) {
+      if (currentSecond >= i && currentSecond <= i + configPump2DurationSec) {
+        if (configPump2FlowMode) {
+          if (pump2MeasuredFlowMl < configPump2FlowMl) {
+            pumpShouldRun = true;
+          }
+          //if it's within the last second of run time and the flow hasn't met the target by more than 5ml, consider the flow target not met
+          if (currentSecond > i + configPump2DurationSec - 2 && configPump2FlowMl - pump2MeasuredFlowMl > 5) {
+            pump2MissedFlowTarget = true;
+            pump2MissedTargetByMl = configPump2FlowMl - pump2MeasuredFlowMl;
+          }
+        } else {
+          pumpShouldRun = true;
+        }
+      }
+    }
+    if (pumpShouldRun) {
+      pumpSetState(1, "ON");
+    } else {
+      pumpSetState(1, "OFF");
+      pump2MeasuredFlowMl = 0;
+    }
+  }
+}
+
+unsigned int flow1PulseCount = 0;
+unsigned int flow1MlSinceLastUpload = 0;
+unsigned int flow2PulseCount = 0;
+unsigned int flow2MlSinceLastUpload = 0;
+void flowCheckState(){
+  if (configFlow1Enable) {
+    int flowInMl = flow1PulseCount / flowPulsesPerMl;
+    pump1MeasuredFlowMl = pump1MeasuredFlowMl + flowInMl;
+    flow1MlSinceLastUpload = flow1MlSinceLastUpload + flowInMl;
+    flow1PulseCount = 0;
+  }
+  if (configFlow2Enable) {
+    int flowInMl = flow2PulseCount / flowPulsesPerMl;
+    pump2MeasuredFlowMl = pump2MeasuredFlowMl + flowInMl;
+    flow2MlSinceLastUpload = flow2MlSinceLastUpload + flowInMl;
+    flow2PulseCount = 0;
+  }
+  //(pulsesOver1000ms * 60 / 7.5); //the LPH calculation for flow sensors
+}
+
+bool inMenu = false;
+int menuPosition = 0;
+int subMenuPosition = 0;
+void onButtonPress(bool longPress) {
+  if (!inMenu && longPress) {
+    inMenu = true;
+    menuPosition = 0;
+    subMenuPosition = 0;
+  }
+  if (inMenu && longPress) {
+    inMenu = false;
+  }
+}
+
+bool float1triggered = false;
+bool float2triggered = false;
+void floatCheckState() {
+  //get float switch statuses
+  if (configFloat1Enable) {
+    if (configFloat1InvertLogic) {
+      float1triggered = digitalRead(floatSw1Pin);
+    } else {
+      float1triggered = !digitalRead(floatSw1Pin);
+    }
+  }
+  if (configFloat2Enable) {
+    if (configFloat2InvertLogic) {
+      float2triggered = digitalRead(floatSw2Pin);
+    } else {
+      float2triggered = !digitalRead(floatSw2Pin);
+    }
+  }
+}
+
+#define numPages 4
+byte page = 1; //which page the loop is on
+#define updateFrequency 3000 //seconds to display each page before moving to the next
+unsigned int long timeSinceLastPage = 0; //track when page was last changed
+void displayUpdate(DateTime now, String alarmReason, int curMillis) {
+  if (!timeSinceLastPage == 0 && curMillis - timeSinceLastPage < updateFrequency ) {
+    return
+  } else {
+    timeSinceLastPage = curMillis;
+  }
+  //update the display
+  drawInitial();
+  //display.setTextSize(2);
+  display.setCursor(lineX, lineY(1));
+  if (page == 1) {
+    String line = "Temp 1: ";
+    line += temp1;
+    line += (char)247;
+    line += "C";
+    display.print(line); 
+    display.setCursor(lineX, lineY(2));
+    line = "Temp 2: ";
+    line += temp2;
+    line += (char)247;
+    line += "C";
+    display.print(line); 
+  }
+  else if (page == 2) {
+    String line = "Hum. 1: ";
+    line += humidity1;
+    line += "%";
+    display.print(line); 
+    display.setCursor(lineX, lineY(2));
+    line = "Hum. 2: ";
+    line += humidity2;
+    line += "%";
+    display.print(line); 
+  }
+  else if (page == 3) {
+    String date; date += now.day(); date += '/'; date += now.month(); date += '/'; date += now.year();
+    display.print(date);
+    display.setCursor(lineX, lineY(2));
+    String curTime; curTime += now.hour(); curTime += ':'; curTime += now.minute();
+    display.print(curTime);
+  }
+  else if (page == 4) {
+    String line = "Flow 1: ";
+    line += flow1MlSinceLastUpload;
+    line += "mL";
+    display.print(line); 
+    display.setCursor(lineX, lineY(2));
+    line = "Flow 2: ";
+    line += flow2MlSinceLastUpload;
+    line += "mL";
+    display.print(line); 
+  }
+  display.setCursor(lineX, lineY(3));
+  display.print(alarmReason); 
+  display.display();
+  page++;
+  if (page > numPages) {
+    page = 1;
+  }
+}
+
+unsigned int long lastDataUpload = 0;
+String uploadData(int curMillis) {
+
+  String webResponse = '';
+  if (wifiConnected && curMillis - lastDataUpload > configUploadFrequencySec * 1000) {
+
+    String uploadData = "t1="; uploadData += temp1;
+    uploadData += "&t2="; uploadData += temp2;
+    uploadData += "&h1="; uploadData += humidity1;
+    uploadData += "&h2="; uploadData += humidity2;
+    uploadData += "&f1="; uploadData += float1triggered ? "1" : "0";
+    uploadData += "&f2="; uploadData += float2triggered ? "1" : "0";
+    uploadData += "&l1="; uploadData += flow1MlSinceLastUpload;
+    uploadData += "&l2="; uploadData += flow2MlSinceLastUpload;
+    uploadData += "&a="; uploadData += alarmReason;
+
+    flow1MlSinceLastUpload = 0; //reset vars
+    flow2MlSinceLastUpload = 0;
+
+    HTTPClient http;
+    if(http.begin(webEndpoint)){
+      http.addHeader("Content-Type", "application/x-www-form-urlencoded", false, true);
+      
+      String postString = postIdentifierString + uploadData;
+      int httpCode = http.POST(postString);
+      if (httpCode > 0) { // httpCode will be negative on error
+        String response = "OK";
+        response += (String)httpCode;
+        response += ", ";
+        response += http.getString();
+        response.replace('\n', ' ');
+        webResponse = response;
+      } else {
+        String response = "ERROR";
+        response += (String)httpCode;
+        response += ", ";
+        response += http.errorToString(httpCode).c_str();
+        response.replace('\n', ' ');
+        webResponse = response;
+      }
+      http.end();
+    } else {
+      webResponse = "Connection Error";
+    }
+    //update sensors
+    flow1SinceLastUpdate = 0;
+    flow2SinceLastUpdate = 0;
+    lastDataUpload = curMillis;
+  }
+  handleReceiveConfig(webResponse);
+  return webResponse;
+}
+
 void setup() {
 
   pinMode(buttonPin, INPUT_PULLUP);
@@ -402,61 +792,26 @@ void setup() {
     // following line sets the RTC to the date & time this sketch was compiled
     RTC.adjust(DateTime(__DATE__, __TIME__));
   }
+  #ifdef SET_RTC_MANUAL
+    RTC.adjust(DateTime(__DATE__, __TIME__));
+  #endif
 
   delay(4000);   //Delay needed before calling WiFi.begin
-  WiFi.begin(wifiSSID, wifiPassphrase); 
+  WiFi.begin(wifiSSID, wifiPassphrase);
 
-}
+  tone(buzzPin, 600, 100);
+  delay(100);
+  tone(buzzPin, 800, 100);
+  delay(100);
+  tone(buzzPin, 1000, 100);
 
-//sounds alarm if conditions are met
-String alarmCheckState(){
-  bool shouldSoundAlarm = false;
-  String alarmReason = '';
-  if (configTemp1Enable && configTemp1HighTempAlarm && temp1 > configTemp1HighTemp) {
-    shouldSoundAlarm = true;
-    alarmReason = "Temp 1 HIGH";
-  }
-  if (configTemp2Enable && configTemp2HighTempAlarm && temp2 > configTemp2HighTemp) {
-    shouldSoundAlarm = true;
-    alarmReason = "Temp 2 HIGH";
-  }
-  if (configPump1Enable && configFlow1Enable && configPump1FlowMode && flow1LastVolume < configPump1FlowMl) {
-    shouldSoundAlarm = true;
-    alarmReason = "Pump 1 NO FLOW";
-  }
-  if (configPump2Enable && configFlow2Enable && configPump2FlowMode && flow2LastVolume < configPump2FlowMl) {
-    shouldSoundAlarm = true;
-    alarmReason = "Pump 2 NO FLOW";
-  }
-  if (configFloat1Enable && configFloat1Alarm) {
-    shouldSoundAlarm = true;
-    alarmReason = "Tank 1 FULL/EMPTY";
-  }
-  if (configFloat2Enable && configFloat2Alarm) {
-    shouldSoundAlarm = true;
-    alarmReason = "Tank 2 FULL/EMPTY";
-  }
-  if (shouldSoundAlarm) {
-    tone(buzzPin, 800, 500);
-  }
-  return alarmReason;
-}
-
-bool inMenu = false;
-void onButtonPress(bool longPress) {
-  if (!inMenu && longPress) {
-    inMenu = true;
-  }
 }
 
 bool flow1LastState = false;
 bool flow2LastState = false;
-int flow1PulseCount = 0;
-int flow2PulseCount = 0;
-bool float1triggered = false;
-bool float2triggered = false;
 bool buttonLastState = false;
 int long unsigned buttonStartTime = 0;
+int long unsigned lastSensorUpdate = 0;
 void loop () {
 
   curMillis = millis();
@@ -488,52 +843,50 @@ void loop () {
         tone(buzzPin, 800, 250);
         onButtonPress(true);
       } else {
-        onButtonPress(false);
         tone(buzzPin, 800, 50);
+        onButtonPress(false);
       }
     }
     buttonLastState = false;
   }
 
-  //advance the page and update sensors etc every x ms
-  if (curMillis - lastUpdateLoop > updateFrequency || lastUpdateLoop == 0) {
-    lastUpdateLoop = curMillis;
+  //update sensors and display every x ms
+  if (curMillis - lastSensorUpdate > 1000 || lastSensorUpdate == 0) {
+    lastSensorUpdate = curMillis;
+
+    //check the WiFi status
+    if (WiFi.status() == WL_CONNECTED) {
+      wifiConnected = true;
+    } else {
+      wifiConnected = false;
+    }
+
+    DateTime now = RTC.now(); 
 
     //get temp and humidity readings
-    if (configTemp1Enable) {
-      temp1 = dht1.readTemperature(); //read temperature as Celsius (the default)
-      humidity1 = dht1.readHumidity(); //read humidity
-    }
-    if (configTemp2Enable) {
-      temp2 = dht2.readTemperature();
-      humidity2 = dht2.readHumidity();
-    }
-    
-    //get float switch statuses
-    if (configFloat1Enable) {
-      if (configFloat1InvertLogic) {
-        float1triggered = digitalRead(floatSw1Pin);
-      } else {
-        float1triggered = !digitalRead(floatSw1Pin);
-      }
-    }
-    if (configFloat2Enable) {
-      if (configFloat2InvertLogic) {
-        float2triggered = digitalRead(floatSw2Pin);
-      } else {
-        float2triggered = !digitalRead(floatSw2Pin);
-      }
-    }
+    tempCheckState();
 
-    String alarmReason = alarmCheckState();
+    //check float sensor state
+    floatCheckState();
 
     //update lamp states
-    lampCheckState();
+    lampCheckState(now.hour());
 
-    
+    //update flow readings
+    flowCheckState();
+
+    //update pump states
+    pumpCheckState(now);
+
+    //sound any alarms
+    String alarmReason = alarmCheckState();
+
+    //write to the display
+    displayUpdate(now, alarmReason, curMillis);
+
+    //upload to server
+    uploadData(now, curMillis);
 
   }
-
-  // flowLitresPerHour = (flow_frequency * 60 / 7.5); //the LPH calculation for flow sensors
 }
 

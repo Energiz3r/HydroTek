@@ -502,6 +502,6 @@ void loop() {
     page++;
     if (page > numPages) {
       page = 1;
-    }    
+    }
   }
 }
