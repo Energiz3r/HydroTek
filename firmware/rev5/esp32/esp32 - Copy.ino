@@ -57,6 +57,9 @@ RTC_DS1307 RTC;
 #include <Preferences.h>
 Preferences preferences;
 
+// JSON includes
+#include <ArduinoJson.h>
+
 String webUsername = "";
 String webPassword = "";
 String webDeviceID = "";
@@ -270,68 +273,82 @@ void flashWrite() {
 }
 
 //update config from online
+String webError = '';
 void handleReceiveConfig(String webResponse) {
-  configUploadFrequencySec      = 0;
-  //temp 1
-  configTemp1Enable             = false;
-  configTemp1LampShutoff        = false;
-  configTemp1LampShutoffTemp    = 0.0;
-  configTemp1HighTempAlarm      = false;
-  configTemp1HighTemp           = 0.0;
-  configTemp1LowTempAlarm       = false;
-  configTemp1LowTemp            = 0.0;
-  //temp 2
-  configTemp2Enable             = false;
-  configTemp2LampShutoff        = false;
-  configTemp2LampShutoffTemp    = 0.0;
-  configTemp2HighTempAlarm      = false;
-  configTemp2HighTemp           = 0.0;
-  configTemp2LowTempAlarm       = false;
-  configTemp2LowTemp            = 0.0;
-  //lamp 1
-  configLamp1Enable             = false;
-  configLamp1HeaterMode         = false;
-  configLamp1HeaterTemp         = 0.0;
-  configLamp1StartHour          = 0;
-  configLamp1EndHour            = 0;
-  configLamp1InvertLogic        = false;
-  //lamp 2
-  configLamp2Enable             = false;
-  configLamp2HeaterMode         = false;
-  configLamp2HeaterTemp         = 0.0;
-  configLamp2StartHour          = 0;
-  configLamp2EndHour            = 0;
-  configLamp2InvertLogic        = false;
-  //pump 1
-  configPump1Enable             = false;
-  configPump1FlowMode           = false;
-  configPump1FlowMl             = 0;
-  configPump1FlowAlarm          = false;
-  configPump1DurationSec        = 0;
-  configPump1FrequencyMin       = 0;
-  configPump1InvertLogic        = false;
-  //pump 2
-  configPump2Enable             = false;
-  configPump2FlowMode           = false;
-  configPump2FlowMl             = 0;
-  configPump2FlowAlarm          = false;
-  configPump2DurationSec        = 0;
-  configPump2FrequencyMin       = 0;
-  configPump2InvertLogic        = false;
-  //float 1
-  configFloat1Enable            = false;
-  configFloat1Alarm             = false;
-  configFloat1PumpShutoff       = false;
-  configFloat1InvertLogic       = false;
-  //float 2
-  configFloat2Enable            = false;
-  configFloat2Alarm             = false;
-  configFloat2PumpShutoff       = false;
-  configFloat2InvertLogic       = false;
-  //flow 1
-  configFlow1Enable             = false;
-  //flow 2
-  configFlow2Enable             = false;
+
+  const size_t capacity = JSON_OBJECT_SIZE(51) + 1210;
+  DynamicJsonDocument doc(capacity);
+
+  deserializeJson(doc, json);
+
+  //check if parsing the JSON failed
+  JsonObject object = doc.as<JsonObject>();
+  if (object.isNull()) {
+    webError = 'json:';
+    webError += webResponse;
+    return
+  }
+
+  configUploadFrequencySec = doc["configUploadFrequencySec"];
+
+  configTemp1Enable = doc["configTemp1Enable"];
+  configTemp1LampShutoff = doc["configTemp1LampShutoff"];
+  configTemp1LampShutoffTemp = doc["configTemp1LampShutoffTemp"];
+  configTemp1HighTempAlarm = doc["configTemp1HighTempAlarm"];
+  configTemp1HighTemp = doc["configTemp1HighTemp"];
+  configTemp1LowTempAlarm = doc["configTemp1LowTempAlarm"];
+  configTemp1LowTemp = doc["configTemp1LowTemp"];
+
+  configTemp2Enable = doc["configTemp2Enable"];
+  configTemp2LampShutoff = doc["configTemp2LampShutoff"];
+  configTemp2LampShutoffTemp = doc["configTemp2LampShutoffTemp"];
+  configTemp2HighTempAlarm = doc["configTemp2HighTempAlarm"];
+  configTemp2HighTemp = doc["configTemp2HighTemp"];
+  configTemp2LowTempAlarm = doc["configTemp2LowTempAlarm"];
+  configTemp2LowTemp = doc["configTemp2LowTemp"];
+
+  configLamp1Enable = doc["configLamp1Enable"];
+  configLamp1HeaterMode = doc["configLamp1HeaterMode"];
+  configLamp1HeaterTemp = doc["configLamp1HeaterTemp"];
+  configLamp1StartHour = doc["configLamp1StartHour"];
+  configLamp1EndHour = doc["configLamp1EndHour"];
+  configLamp1InvertLogic = doc["configLamp1InvertLogic"];
+
+  configLamp2Enable = doc["configLamp2Enable"];
+  configLamp2HeaterMode = doc["configLamp2HeaterMode"];
+  configLamp2HeaterTemp = doc["configLamp2HeaterTemp"];
+  configLamp2StartHour = doc["configLamp2StartHour"];
+  configLamp2EndHour = doc["configLamp2EndHour"];
+  configLamp2InvertLogic = doc["configLamp2InvertLogic"];
+
+  configPump1Enable = doc["configPump1Enable"];
+  configPump1FlowMode = doc["configPump1FlowMode"];
+  configPump1FlowMl = doc["configPump1FlowMl"];
+  configPump1FlowAlarm = doc["configPump1FlowAlarm"];
+  configPump1DurationSec = doc["configPump1DurationSec"];
+  configPump1FrequencyMin = doc["configPump1FrequencyMin"];
+  configPump1InvertLogic = doc["configPump1InvertLogic"];
+
+  configPump2Enable = doc["configPump2Enable"];
+  configPump2FlowMode = doc["configPump2FlowMode"];
+  configPump2FlowMl = doc["configPump2FlowMl"];
+  configPump2FlowAlarm = doc["configPump2FlowAlarm"];
+  configPump2DurationSec = doc["configPump2DurationSec"];
+  configPump2FrequencyMin = doc["configPump2FrequencyMin"];
+  configPump2InvertLogic = doc["configPump2InvertLogic"];
+
+  configFloat1Enable = doc["configFloat1Enable"];
+  configFloat1Alarm = doc["configFloat1Alarm"];
+  configFloat1PumpShutoff = doc["configFloat1PumpShutoff"];
+  configFloat1InvertLogic = doc["configFloat1InvertLogic"];
+
+  configFloat2Enable = doc["configFloat2Enable"];
+  configFloat2Alarm = doc["configFloat2Alarm"];
+  configFloat2PumpShutoff = doc["configFloat2PumpShutoff"];
+  configFloat2InvertLogic = doc["configFloat2InvertLogic"];
+
+  configFlow1Enable = doc["configFlow1Enable"];
+  configFlow2Enable = doc["configFlow2Enable"];
 
   flashWrite();
 }
@@ -646,7 +663,7 @@ void floatCheckState() {
   }
 }
 
-#define numPages 4
+#define numPages 2
 byte page = 1; //which page the loop is on
 #define updateFrequency 3000 //seconds to display each page before moving to the next
 unsigned int long timeSinceLastPage = 0; //track when page was last changed
@@ -672,43 +689,44 @@ void displayUpdate(DateTime now, String alarmReason, int curMillis) {
     line += (char)247;
     line += "C";
     display.print(line); 
-  }
-  else if (page == 2) {
+    display.setCursor(lineX, lineY(3));
     String line = "Hum. 1: ";
     line += humidity1;
     line += "%";
     display.print(line); 
-    display.setCursor(lineX, lineY(2));
+    display.setCursor(lineX, lineY(4));
     line = "Hum. 2: ";
     line += humidity2;
     line += "%";
     display.print(line); 
   }
-  else if (page == 3) {
+  else if (page == 2) {
     String date; date += now.day(); date += '/'; date += now.month(); date += '/'; date += now.year();
     display.print(date);
     display.setCursor(lineX, lineY(2));
     String curTime; curTime += now.hour(); curTime += ':'; curTime += now.minute();
     display.print(curTime);
-  }
-  else if (page == 4) {
+    display.setCursor(lineX, lineY(3));
     String line = "Flow 1: ";
     line += flow1MlSinceLastUpload;
     line += "mL";
     display.print(line); 
-    display.setCursor(lineX, lineY(2));
+    display.setCursor(lineX, lineY(4));
     line = "Flow 2: ";
     line += flow2MlSinceLastUpload;
     line += "mL";
     display.print(line); 
   }
-  display.setCursor(lineX, lineY(3));
+  display.setCursor(lineX, lineY(5));
   display.print(alarmReason); 
+  display.setCursor(lineX, lineY(6));
+  display.print(webError); 
   display.display();
   page++;
   if (page > numPages) {
     page = 1;
   }
+  webError = '';
 }
 
 unsigned int long lastDataUpload = 0;
@@ -761,7 +779,7 @@ String uploadData(int curMillis) {
     lastDataUpload = curMillis;
   }
   handleReceiveConfig(webResponse);
-  return webResponse;
+  alarmReason = '';
 }
 
 void setup() {
