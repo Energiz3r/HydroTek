@@ -48,7 +48,7 @@ There are four components to this repository:
   * 2x grow lights
   * 2x nutrient pumps
 * Buzzer / LED to alert user to lost WiFi signal, temperature extremes, nutrient pump faults, or full / empty nutrient / run-off tanks
-* The board can be powered either through the barrel jack as designed or using a USB power source plugged into the ESP32
+* The board can be powered either through the barrel jack as designed or using a USB power source plugged into the ESP32 (Note: the USB power source must be sufficient to run both the HydroTek and any connected relays)
 
 I2C pH sensors *could* be connected using a kit [such as this](https://www.sparkfun.com/products/10972), however pH meters are supposed to be kept in a storage solution and aren't suitable for constant monitoring, therefore this was excluded from the feature set.
 
@@ -74,6 +74,8 @@ I2C pH sensors *could* be connected using a kit [such as this](https://www.spark
 ### Build instructions:
 
 The software for this is a bit incomplete. The hardware is good to go, so go ahead with that, but if you want to build this and use the online component as I've designed it, shoot me a message at cl@noobs.wtf and I'll sort out the things still needing to be done manually, such as creating an account and preparing the database for your hardware.
+
+Note: The capacitors, barrel jack, and LM7805 can be omitted if the intention is to only run HydroTek from a USB power source. 
 
 *(rev5)*
 

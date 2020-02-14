@@ -1,25 +1,27 @@
+data upload frequency (seconds)
+email address for alerts
+single plant mode enable / disable
+plant 1 name
+plant 2 name
+
 temp / humidity sensor 1 enable / disable
 	lamp over-temp shutoff enable / disable
 		max temperature
-	high temp alert enable / disable
-		temperature
-		send email enable / disable (one must be selected)
-		sound alarm enable / disable
-	low temp alert enable / disable
-		temperature
-		send email enable / disable (one must be selected)
-		sound alarm enable / disable
+	hi temp send email enable / disable (one must be selected)
+	hi temp sound alarm enable / disable
+		high temp alert temperature
+	lo temp send email enable / disable (one must be selected)
+	lo temp sound alarm enable / disable
+		lo temp alert temperature
 temp / humidity sensor 2 enable / disable
 	lamp over-temp shutoff enable / disable
 		max temperature
-	high temp alert enable / disable
-		temperature
-		send email enable / disable (one must be selected)
-		sound alarm enable / disable
-	low temp alert enable / disable
-		temperature
-		send email enable / disable (one must be selected)
-		sound alarm enable / disable
+	hi temp send email enable / disable (one must be selected)
+	hi temp sound alarm enable / disable
+		high temp alert temperature
+	lo temp send email enable / disable (one must be selected)
+	lo temp sound alarm enable / disable
+		lo temp alert temperature
 lamp 1 enable / disable
 	heater mode enable / disable
 		target temperature
@@ -64,6 +66,3 @@ float sensor 2 enable / disable
 	invert sensor logic enable / disable
 flow sensor 1 enable / disable
 flow sensor 2 enable / disable
-
-data upload frequency (seconds)
-email address for alerts
