@@ -10,7 +10,6 @@ import Header from './components/Header'
 import HomePage from './components/HomePage'
 import Information from './components/Information'
 import LoginPage from './components/Login'
-
 import Charts from './components/Charts'
 
 class Content extends React.Component {
@@ -18,18 +17,18 @@ class Content extends React.Component {
     super(props)
     this.state = {
       loggedIn: window.loggedIn == 1 ? true : false
-      //loggedIn: true
     }
   }
   render = () => {
-    const loc = this.props.ui.location    
+    const { loggedIn } = this.state
+    const { location } = this.props.ui
     return (
       <div>
         <Header isMounted={true} isHeader={true} />
-        <LoginPage isMounted={!this.state.loggedIn} />
-        <HomePage isMounted={this.state.loggedIn && loc == 'home'} />
-        {/* <Information isMounted={this.state.loggedIn && loc == 'information'} /> */}
-        <Charts isMounted={this.state.loggedIn && loc == 'Charts'} />
+        <LoginPage isMounted={!loggedIn} />
+        <HomePage isMounted={loggedIn && location == 'home'} />
+        <Information isMounted={location == 'information'} />
+        <Charts isMounted={loggedIn && location == 'Charts'} />
       </div>
     )
   }

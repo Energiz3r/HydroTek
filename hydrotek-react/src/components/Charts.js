@@ -23,7 +23,7 @@ class Charts extends React.Component {
       float1: this.getFilteredData().float1[this.getFilteredData().float1.length - 1].y,
       float2: this.getFilteredData().float2[this.getFilteredData().float2.length - 1].y
     }
-    return output    
+    return output
   }
   
   getFilteredData = () => {
