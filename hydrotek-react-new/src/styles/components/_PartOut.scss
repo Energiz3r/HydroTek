@@ -1,0 +1,25 @@
+.main-page-container {
+  flex-direction: column;
+}
+.secondary-page-container {
+  flex-direction: row;
+}
+.secondary-page-container, .main-page-container{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: stretch;
+}
+
+.main-content-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+}
+
+@media only screen and (max-width: $width-breakpoint) {
+  .main-content-container {
+    width: auto;
+  }  
+}

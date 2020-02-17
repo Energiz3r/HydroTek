@@ -1,0 +1,108 @@
+html {
+  font-size: $default-app-size; 
+  overflow: hidden;
+  zoom: 1;
+}
+
+body {
+  font-size: $m-size;
+  color: $font-default;
+  font-family: $font-family-default;
+}
+
+html, body, #app {
+  height: 100%;
+  background-color: black;
+}
+
+a {
+  font-weight: bold;
+  color: lighten($theme, 20%);
+  cursor: pointer;
+}
+.a-light {
+  color: $font-default-light;
+}
+a:hover {
+  color: $theme;
+}
+
+.p-light {
+  color: $font-default-light;
+}
+
+// styling for the various containers
+.emphasised-container {
+  box-shadow: 0 0.1rem lighten($surround, 10%), inset 0 0.1rem 0.1rem darken($base, 5%);
+  border-radius: 0.2rem;
+  background-color: $base;
+  border: $element-border solid $shadow;
+}
+.emphasised-container-light {
+  box-shadow: 0;
+  border-radius: 0;
+  background-color: $base-light;
+  border: 0;
+  border-top: $theme solid .2rem;
+}
+
+.app-root-container {
+  width: 100%;
+  height: 100%;
+  background-color: $surround;
+  margin: 0;
+}
+.app-overlay-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+.app-color-overlay {
+  position: absolute;
+  left: -5vw;
+  top: -5vh;
+  width: 110vw;
+  height: 110vh;
+  background-color: rgb(0, 0, 0);
+}
+.app-color-overlay-visible {
+  transition: opacity 1000ms linear;
+  visibility: visible;
+  opacity: 0.1;
+}
+.app-color-overlay-invisible {
+  transition: visibility 1000ms linear, opacity 1000ms linear;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.blur-container {
+  width:100%;
+  height:100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.blur-container {
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -o-filter: blur(10px);
+  -ms-filter: blur(10px);
+  filter: blur(10px);
+} 
+
+//the div shown when the browser is not supported (IE)
+.noSupportContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: $base;
+}
+.noSupportContainer > h1 {
+  text-align: center;
+}
+.noSupportContainer > h2 {
+  text-align: center;
+}

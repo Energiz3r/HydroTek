@@ -1,0 +1,58 @@
+
+.navbar-container {
+  display: flex;
+  //justify-content: center;
+  //flex-direction: column;
+  //position: absolute;
+  width: 100%;
+  height: 5rem;
+  left: 0;
+  top: 0;
+  background-color: $base;
+  border-bottom: .2rem solid $theme;
+}
+
+.navbar-container > h2 {
+  margin-top: 1rem;
+  margin-left: 1rem;
+}
+
+.fa-navbar {
+  //font-size: $m-size;
+}
+
+.navbar-button{
+  min-height: 3rem;
+  font-size: $m-size;
+  padding: 0;
+}
+
+.navbar-burger-button {
+  width: 4rem;
+}
+
+.navbar-name {
+  float: right;
+  position: absolute;
+  right: 2rem;
+}
+
+@media only screen and (max-width: $width-breakpoint) {
+  .navbar-button{
+    font-size: $l-size;
+  }
+  .navbar-container {
+    height: 8rem;
+  }
+  .navbar-container > h2 {
+    margin-top: 2rem;
+    margin-left: 2rem;
+    font-size: $l-size;
+  }
+  .navbar-burger-button {
+    width: 6rem;
+  }
+}
+@media only screen and (max-height: $height-breakpoint) {
+
+}

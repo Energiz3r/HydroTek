@@ -1,0 +1,25 @@
+// Mozilla you assholes https://bugzilla.mozilla.org/show_bug.cgi?id=77790
+// bug open for 17 years - still unresolved
+// Will show a warning to firefox users that they should use Chrome or Safari if they don't want disgusting scrollbars
+
+// scroll bar
+::-webkit-scrollbar {
+  width: .5rem;
+  z-index: 10; 
+}
+
+// scroll bar track
+::-webkit-scrollbar-track {
+  background: $scroll-track; 
+  z-index: 10;
+} ::-webkit-scrollbar-track:hover {
+  background: $scroll-track-hover; 
+  z-index: 10;
+}
+
+// scroll bar handle
+::-webkit-scrollbar-thumb {
+  background: $scroll-thumb; 
+} ::-webkit-scrollbar-thumb:hover {
+  background: $scroll-thumb-hover; 
+}

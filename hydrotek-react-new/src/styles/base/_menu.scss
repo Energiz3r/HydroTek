@@ -1,0 +1,50 @@
+
+.menu-container {
+  display: flex;
+  //justify-content: center;
+  flex-direction: column;
+  //position: absolute;
+  width: 15%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: $base;
+  //border-bottom: .2rem solid $theme;
+}
+
+.fa-menu {
+  margin-right: .4rem;
+}
+
+.menu-button{
+  min-height: 3rem;
+  height: 5rem;
+  font-size: $m-size;
+}
+
+.menu-burger-button {
+  width: 4rem;
+}
+
+@media only screen and (max-width: 1200px) {
+  .menu-button{
+    font-size: $s-size;
+  }
+  .menu-container {
+    width: 25%;
+  }
+}
+@media only screen and (max-width: $width-breakpoint) {
+  .menu-button{
+    font-size: $m-size;
+    height: 5rem;
+  }
+  .menu-container {
+    width: 85%;
+  }
+}
+@media only screen and (max-height: $height-breakpoint) {
+  .menu-button{
+    //font-size: $s-size;
+  }
+}
