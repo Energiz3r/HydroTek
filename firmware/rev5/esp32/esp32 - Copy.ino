@@ -23,12 +23,17 @@
 #define buttonPin 39
 // END PIN ASSIGNMENTS
 
-#define webEndpoint "http://noobs.wtf/plants/endpoint.php" //the php script that the ESP8266 will connect to for uploading data
+String webUsername = "";
+String webPassword = "";
+String webDeviceID = "";
+char* wifiSSID = "";
+char* wifiPassphrase =  "";
+
+#define webEndpoint "http://noobs.wtf/plants/api.php" //the php script that the ESP8266 will connect to for uploading data
 #define lampHeaterTempVariance 1.5 // how much to allow the temp to vary from the desired setting before switching the state of the heater (lamp)
-#define postIdentifierString "user=" webUsername "&password=" webPassword "&device=" deviceId "&"
 #define buttonShortTime 30 //ms
 #define buttonLongTime 250 //ms
-#define flowPulsesPerMl 0.45 //flow sensor pulses per mL of liquid (YF-S201 sensor)
+#define flowPulsesPerMl 0.45 //flow sensor pulses per mL of liquid (YF-S201 sensor = 0.45)
 // #define SET_RTC_MANUAL // uncomment to force setting the RTC time to the sketch compile time
 
 // ESP WiFi Includes
@@ -59,12 +64,6 @@ Preferences preferences;
 
 // JSON includes
 #include <ArduinoJson.h>
-
-String webUsername = "";
-String webPassword = "";
-String webDeviceID = "";
-char* wifiSSID = "";
-char* wifiPassphrase =  "";
 
 //the below values are loaded from the web portal
 int configUploadFrequencySec = 0;
@@ -752,7 +751,7 @@ String uploadData(int curMillis) {
     if(http.begin(webEndpoint)){
       http.addHeader("Content-Type", "application/x-www-form-urlencoded", false, true);
       
-      String postString = postIdentifierString + uploadData;
+      String postString = "user=" + webUsername + "&password=" webPassword + "&device=" + deviceId + "&" + uploadData;
       int httpCode = http.POST(postString);
       if (httpCode > 0) { // httpCode will be negative on error
         String response = "OK";
