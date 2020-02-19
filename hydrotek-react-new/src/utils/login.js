@@ -1,7 +1,7 @@
 import { store } from '../stores/store'
 import {
   setLoginStatusFacebook,
-  setLoginStatusPartout,
+  setLoginStatusApp,
   setLoginStatus,
   setCreateAccount,
   setUserDetails
@@ -11,8 +11,8 @@ import {serverAPILocation,stopAtLoginResponse, simulateCreateAccount} from '../c
   
 if (!window.serverData) { window.serverData = {} }
 
-const partOutLoginRequest = () => {
-  //console.log("Logging into to Partout...")
+const appOutLoginRequest = () => {
+  //console.log("Logging into to App...")
   fetch(serverAPILocation, {
     method: 'POST',
     cache: 'no-cache',
@@ -20,7 +20,7 @@ const partOutLoginRequest = () => {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      "action": "partoutLogin"
+      "action": "appLogin"
     })
   })
     //.then((res) => { res.text().then(function (text) { console.log(text) }) }) //debug output from api.php
@@ -29,20 +29,20 @@ const partOutLoginRequest = () => {
       (result) => {
         if (result.loggedIn === "1") {
           //console.log(result)
-          console.log("Partout auth successful!")
-          store.dispatch(setLoginStatusPartout(true))
+          console.log("App auth successful!")
+          store.dispatch(setLoginStatusApp(true))
           setTimeout(()=>{
             store.dispatch(setLoginStatus(true)) // delay the login so the login modal can fade out
             store.dispatch(setRoute('/home'))
           }, 200)
         } else {
           console.log(result)
-          if (result.reason == 'no_partout_user') {
+          if (result.reason == 'no_app_user') {
             store.dispatch(setCreateAccount())
           } else if (result.reason == 'no_facebook_session') {
             store.dispatch(setResponseErrorMessage("Invalid facebook session! Please refresh the page and try again."))
           } else {
-            console.log("Partout auth failed for some reason. Response:")
+            console.log("App auth failed for some reason. Response:")
             console.log(result)
           }          
         }
@@ -54,7 +54,7 @@ const partOutLoginRequest = () => {
     )
 }
 const facebookLoginCheck = (fbResponse) => {
-  //console.log("Checking facebook auth with Partout...")
+  //console.log("Checking facebook auth with App...")
   fetch(serverAPILocation, {
     method: 'POST',
     cache: 'no-cache',
@@ -73,10 +73,10 @@ const facebookLoginCheck = (fbResponse) => {
         if (result.loggedIn === "1") {
           console.log(result)
           store.dispatch(setUserDetails(result))
-          partOutLoginRequest()
-          //console.log("Partout accepted facebook auth!")
+          appOutLoginRequest()
+          //console.log("App accepted facebook auth!")
         } else {
-          console.log("Partout failed facebook auth:")
+          console.log("App failed facebook auth:")
           console.log(result)
         }
       },
@@ -99,7 +99,7 @@ export const facebookCallback = (response) => {
     } else {
       console.log(response)
       store.dispatch(setLoginStatusFacebook(false))
-      store.dispatch(setLoginStatusPartout(false))
+      store.dispatch(setLoginStatusApp(false))
     }
   }  
   return false
@@ -109,7 +109,7 @@ export const dummyLogin = () => {
   setTimeout(()=>{
     store.dispatch(setLoginStatusFacebook(true))
     if (!stopAtLoginResponse) {
-      store.dispatch(setLoginStatusPartout(true))
+      store.dispatch(setLoginStatusApp(true))
     }
     if (simulateCreateAccount) {
       store.dispatch(setCreateAccount())

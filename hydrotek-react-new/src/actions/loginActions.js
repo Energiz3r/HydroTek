@@ -3,7 +3,7 @@ import { buildForDev } from '../config'
 export const initLoginState = (
   {
     loggedInFacebook = false,
-    loggedInPartout = false,
+    loggedInApp = false,
     createAccount = false,
     responseErrorMessage = '',
     loggedIn = false,
@@ -14,7 +14,7 @@ export const initLoginState = (
   type: 'INIT_LOGIN_STATE',
   loginState: {
     loggedInFacebook,
-    loggedInPartout,
+    loggedInApp,
     createAccount,
     responseErrorMessage,
     loggedIn,
@@ -28,8 +28,8 @@ export const setLoginStatusFacebook = (status) => ({
   status
 })
 
-export const setLoginStatusPartout = (status) => ({
-  type: 'SET_LOGIN_STATUS_PARTOUT',
+export const setLoginStatusApp = (status) => ({
+  type: 'SET_LOGIN_STATUS_APP',
   status
 })
 export const setLoginStatus = (status) => ({

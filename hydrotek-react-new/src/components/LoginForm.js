@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { FadeTransform } from 'react-animation-components'
 import { webpackDevServer, serverAPILocation } from '../config'
 import { setRoute } from '../actions/UIActions'
-import { setLoginStatus, setLoginStatusPartout, setUserDetails } from '../actions/loginActions'
+import { setLoginStatus, setLoginStatusApp, setUserDetails } from '../actions/loginActions'
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -33,7 +33,7 @@ class LoginForm extends React.Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        "action": "createPartoutUser"
+        "action": "createAppUser"
       })
     })
       .then(result => result.json())
@@ -42,7 +42,7 @@ class LoginForm extends React.Component {
           if (result.loggedIn === "1") {
             console.log(result)
             this.props.dispatch(setUserDetails(result))
-            this.props.dispatch(setLoginStatusPartout(true))
+            this.props.dispatch(setLoginStatusApp(true))
             setTimeout(()=>{
               this.props.dispatch(setLoginStatus(true)) // delay the login so the login modal can fade out
               this.props.dispatch(setRoute('/home'))
@@ -61,7 +61,7 @@ class LoginForm extends React.Component {
   render() {
     const {
       loggedInFacebook,
-      loggedInPartout,
+      loggedInApp,
       createAccount,
       responseErrorMessage,
       email,
@@ -73,7 +73,7 @@ class LoginForm extends React.Component {
     } = this.state
     return (
 
-      <div className={"modal-wrapper" + ((loggedInFacebook && loggedInPartout) ? ' modal-fade-out' : "")}>
+      <div className={"modal-wrapper" + ((loggedInFacebook && loggedInApp) ? ' modal-fade-out' : "")}>
         <FadeTransform in transformProps={{enterTransform: 'translateY(1.5rem)', exitTransform: 'translateY(-1.5rem)'}}>
           <div className="modal-outer-container">
             <div className="modal-inner-container">
@@ -82,7 +82,7 @@ class LoginForm extends React.Component {
 
                 <h2>Welcome to App!</h2>
 
-                {loggedInFacebook && !loggedInPartout && !createAccount && <p>Logging in...</p>}
+                {loggedInFacebook && !loggedInApp && !createAccount && <p>Logging in...</p>}
 
                 {(!loggedInFacebook && !webpackDevServer) && 
                   <div

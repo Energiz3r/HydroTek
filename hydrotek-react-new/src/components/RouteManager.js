@@ -3,7 +3,7 @@ import { setInitialRoute, setRoute } from '../actions/UIActions'
 import { serverAPILocation } from '../config'
 import {
   setUserDetails,
-  setLoginStatusPartout,
+  setLoginStatusApp,
   setLoginStatusFacebook,
   setLoginStatus
 } from '../actions/loginActions'
@@ -44,7 +44,7 @@ class RouteManager extends React.Component {
             if (result.loggedIn === "1") {
               console.log(result)
               this.props.dispatch(setUserDetails(result))
-              this.props.dispatch(setLoginStatusPartout(true))
+              this.props.dispatch(setLoginStatusApp(true))
               this.props.dispatch(setLoginStatusFacebook(true))
               setTimeout(()=>{
                 this.props.dispatch(setLoginStatus(true)) // delay the login so the login modal can fade out

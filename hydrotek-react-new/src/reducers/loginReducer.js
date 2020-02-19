@@ -9,10 +9,10 @@ export default (state = reducerDefaultState, action) => {
         ...state,
         loggedInFacebook: action.status 
       }
-    case 'SET_LOGIN_STATUS_PARTOUT':
+    case 'SET_LOGIN_STATUS_APP':
       return {
         ...state,
-        loggedInPartout: action.status 
+        loggedInApp: action.status 
       }
     case 'SET_LOGIN_STATUS':
         return {
