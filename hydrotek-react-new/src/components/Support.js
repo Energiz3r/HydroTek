@@ -15,7 +15,7 @@ class Support extends React.Component {
     return (
       <div>
           <h4>Support Info</h4>
-          <p>There <i>is</i> no support.</p>
+          <p>There <i>is</i> no support. Good luck!</p>
           <button className='button-default' onClick={this.onClick}>Home</button>
       </div>
     )

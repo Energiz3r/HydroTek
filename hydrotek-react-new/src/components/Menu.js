@@ -20,7 +20,7 @@ class Menu extends React.Component {
   render() {
     return (
       <div className="menu-container">
-        <button onClick={this.onDevicesClick} className="button-default menu-button"><i className="fas fa-seedling fa-menu"></i>Devices</button>
+        <button onClick={this.onDevicesClick} className="button-default menu-button"><i className="fas fa-seedling fa-menu"></i>Device List</button>
         <button onClick={this.onSupportClick} className="button-default menu-button"><i className="far fa-question-circle fa-menu"></i>Help / Support</button>
       </div>
     )

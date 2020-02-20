@@ -6,7 +6,38 @@ class Listing extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      deviceList: [],
+      deviceList: [{
+        UIdeviceVisible: false,
+        deviceId: 1,
+        singleDeviceMode: false,
+        uploadFrequencyMins: 2,
+        alertEmailAddress: "tim.eastwood@hotmail.com",
+        plant1Name: 'Example',
+        plant2Name: null,
+
+        temp1Enable
+        temp1LampTempShutoff
+        temp1LampMaxTemp
+        temp1HiTempAlarm
+        temp1HiTempEmail
+        temp1HiTemp
+        temp1LoTempAlarm
+        temp1LoTempEmail
+        temp1LoTemp
+
+
+
+
+
+
+
+
+
+
+
+
+
+      }],
       waitingForAdd: false,
       loadingDevices: true
     }
