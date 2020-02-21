@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import { setRoute } from '../actions/UIActions'
 import { serverAPILocation } from '../config'
+import Toggle from '../utils/Toggle'
 
 class Listing extends React.Component {
   constructor(props) {
@@ -13,30 +14,7 @@ class Listing extends React.Component {
         uploadFrequencyMins: 2,
         alertEmailAddress: "tim.eastwood@hotmail.com",
         plant1Name: 'Example',
-        plant2Name: null,
-
-        temp1Enable
-        temp1LampTempShutoff
-        temp1LampMaxTemp
-        temp1HiTempAlarm
-        temp1HiTempEmail
-        temp1HiTemp
-        temp1LoTempAlarm
-        temp1LoTempEmail
-        temp1LoTemp
-
-
-
-
-
-
-
-
-
-
-
-
-
+        plant2Name: null
       }],
       waitingForAdd: false,
       loadingDevices: true
@@ -73,37 +51,8 @@ class Listing extends React.Component {
         }
       )
   }
-  onAddClick = () => {
-    this.setState({
-      ...this.state,
-      waitingForAdd: true
-    })
-    fetch(serverAPILocation, {
-      method: 'POST',
-      cache: 'no-cache',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        "action": "createNewDevice"
-      })
-    })
-      .then(result => result.json())
-      .then(
-        (result) => {
-          if (result.deviceCreated === "1") {
-            console.log(result)
-
-          } else {
-            console.log("Failed create account:")
-            console.log(result)
-          }
-        },
-        (error) => {
-          console.log("Error:")
-          console.log(error)
-        }
-      )
+  onDeviceAddClick = () => {
+    //create a device on the server and fetch the config
   }
   render() {
     const { deviceList } = this.state
@@ -111,10 +60,13 @@ class Listing extends React.Component {
       <div>
           <h4>Devices</h4>
           <p>Hello. Route is: {this.props.location.pathname}</p>
-          <button className='button-default' onClick={this.onHomeClick}>Home</button>
-          { deviceList.length() > 1 && <p>No devices</p> }
+          
+          <div className="device-container">
+            <input type="text" defaultValue="Device Name"></input>
+            <Toggle />
+          </div>
 
-          <button className='button-default' onClick={this.onAddClick}>Add</button>
+          <button className='button-default' onClick={this.onDeviceAddClick}>Add Device</button>
 
       </div>
     )
