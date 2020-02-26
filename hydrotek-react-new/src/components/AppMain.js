@@ -8,7 +8,7 @@ import Navbar from './Navbar'
 import Menu from './Menu'
 import Home from './Home'
 import Support from './Support'
-import Listing from './Listing'
+import Devices from './Devices'
 
 class AppMain extends React.Component {
   constructor(props) {
@@ -41,7 +41,7 @@ class AppMain extends React.Component {
                 {showMenu && <Menu /> }
                 <div className='main-content-container'>
                   <Route path={serverLocation + '/home'} component={Home} />
-                  <Route path={serverLocation + '/listing/*'} component={Listing} />
+                  <Route path={serverLocation + '/devices'} component={Devices} />
                   <Route path={serverLocation + '/support'} component={Support} />
                 </div>
               </div>

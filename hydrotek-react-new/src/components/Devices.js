@@ -2,6 +2,7 @@ import { connect } from 'react-redux'
 import { setRoute } from '../actions/UIActions'
 import { serverAPILocation } from '../config'
 import Toggle from '../utils/Toggle'
+import Tooltip from 'Tooltip'
 
 class Listing extends React.Component {
   constructor(props) {
@@ -62,8 +63,25 @@ class Listing extends React.Component {
           <p>Hello. Route is: {this.props.location.pathname}</p>
           
           <div className="device-container">
-            <input type="text" defaultValue="Device Name"></input>
-            <Toggle />
+
+            <input type="text" placeholder="Device Label"></input>
+            <Tooltip Title="Controls whether the device uploads sensor readings">
+              <label>Enable Logging</label>
+            </Tooltip>
+            <Toggle isChecked={true} />
+            <Tooltip Title="Disables the second set of inputs / outputs and hides second set of charts and views online">
+              <label>Single device mode</label>
+            </Tooltip>
+            <Toggle isChecked={true} />
+            <Tooltip Title="Frequency, in minutes, of how often to upload status to server">
+              <label>Upload frequency (mins)</label>
+            </Tooltip>
+            <input type="text" placeholder="Upload Frequency"></input>
+            <Tooltip Title="Address to send device alerts to (if enabled)">
+              <label>Alert email address</label>
+            </Tooltip>
+            <input type="text" placeholder="Email address"></input>
+
           </div>
 
           <button className='button-default' onClick={this.onDeviceAddClick}>Add Device</button>
