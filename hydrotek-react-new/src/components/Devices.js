@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { setRoute } from '../actions/UIActions'
 import { serverAPILocation } from '../config'
 import Toggle from '../utils/Toggle'
-import Tooltip from 'Tooltip'
+import ReactTooltip from "react-tooltip"
 
 class Listing extends React.Component {
   constructor(props) {
@@ -60,29 +60,39 @@ class Listing extends React.Component {
     return (
       <div>
           <h4>Devices</h4>
-          <p>Hello. Route is: {this.props.location.pathname}</p>
-          
+
           <div className="device-container">
 
-            <input type="text" placeholder="Device Label"></input>
-            <Tooltip Title="Controls whether the device uploads sensor readings">
-              <label>Enable Logging</label>
-            </Tooltip>
-            <Toggle isChecked={true} />
-            <Tooltip Title="Disables the second set of inputs / outputs and hides second set of charts and views online">
-              <label>Single device mode</label>
-            </Tooltip>
-            <Toggle isChecked={true} />
-            <Tooltip Title="Frequency, in minutes, of how often to upload status to server">
-              <label>Upload frequency (mins)</label>
-            </Tooltip>
-            <input type="text" placeholder="Upload Frequency"></input>
-            <Tooltip Title="Address to send device alerts to (if enabled)">
-              <label>Alert email address</label>
-            </Tooltip>
-            <input type="text" placeholder="Email address"></input>
+            <div className="device-option-container device-parent-container">
+              <input type="text" placeholder="Device Label" data-tip="A friendly name to identify the device, eg. 'Front Room'"></input>
+            </div>
+            <div className="device-option-container">
+              <label data-tip="Controls whether the device uploads sensor readings at all">Enable Online Logging</label>
+              <Toggle isChecked={true} />
+            </div>
+            <div className="device-option-container">
+              <label data-tip="Frequency, in minutes, of how often to upload status to server">Upload frequency (mins)</label>
+              <input type="text" placeholder="Upload Frequency"></input>
+            </div>
+            <div className="device-option-container">
+              <label data-tip="Address to send device alerts to (if enabled)">Alert email address</label>
+              <input type="text" placeholder="Email address"></input>
+            </div>
+            <div className="device-option-container">
+              <label data-tip="Disables the second set of inputs / outputs and hides second set of charts and views online">Single device mode</label>
+              <Toggle isChecked={true} />
+            </div>
+
+            <div className="device-option-container device-plant">
+              <label data-tip="Name the plant being monitored">Plant 1 Name</label>
+              <input type="text" placeholder="Plant name"></input>
+            </div>
+
+
 
           </div>
+
+          <ReactTooltip place="top" type="dark" effect="solid" />
 
           <button className='button-default' onClick={this.onDeviceAddClick}>Add Device</button>
 

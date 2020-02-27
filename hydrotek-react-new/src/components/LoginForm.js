@@ -10,7 +10,7 @@ class LoginForm extends React.Component {
     this.state = {
       termsAccepted: false,
       awaitingCreateResponse: false,
-      email
+      email: ''
     }
   }
   onAcceptTerms = () => {
