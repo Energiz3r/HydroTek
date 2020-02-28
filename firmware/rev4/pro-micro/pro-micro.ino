@@ -7,8 +7,8 @@
 //#define SERIAL_DEBUG //print output from BOTH the ESP8266 and the Pro Micro to serial
 //#define RTC_SET //sets the time on the RTC to the time the sketch is compiled - upload the sketch, then ensure the sketch is re-uploaded with this commented-out afterwards otherwise the RTC will reset when the unit is powered on
 
-#define lamp1OnHour 7
-#define lamp1OffHour 21
+#define lamp1OnHour 5
+#define lamp1OffHour 23
 
 #define pump1Enable //run the pump every 4 hours
 #define pump1Duration 10 //seconds
@@ -80,13 +80,13 @@ void setup() {
   RTC.begin();
 
   #ifdef RTC_SET
-    if (! RTC.isrunning()) {
-      #ifdef SERIAL_DEBUG
-        Serial.println("RTC is NOT running!");
-      #endif
+    //if (! RTC.isrunning()) {
+      //#ifdef SERIAL_DEBUG
+        //Serial.println("RTC is NOT running!");
+      //#endif
       // following line sets the RTC to the date & time this sketch was compiled
-      RTC.adjust(DateTime(__DATE__, __TIME__));
-    }
+  RTC.adjust(DateTime(__DATE__, __TIME__));
+    //}
   #endif
 
 }
@@ -98,6 +98,7 @@ unsigned int long lastUpdateTime = 0; //track when page was last changed
 bool flow1LastState = false; //track the last known state of the flow sensor
 unsigned int flow1PulseCount = 0; //track the pulse count from the flow sensor
 unsigned int long pumpLastCheck = 0;
+bool lamp1on = false;
 void loop() {
 
   //monitor for changes to state on the flow sensor inputs
@@ -176,7 +177,12 @@ void loop() {
         String date; date += now.day(); date += '/'; date += now.month(); date += '/'; date += now.year();
         display.print(date); // line 2
         display.setCursor(2, 36);
-        String curTime; curTime += now.hour(); curTime += ':'; curTime += now.minute();
+        String curTime;
+        curTime += now.hour() > 12 ? now.hour() - 12 : now.hour();
+        curTime += ':';
+        curTime += now.minute() < 10 ? "0" : "";
+        curTime += now.minute();
+        curTime += now.hour() > 12 ? "pm" : "am";
         display.print(curTime); //line 4
       }
     #endif
@@ -189,7 +195,8 @@ void loop() {
     }
     display.setTextSize(1); //set back to size 1
     display.setCursor(2, 52); //line 6
-    display.print("H "); display.print(int(workingRHSensors)); display.print(" T "); display.println(int(workingTempSensors));
+    display.print("Lamp ");
+    display.println(lamp1on ? "on" : "off");
     display.display();
 
     //get float switch statuses
@@ -212,11 +219,13 @@ void loop() {
         #ifdef SERIAL_DEBUG
           Serial.println("Lamp 1 ON");
         #endif
+        lamp1on = true;
         digitalWrite(lamp1Pin, LOW); //fucking relay is inverted... LOW is ON
       } else {
         #ifdef SERIAL_DEBUG
           Serial.println("Lamp 1 OFF");
         #endif
+        lamp1on = false;
         digitalWrite(lamp1Pin, HIGH);
       }
     #else if lamp1OffHour < lamp1OnHour
@@ -224,11 +233,13 @@ void loop() {
         #ifdef SERIAL_DEBUG
           Serial.println("Lamp 1 ON");
         #endif
+        lamp1on = true;
         digitalWrite(lamp1Pin, LOW); //fucking relay is inverted... LOW is ON
       } else {
         #ifdef SERIAL_DEBUG
           Serial.println("Lamp 1 OFF");
         #endif
+        lamp1on = false;
         digitalWrite(lamp1Pin, HIGH);
       }
     #endif
