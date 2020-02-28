@@ -1,7 +1,9 @@
 .main-page-container {
+  display: flex;
   flex-direction: column;
 }
 .secondary-page-container {
+  display: flex;
   flex-direction: row;
 }
 .secondary-page-container, .main-page-container{
@@ -15,7 +17,9 @@
   display: flex;
   width: 100%;
   height: 100%;
-  padding: 2rem;
+  max-height: 100%;
+  overflow-y: auto;
+  //padding: 2rem;  
 }
 
 @media only screen and (max-width: $width-breakpoint) {

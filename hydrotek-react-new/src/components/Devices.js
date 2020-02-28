@@ -58,7 +58,7 @@ class Listing extends React.Component {
   render() {
     const { deviceList } = this.state
     return (
-      <div>
+      <div className="device-content">
           <h4>Devices</h4>
 
           <div className="device-container">
@@ -83,10 +83,51 @@ class Listing extends React.Component {
               <Toggle isChecked={true} />
             </div>
 
-            <div className="device-option-container device-plant">
-              <label data-tip="Name the plant being monitored">Plant 1 Name</label>
+            <div className="device-option-container device-ind-1">
+              <label>Plant 1</label>
+            </div>
+            <div className="device-option-container device-ind-2">
+              <label data-tip="Name the plant being monitored">Plant name</label>
               <input type="text" placeholder="Plant name"></input>
             </div>
+
+            {/* TEMP */}
+            <div className="device-option-container device-ind-2">
+              <label data-tip="Enable / Disable the temp / humidity sensor">Temp / humidity sensor enable</label>
+              <Toggle isChecked={true} />
+            </div>
+              <div className="device-option-container device-ind-3">
+                <label data-tip="Turn off the lamp if this sensor reads too hot">Lamp over-temp shutoff</label>
+                <Toggle isChecked={true} />
+              </div>
+                <div className="device-option-container device-ind-4">
+                  <label>Max lamp temp</label>
+                  <input type="text" placeholder="Max Temp"></input>
+                </div>
+              <div className="device-option-container device-ind-3">
+                <label data-tip="Send an email if this sensor reads too hot">Hi temp email alert</label>
+                <Toggle isChecked={true} />
+              </div>
+              <div className="device-option-container device-ind-3">
+                <label data-tip="Sound the buzzer on the device if this sensor reads too hot">Hi temp sound alarm</label>
+                <Toggle isChecked={true} />
+              </div>
+                <div className="device-option-container device-ind-4">
+                  <label>Hi temp</label>
+                  <input type="text" placeholder="Hi Temp"></input>
+                </div>
+              <div className="device-option-container device-ind-3">
+                <label data-tip="Send an email if this sensor reads too cold">Lo temp email alert</label>
+                <Toggle isChecked={true} />
+              </div>
+              <div className="device-option-container device-ind-3">
+                <label data-tip="Sound the buzzer on the device if this sensor reads too cold">Lo temp sound alarm</label>
+                <Toggle isChecked={true} />
+              </div>
+                <div className="device-option-container device-ind-4">
+                  <label>Lo temp</label>
+                  <input type="text" placeholder="Lo Temp"></input>
+                </div>
 
 
 

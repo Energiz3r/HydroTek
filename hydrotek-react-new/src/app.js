@@ -46,7 +46,7 @@ class ApplicationBase extends React.Component {
   }
   componentWillMount(){
     if (isIE) {
-      //this.setState({displayMode:'IE'})
+      this.setState({displayMode:'IE'})
     }
   }
   render() {
