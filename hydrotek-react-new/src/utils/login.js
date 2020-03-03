@@ -11,7 +11,7 @@ import {serverAPILocation,stopAtLoginResponse, simulateCreateAccount} from '../c
   
 if (!window.serverData) { window.serverData = {} }
 
-const appOutLoginRequest = () => {
+const appLoginRequest = () => {
   //console.log("Logging into to App...")
   fetch(serverAPILocation, {
     method: 'POST',
@@ -73,7 +73,7 @@ const facebookLoginCheck = (fbResponse) => {
         if (result.loggedIn === "1") {
           console.log(result)
           store.dispatch(setUserDetails(result))
-          appOutLoginRequest()
+          appLoginRequest()
           //console.log("App accepted facebook auth!")
         } else {
           console.log("App failed facebook auth:")
@@ -120,7 +120,7 @@ export const dummyLogin = () => {
     setTimeout(()=>{
       console.log("Logged in! (dummy mode)")
       store.dispatch(setLoginStatus(true)) // delay the login so the login modal can fade out
-      store.dispatch(setRoute('/home'))
+      store.dispatch(setRoute('/devices'))
     }, 1200)
   }
 }

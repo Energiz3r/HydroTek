@@ -3,6 +3,9 @@
  * HydroTek hydroponics controller - tim eastwood
  * 
  * See https://github.com/Energiz3r/HydroTek for information and instructions
+ *
+ * A lot of this code could be external or at least classes but really only the button showed a need to be classed at this time
+ * Device may be released as 'single plant' further negating the need to worry about it
  * 
  */
 
@@ -22,9 +25,11 @@
 #define pump1Pin 26
 #define pump2Pin 36
 
-#define ledPin 33
-#define buzzPin 35
-#define buttonPin 39
+#define ledPin 33 // not working (pin is not an output)
+#define buzzPin 35 // not working (pin is not an output)
+#define buttonPinOK 39
+#define buttonPinUP 39 //figure out pin assignment
+#define buttonPinDN 39 //figure out pin assignment
 // END PIN ASSIGNMENTS
 
 String webUsername = "Tangles";
@@ -68,6 +73,47 @@ Preferences preferences;
 
 // JSON includes
 #include <ArduinoJson.h>
+
+class Button {
+  public:
+    Init(int pin);
+    void checkState(unsigned int long curMs);
+  private:
+    int _pin;
+    unsigned int long _startTime;
+    bool _lastState;
+}
+
+Button::Init(int pin) {
+  _pin = pin;
+  _startTime = 0;
+  _lastState = false;
+  pinMode(pin, INPUT_PULLUP);
+}
+
+void Button::checkState(unsigned int long curMs) {
+  if (digitalRead(_pin) == LOW && !_lastState) {
+    _startTime = curMillis;
+    _lastState = true;
+  }
+  //button released
+  if (digitalRead(_pin) == HIGH && _lastState) {
+    if (curMillis - _startTime > buttonShortTime) {
+      if (curMillis - _startTime > buttonLongTime) {
+        //tone(buzzPin, 800, 250);
+        //onButtonPress("OK", true);
+      } else {
+        //tone(buzzPin, 800, 50);
+        //onButtonPress("OK", false);
+      }
+    }
+    _lastState = false;
+  }
+}
+
+Button buttonOK;
+Button buttonUP;
+Button buttonDN;
 
 //the below values are loaded from the web portal
 int configUploadFrequencyMins = 0;
@@ -816,7 +862,7 @@ void uploadData(int curMillis) {
 
 void setup() {
 
-  pinMode(buttonPin, INPUT_PULLUP);
+  //pinMode(buttonPin, INPUT_PULLUP);
   pinMode(floatSw1Pin, INPUT_PULLUP);
   pinMode(floatSw2Pin, INPUT_PULLUP);
   pinMode(lamp1Pin, OUTPUT);
@@ -862,8 +908,6 @@ void setup() {
 
 bool flow1LastState = false;
 bool flow2LastState = false;
-bool buttonLastState = false;
-int long unsigned buttonStartTime = 0;
 int long unsigned lastSensorUpdate = 0;
 bool wifiConnOnce = false; // track whether wifi ever connected
 void loop () {
@@ -891,24 +935,10 @@ void loop () {
     }
   }
 
-  //button down
-  if (digitalRead(buttonPin) == LOW && !buttonLastState) {
-    buttonStartTime = curMillis;
-    buttonLastState = true;
-  }
-  //button released
-  if (digitalRead(buttonPin) == HIGH && buttonLastState) {
-    if (curMillis - buttonStartTime > buttonShortTime) {
-      if (curMillis - buttonStartTime > buttonLongTime) {
-        tone(buzzPin, 800, 250);
-        onButtonPress(true);
-      } else {
-        tone(buzzPin, 800, 50);
-        onButtonPress(false);
-      }
-    }
-    buttonLastState = false;
-  }
+  //OK button down
+  buttonOK.checkState(curMillis);
+  buttonUP.checkState(curMillis);
+  buttonDN.checkState(curMillis);
 
   //update sensors and display every x ms
   if (curMillis - lastSensorUpdate > 1000 || lastSensorUpdate == 0) {
