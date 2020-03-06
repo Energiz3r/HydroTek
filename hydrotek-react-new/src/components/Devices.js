@@ -65,7 +65,8 @@ class Listing extends React.Component {
 
           <div className="device-option-container device-label-container">
             <i className="fas fa-microchip device-icon"></i>
-            <input type="text" placeholder="Device Label" data-tip="A friendly name to identify the device, eg. 'Front Room'"></input>
+            <input className="device-label-input" type="text" placeholder="Device Label" data-tip="A friendly name to identify the device, eg. 'Front Room'"></input>
+            <i className="fas fa-caret-down"></i>
           </div>
           <div className="device-option-container">
             <label data-tip="Controls whether the device uploads sensor readings at all">Enable Online Logging</label>
@@ -75,13 +76,13 @@ class Listing extends React.Component {
             <label data-tip="Frequency, in minutes, of how often to upload status to server">Upload frequency (mins)</label>
             <div className="device-number-group">
               <input type="number" className="device-number-input" defaultValue="1"></input>
-              <button className='button-default button-device-number'><i className="fas fa-plus"></i></button>
-              <button className='button-default button-device-number'><i className="fas fa-minus"></i></button>
+              {/* <button className='button-default button-device-number'><i className="fas fa-plus"></i></button>
+              <button className='button-default button-device-number'><i className="fas fa-minus"></i></button> */}
             </div>
           </div>
           <div className="device-option-container device-option-split-row">
             <label data-tip="Address to send device alerts to (if enabled)">Alert email address</label>
-            <input type="text" placeholder="Email address"></input>
+            <input className="device-email-input" type="text" placeholder="Email address"></input>
           </div>
           <div className="device-option-container">
             <label data-tip="Disables the second set of inputs / outputs and hides second set of charts and views online">Single device mode</label>
@@ -90,8 +91,7 @@ class Listing extends React.Component {
 
           <div className='device-sub-container'>
             <div className="device-option-container device-label-container device-option-split-row">
-              <label data-tip="Name the plant being monitored">Plant 1</label>
-              <input type="text" placeholder="Plant name"></input>
+              <input className="plant-name-input" type="text" defaultValue="Plant 1"></input>
             </div>
 
             {/* TEMP */}
@@ -113,8 +113,8 @@ class Listing extends React.Component {
               <label>Max lamp temp</label>
               <div className="device-number-group">
                 <input type="number" className="device-number-input" defaultValue="1"></input>
-                <button className='button-default button-device-number'><i className="fas fa-plus"></i></button>
-                <button className='button-default button-device-number'><i className="fas fa-minus"></i></button>
+                {/* <button className='button-default button-device-number'><i className="fas fa-plus"></i></button>
+                <button className='button-default button-device-number'><i className="fas fa-minus"></i></button> */}
               </div>
             </div>
             <div className="device-option-container">
@@ -129,8 +129,8 @@ class Listing extends React.Component {
               <label>Hi temp</label>
               <div className="device-number-group">
                 <input type="number" className="device-number-input" defaultValue="35.5"></input>
-                <button className='button-default button-device-number'><i className="fas fa-plus"></i></button>
-                <button className='button-default button-device-number'><i className="fas fa-minus"></i></button>
+                {/* <button className='button-default button-device-number'><i className="fas fa-plus"></i></button>
+                <button className='button-default button-device-number'><i className="fas fa-minus"></i></button> */}
               </div>
             </div>
             <div className="device-option-container">
@@ -145,10 +145,11 @@ class Listing extends React.Component {
               <label>Lo temp</label>
               <div className="device-number-group">
                 <input type="number" className="device-number-input" defaultValue="15.5"></input>
-                <button className='button-default button-device-number'><i className="fas fa-plus"></i></button>
-                <button className='button-default button-device-number'><i className="fas fa-minus"></i></button>
+                {/* <button className='button-default button-device-number'><i className="fas fa-plus"></i></button>
+                <button className='button-default button-device-number'><i className="fas fa-minus"></i></button> */}
               </div>
             </div>
+
           </div>
 
         </div>

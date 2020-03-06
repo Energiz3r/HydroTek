@@ -38,7 +38,7 @@ class AppMain extends React.Component {
             <div className='main-page-container'>
               <Navbar onMenuToggle={this.onMenuToggle} />
               <div className='secondary-page-container'>
-                {showMenu && <Menu /> }
+                {showMenu && <Menu menuToggle={this.onMenuToggle} /> }
                 <div className='main-content-container'>
                   <Route path={serverLocation + '/home'} component={Home} />
                   <Route path={serverLocation + '/devices'} component={Devices} />

@@ -5,7 +5,7 @@ html {
 }
 
 div {
-  box-sizing: border-box !important;
+  box-sizing: border-box;
 }
 
 body {
@@ -42,21 +42,6 @@ a:hover {
 
 .p-light {
   color: $font-default-light;
-}
-
-// styling for the various containers
-.emphasised-container {
-  box-shadow: 0 0.1rem lighten($surround, 10%), inset 0 0.1rem 0.1rem darken($base, 5%);
-  border-radius: 0.2rem;
-  background-color: $base;
-  border: $element-border solid $shadow;
-}
-.emphasised-container-light {
-  box-shadow: 0;
-  border-radius: 0;
-  background-color: $base-light;
-  border: 0;
-  border-top: $theme solid .2rem;
 }
 
 .app-root-container {

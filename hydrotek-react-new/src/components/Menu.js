@@ -5,17 +5,15 @@ class Menu extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-
     }
-  }
-  onMenuClick = () => {
-    this.props.onMenuToggle()
   }
   onDevicesClick = () => {
     this.props.dispatch(setRoute('/devices'))
+    this.props.menuToggle()
   }
   onSupportClick = () => {
     this.props.dispatch(setRoute('/support'))
+    this.props.menuToggle()
   }
   render() {
     return (
