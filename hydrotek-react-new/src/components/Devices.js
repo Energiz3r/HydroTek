@@ -59,83 +59,103 @@ class Listing extends React.Component {
     const { deviceList } = this.state
     return (
       <div className="device-content">
-          <h4>Devices</h4>
+        <h2>Device List</h2>
 
-          <div className="device-container">
+        <div className="device-container">
 
-            <div className="device-option-container device-parent-container">
-              <input type="text" placeholder="Device Label" data-tip="A friendly name to identify the device, eg. 'Front Room'"></input>
+          <div className="device-option-container device-label-container">
+            <i className="fas fa-microchip device-icon"></i>
+            <input type="text" placeholder="Device Label" data-tip="A friendly name to identify the device, eg. 'Front Room'"></input>
+          </div>
+          <div className="device-option-container">
+            <label data-tip="Controls whether the device uploads sensor readings at all">Enable Online Logging</label>
+            <Toggle isChecked={true} />
+          </div>
+          <div className="device-option-container">
+            <label data-tip="Frequency, in minutes, of how often to upload status to server">Upload frequency (mins)</label>
+            <div className="device-number-group">
+              <input type="number" className="device-number-input" defaultValue="1"></input>
+              <button className='button-default button-device-number'><i className="fas fa-plus"></i></button>
+              <button className='button-default button-device-number'><i className="fas fa-minus"></i></button>
             </div>
-            <div className="device-option-container">
-              <label data-tip="Controls whether the device uploads sensor readings at all">Enable Online Logging</label>
-              <Toggle isChecked={true} />
-            </div>
-            <div className="device-option-container">
-              <label data-tip="Frequency, in minutes, of how often to upload status to server">Upload frequency (mins)</label>
-              <input type="text" placeholder="Upload Frequency"></input>
-            </div>
-            <div className="device-option-container">
-              <label data-tip="Address to send device alerts to (if enabled)">Alert email address</label>
-              <input type="text" placeholder="Email address"></input>
-            </div>
-            <div className="device-option-container">
-              <label data-tip="Disables the second set of inputs / outputs and hides second set of charts and views online">Single device mode</label>
-              <Toggle isChecked={true} />
-            </div>
+          </div>
+          <div className="device-option-container device-option-split-row">
+            <label data-tip="Address to send device alerts to (if enabled)">Alert email address</label>
+            <input type="text" placeholder="Email address"></input>
+          </div>
+          <div className="device-option-container">
+            <label data-tip="Disables the second set of inputs / outputs and hides second set of charts and views online">Single device mode</label>
+            <Toggle isChecked={true} />
+          </div>
 
-            <div className="device-option-container device-ind-1">
-              <label>Plant 1</label>
-            </div>
-            <div className="device-option-container device-ind-2">
-              <label data-tip="Name the plant being monitored">Plant name</label>
+          <div className='device-sub-container'>
+            <div className="device-option-container device-label-container device-option-split-row">
+              <label data-tip="Name the plant being monitored">Plant 1</label>
               <input type="text" placeholder="Plant name"></input>
             </div>
 
             {/* TEMP */}
-            <div className="device-option-container device-ind-2">
+          
+            <div className="device-option-container device-label-container">
+              <i className="fas fa-thermometer-half device-icon"></i>
+              {/* <i className="fas fa-cloud device-icon"></i> */}
+              <p className='device-sub-title'>Temperature / Humidity</p>
+            </div>
+            <div className="device-option-container">
               <label data-tip="Enable / Disable the temp / humidity sensor">Temp / humidity sensor enable</label>
               <Toggle isChecked={true} />
             </div>
-              <div className="device-option-container device-ind-3">
-                <label data-tip="Turn off the lamp if this sensor reads too hot">Lamp over-temp shutoff</label>
-                <Toggle isChecked={true} />
+            <div className="device-option-container">
+              <label data-tip="Turn off the lamp if this sensor reads too hot">Lamp over-temp shutoff</label>
+              <Toggle isChecked={true} />
+            </div>
+            <div className="device-option-container">
+              <label>Max lamp temp</label>
+              <div className="device-number-group">
+                <input type="number" className="device-number-input" defaultValue="1"></input>
+                <button className='button-default button-device-number'><i className="fas fa-plus"></i></button>
+                <button className='button-default button-device-number'><i className="fas fa-minus"></i></button>
               </div>
-                <div className="device-option-container device-ind-4">
-                  <label>Max lamp temp</label>
-                  <input type="text" placeholder="Max Temp"></input>
-                </div>
-              <div className="device-option-container device-ind-3">
-                <label data-tip="Send an email if this sensor reads too hot">Hi temp email alert</label>
-                <Toggle isChecked={true} />
+            </div>
+            <div className="device-option-container">
+              <label data-tip="Send an email if this sensor reads too hot">Hi temp email alert</label>
+              <Toggle isChecked={true} />
+            </div>
+            <div className="device-option-container">
+              <label data-tip="Sound the buzzer on the device if this sensor reads too hot">Hi temp sound alarm</label>
+              <Toggle isChecked={true} />
+            </div>
+            <div className="device-option-container">
+              <label>Hi temp</label>
+              <div className="device-number-group">
+                <input type="number" className="device-number-input" defaultValue="35.5"></input>
+                <button className='button-default button-device-number'><i className="fas fa-plus"></i></button>
+                <button className='button-default button-device-number'><i className="fas fa-minus"></i></button>
               </div>
-              <div className="device-option-container device-ind-3">
-                <label data-tip="Sound the buzzer on the device if this sensor reads too hot">Hi temp sound alarm</label>
-                <Toggle isChecked={true} />
+            </div>
+            <div className="device-option-container">
+              <label data-tip="Send an email if this sensor reads too cold">Lo temp email alert</label>
+              <Toggle isChecked={true} />
+            </div>
+            <div className="device-option-container">
+              <label data-tip="Sound the buzzer on the device if this sensor reads too cold">Lo temp sound alarm</label>
+              <Toggle isChecked={true} />
+            </div>
+            <div className="device-option-container">
+              <label>Lo temp</label>
+              <div className="device-number-group">
+                <input type="number" className="device-number-input" defaultValue="15.5"></input>
+                <button className='button-default button-device-number'><i className="fas fa-plus"></i></button>
+                <button className='button-default button-device-number'><i className="fas fa-minus"></i></button>
               </div>
-                <div className="device-option-container device-ind-4">
-                  <label>Hi temp</label>
-                  <input type="text" placeholder="Hi Temp"></input>
-                </div>
-              <div className="device-option-container device-ind-3">
-                <label data-tip="Send an email if this sensor reads too cold">Lo temp email alert</label>
-                <Toggle isChecked={true} />
-              </div>
-              <div className="device-option-container device-ind-3">
-                <label data-tip="Sound the buzzer on the device if this sensor reads too cold">Lo temp sound alarm</label>
-                <Toggle isChecked={true} />
-              </div>
-                <div className="device-option-container device-ind-4">
-                  <label>Lo temp</label>
-                  <input type="text" placeholder="Lo Temp"></input>
-                </div>
-
-
-
+            </div>
           </div>
 
-          <ReactTooltip place="top" type="dark" effect="solid" />
+        </div>
 
-          <button className='button-default' onClick={this.onDeviceAddClick}>Add Device</button>
+        <ReactTooltip place="top" type="dark" effect="solid" />
+
+        <button className='button-default' onClick={this.onDeviceAddClick}>Add Device</button>
 
       </div>
     )
