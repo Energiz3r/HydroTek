@@ -66,7 +66,7 @@ class Listing extends React.Component {
           <div className="device-option-container device-label-container">
             <i className="fas fa-microchip device-icon"></i>
             <input className="device-label-input" type="text" placeholder="Device Label" data-tip="A friendly name to identify the device, eg. 'Front Room'"></input>
-            <i className="fas fa-caret-down"></i>
+            <i className="fas fa-caret-down device-caret"></i>
           </div>
           <div className="device-option-container">
             <label data-tip="Controls whether the device uploads sensor readings at all">Enable Online Logging</label>
@@ -90,14 +90,14 @@ class Listing extends React.Component {
           </div>
 
           <div className='device-sub-container'>
-            <div className="device-option-container device-label-container device-option-split-row">
+            <div className="device-option-container device-label-container">
               <input className="plant-name-input" type="text" defaultValue="Plant 1"></input>
             </div>
 
             {/* TEMP */}
           
             <div className="device-option-container device-label-container">
-              <i className="fas fa-thermometer-half device-icon"></i>
+              <i className="fas fa-thermometer-half device-icon device-subtitle-icon"></i>
               {/* <i className="fas fa-cloud device-icon"></i> */}
               <p className='device-sub-title'>Temperature / Humidity</p>
             </div>
