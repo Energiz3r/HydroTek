@@ -136,7 +136,7 @@ class Listing extends React.Component {
             <div className="device-option-container">
               <label data-tip="Send an email if this sensor reads too cold">Lo temp email alert</label>
               <Toggle isChecked={true} />
-            </div>
+            </div> 
             <div className="device-option-container">
               <label data-tip="Sound the buzzer on the device if this sensor reads too cold">Lo temp sound alarm</label>
               <Toggle isChecked={true} />
