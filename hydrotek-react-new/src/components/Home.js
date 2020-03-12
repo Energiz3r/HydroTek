@@ -17,8 +17,8 @@ class Home extends React.Component {
         <p>Home Page</p>
         <p>Initial Route: {initialRoute}</p>
         <p>Initial Set: {initialRouteRedirect ? 'yes' : 'no'}</p>
-        <Link to={serverLocation + "/listing/123456"}>
-          <p>Listing</p>
+        <Link to={serverLocation + "/devices"}>
+          <p>Devices</p>
         </Link>
       </div>
     )

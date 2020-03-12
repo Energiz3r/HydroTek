@@ -14,13 +14,14 @@
     background-color: rgb(65, 65, 65);
     padding: .5rem;
     border-left: .3rem solid $theme;
-
+    margin-bottom: .5rem;
 }
 .device-sub-container {
     background-color: rgb(102, 102, 102);
     padding: .3rem;
     border-left: .3rem solid rgb(205, 77, 255);
     border-radius: .4rem;
+    margin-bottom: .5rem;
 }
 .device-option-container {
     display: flex;
@@ -40,6 +41,7 @@
     box-shadow: none;
     align-items: flex-start;
     position: relative;
+    margin-top: .5rem;
 } 
 .device-sub-title {
     margin-top: 1rem;
@@ -53,16 +55,12 @@
 
 .device-icon {
     margin-top: .4rem;
-    margin-right: 1rem;
+    margin-right: 1.2rem;
     margin-left: .5rem;
-}
-.device-subtitle-icon {
-    position: absolute;
-    left: .5rem;
+    cursor: pointer;
 }
 
 .device-content input {
-    //background-color: rgba(0,0,0,0);
     font-style: italic;
     color: white;
     font-weight: bold;
@@ -71,12 +69,19 @@
 .device-label-input {
     background-color: rgba(0,0,0,0);
     border: none;
-    margin-right: .3rem;
-    margin-left: .3rem;
     text-align: center;
-    //margin-top: .4rem;
     height: 4rem;
+    width: 100%;
 }
+
+.plant-name-input {
+    background-color: rgba(17, 17, 17, 0.5);
+    text-align: center;
+    border-radius: .4rem;
+}
+
+
+
 .device-email-input {
     background-color: rgba(0,0,0,0);
     border: none;
@@ -93,37 +98,48 @@
     min-height: 3.6rem;
     margin-top: .4rem;
 }
-.plant-name-input {
-    background-color: rgba(17, 17, 17, 0.5);
-    min-height: 3.6rem;
-    margin-top: .4rem;
-    text-align: center;
-    border: .1rem solid rgba(59, 59, 59, 0.5);
-    border-radius: .4rem;
-    width: 100%;
-}
+
 
 .device-option-container > label {
     margin-left: .5rem;
     margin-right: .5rem;
     margin-top: 1.2rem;
 }
-.device-container .fas {
+.device-container .fas, .device-container .far {
     text-shadow: .2rem .2rem .3rem rgba(0,0,0,0.5);
     font-size: $l-size;
-}
-
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button {  
-
-   opacity: 1;
-
 }
 
 .device-caret {
     margin-top: .6rem;
     margin-right: 1.2rem;
+    margin-left: 1.2rem;
+    cursor: pointer;
+    transition: transform .8s;
+    //transform: rotate(180deg);
 }
+.device-caret:hover {
+    color: rgb(205, 77, 255);
+}
+.device-label-input:hover {
+    color: rgb(205, 77, 255);
+}
+.plant-name-input:hover {
+    color: rgb(205, 77, 255);
+}
+.icon-selected {
+    text-shadow: 0 0 10px $theme !important; //, 0 0 20px rgba(255, 136, 0, 0.5), 0 0 30px rgba(255, 136, 0, 0.5), 0 0 40px rgba(255, 136, 0, 0.5);
+}
+
+// .rot {
+//     transform: translate(150px, 150px) rotate(80deg);
+// }
+
+// input[type=number]::-webkit-inner-spin-button, 
+// input[type=number]::-webkit-outer-spin-button {  
+//    opacity: 1;
+// }
+
 
 // .device-number-group {
 //     display: flex;
