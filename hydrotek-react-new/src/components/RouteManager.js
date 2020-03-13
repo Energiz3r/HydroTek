@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { setInitialRoute, setRoute } from '../actions/UIActions'
-import { serverAPILocation } from '../config'
+import { buildForDev, serverAPILocation } from '../config'
 import {
   setUserDetails,
   setLoginStatusApp,
@@ -23,6 +23,7 @@ class RouteManager extends React.Component {
       }
     }
     componentDidMount = () => {
+      if (buildForDev) { return }
       const url = this.props.location.pathname
       this.props.dispatch(setInitialRoute(url))
       if (!this.props.login.loggedIn) {

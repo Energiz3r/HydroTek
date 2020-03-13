@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { FadeTransform } from 'react-animation-components'
-import { webpackDevServer, serverAPILocation } from '../config'
+import { buildForDev, serverAPILocation } from '../config'
 import { setRoute } from '../actions/UIActions'
 import { setLoginStatus, setLoginStatusApp, setUserDetails } from '../actions/loginActions'
 
@@ -84,7 +84,7 @@ class LoginForm extends React.Component {
 
                 {loggedInFacebook && !loggedInApp && !createAccount && <p>Logging in...</p>}
 
-                {(!loggedInFacebook && !webpackDevServer) && 
+                {!buildForDev && !loggedInFacebook && 
                   <div
                     className="fb-login-button"
                     data-width=""

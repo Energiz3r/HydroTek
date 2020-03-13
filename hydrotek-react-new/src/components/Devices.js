@@ -1,18 +1,28 @@
 import { connect } from 'react-redux'
 import { setRoute } from '../actions/UIActions'
 import { serverAPILocation } from '../config'
-import Toggle from '../utils/Toggle'
+import Toggle from './Toggle'
 import ReactTooltip from "react-tooltip"
 import { demoDevices } from "../utils/demo-device"
+import { debounce } from 'lodash'
 
-class Listing extends React.Component {
+class Devices extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       deviceList: demoDevices,
+      emailAlertsEnable: false,
+      alertsEmailAddress: '',
+      alertsEmailValid: false,
       waitingForAdd: false,
       loadingDevices: true
     }
+  }
+  componentDidMount = () => {
+    setInterval(()=>{
+      this.state.deviceList[0].loggingEnabled = !this.state.deviceList[0].loggingEnabled
+      this.forceUpdate()
+    }, 500)
   }
   onHomeClick = () => {
     this.props.dispatch(setRoute('/home'))
@@ -72,115 +82,164 @@ class Listing extends React.Component {
     }
     this.setState({ ...this.state, deviceList })
   }
-  onTempCaret = index => e => {
+  onOptionGroupCaret = index => e => {
+    e.stopPropagation()
     const { deviceList } = this.state
-    let x = deviceList[index.device].devicePlants[index.plant]
-    x.tempShowing = !x.tempShowing
-    if (x.tempShowing) {
-      /* x.tempShowing = false; */ x.lampShowing = false; x.pumpShowing = false; x.floatShowing = false; x.flowShowing = false;
-    }
+    const prevState = deviceList[index.device].devicePlants[index.plant].optionGroups[index.group].showing
+    deviceList[index.device].devicePlants[index.plant].optionGroups.map((optGrp, i)=>{
+      if (i == index.group) {
+        optGrp.showing = !optGrp.showing
+      } else if (!prevState) {
+        optGrp.showing = false
+      }
+    })
     this.setState({ ...this.state, deviceList })
   }
-  onLampCaret = index => e => {
-    const { deviceList } = this.state
-    let x = deviceList[index.device].devicePlants[index.plant]
-    x.lampShowing = !x.lampShowing
-    if (x.lampShowing) {
-      x.tempShowing = false; /* x.lampShowing = false; */ x.pumpShowing = false; x.floatShowing = false; x.flowShowing = false;
-    }
-    this.setState({ ...this.state, deviceList })
+  checkSaveValidation = () => {
+    return this.state.emailAlertsEnable && this.state.alertsEmailValid || !this.state.emailAlertsEnable
   }
-  onPumpCaret = index => e => {
-    const { deviceList } = this.state
-    let x = deviceList[index.device].devicePlants[index.plant]
-    x.pumpShowing = !x.pumpShowing
-    if (x.pumpShowing) {
-      x.tempShowing = false; x.lampShowing = false; /* x.pumpShowing = false; */ x.floatShowing = false; x.flowShowing = false;
-    }
-    this.setState({ ...this.state, deviceList })
+  saveToServerDebounced = debounce(() => {
+    if (this.checkSaveValidation()){
+      console.log("save to server")
+    }    
+  }, 1000)
+  saveToServer =  debounce(() => {
+    if (this.checkSaveValidation()){
+      console.log("save to server")
+    }    
+  }, 350)
+  integerValidate = (value, max, min = 1) => {
+    const intVal = parseInt(value) || 0
+    return value == '' ? '' :
+      intVal > min ? Math.min(intVal, max) : min
   }
-  onFloatCaret = index => e => {
-    const { deviceList } = this.state
-    let x = deviceList[index.device].devicePlants[index.plant]
-    x.floatShowing = !x.floatShowing
-    if (x.floatShowing) {
-      x.tempShowing = false; x.lampShowing = false; x.pumpShowing = false; /* x.floatShowing = false; */ x.flowShowing = false;
-    }
-    this.setState({ ...this.state, deviceList })
+  floatValidate = (value, max, min = 1) => {
+    const floatVal = parseFloat(value) || 0
+    return value == '' ? '' : 
+      floatVal > min ? Math.min(floatVal, max) : min
+      .toFixed(1) //1 dec place
   }
-  onFlowCaret = index => e => {
-    const { deviceList } = this.state
-    let x = deviceList[index.device].devicePlants[index.plant]
-    x.flowShowing = !x.flowShowing
-    if (x.flowShowing) {
-      x.tempShowing = false; x.lampShowing = false; x.pumpShowing = false; x.floatShowing = false; /* x.flowShowing = false; */
-    }
-    this.setState({ ...this.state, deviceList })
+  textValidate = (value, maxLength = 255) => {
+    return value.substr(0, maxLength)
+  }
+  emailValidate = (email) => {
+    if (!email || email.match( /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ )) {
+      return true
+    } else return false
   }
   render() {
     const { deviceList } = this.state
     return (
       <div className="device-content">
-        <h2>Device List</h2>
+        <h2>Device Configuration</h2>
 
-        {demoDevices.map((device, i)=> {
+        {!this.checkSaveValidation() && <h3 className="device-save-error">Can't save! Check errors in red below!</h3>}
+
+        {/* EMAIL ALERT SETTINGS */}
+        <div className="device-container device-alerts-container">
+          <div className="device-option-container">
+            <label data-tip="Enable sending email alerts (for all devices)">Enable email alerts</label>
+            <Toggle isChecked={this.state.emailAlertsEnable} onChange={()=>{
+              this.setState({ ...this.state, emailAlertsEnable: !this.state.emailAlertsEnable })
+              this.saveToServer()
+            }} />
+          </div>
+          <div className="device-option-container device-option-split-row">
+            <label data-tip="Address to send device alerts to (if enabled)">Alert email address (all devices)</label>
+            <input className={"device-email-input" + (!this.state.alertsEmailValid && this.state.emailAlertsEnable ? ' device-invalid-email' : '')} type="text" placeholder="Email address" value={this.state.alertsEmailAddress}
+            onChange={(e)=>{
+              const email = e.target.value //  alertsEmailValid
+              const valid = this.emailValidate(email)
+              this.setState({
+                ...this.state,
+                alertsEmailAddress: email,
+                alertsEmailValid: valid
+              })
+              if (valid) { this.saveToServerDebounced() }
+            }}
+            disabled={!this.state.emailAlertsEnable}></input>
+          </div>
+        </div>
+          
+        {deviceList.map((device, i)=> {
           return(
-          <div className="device-container" key={device.deviceId}>
+          <div className="device-container" key={i}>
 
-            <div className="device-option-container device-label-container">
-              <i className={"fas fa-microchip device-icon" + (device.deviceShowing ? " icon-selected" : "")}
-              onClick={this.onDeviceCaret({device: i})}></i>
-              <input className="device-label-input" type="text" placeholder="Device Label" data-tip="A friendly name to identify the device, eg. 'Front Room'"
-                value={device.deviceLabel} onChange={()=>{this.setState()}}></input>
-              <i className={"fas fa-caret-right device-caret" + (device.deviceShowing ? " fa-rotate-90" : "")}
-              onClick={this.onDeviceCaret({device: i})}></i>
+            {/* DEVICE SETTINGS */}
+            <div className="device-option-container device-label-container"
+            onClick={this.onDeviceCaret({device: i})}>
+              <i className={"fas fa-microchip device-icon" + (device.deviceShowing ? " icon-selected" : "")}></i>
+              <input className="device-label-input" type="text" placeholder="Device Label" data-tip="A friendly name to identify the device, eg. 'Front Room', or 'Left Tent'"
+                value={device.deviceLabel} onClick={(e)=>{e.stopPropagation()}}
+                onChange={(e)=>{
+                  const { deviceList } = this.state
+                  deviceList[i].deviceLabel = this.textValidate(e.target.value)
+                  this.setState({ ...this.state, deviceList })
+                  this.saveToServerDebounced()
+                }} ></input>
+              <i className={"fas fa-caret-right device-caret" + (device.deviceShowing ? " fa-rotate-90" : "")}></i>
             </div>
-
             {device.deviceShowing && <div>
             <div className="device-option-container">
               <label data-tip="Controls whether the device uploads sensor readings at all">Enable Online Logging</label>
-              <Toggle isChecked={device.loggingEnabled} />
+              <Toggle isChecked={device.loggingEnabled} onChange={()=>{
+                const { deviceList } = this.state
+                deviceList[i].loggingEnabled = !deviceList[i].loggingEnabled
+                this.setState({ ...this.state, deviceList })
+                this.saveToServer()
+              }} />
+              <p>{device.loggingEnabled ? "checked" : "unchecked"}</p>
             </div>
             <div className="device-option-container">
               <label data-tip="Frequency, in minutes, of how often to upload status to server">Upload frequency (mins)</label>
               <div className="device-number-group">
-                <input type="number" className="device-number-input" defaultValue="1"></input>
-                {/* <button className='button-default button-device-number'><i className="fas fa-plus"></i></button>
-                <button className='button-default button-device-number'><i className="fas fa-minus"></i></button> */}
+                <input type="number" className="device-number-input" value={device.uploadFrequency} disabled={device.loggingEnabled}
+                onChange={(e)=>{
+                  const { deviceList } = this.state
+                  deviceList[i].uploadFrequency = this.integerValidate(e.target.value, 60)
+                  this.setState({ ...this.state, deviceList })
+                  this.saveToServerDebounced()
+                }} ></input>
               </div>
-            </div>
-            <div className="device-option-container device-option-split-row">
-              <label data-tip="Address to send device alerts to (if enabled)">Alert email address</label>
-              <input className="device-email-input" type="text" placeholder="Email address"></input>
             </div>
 
             {device.devicePlants.map((plant, j)=>{
 
               return (
-              <div className='device-sub-container' key={plant.plantId}>
+              <div className='device-sub-container' key={j}
+              onClick={this.onPlantCaret({device: i, plant: j})}>
                 <div className="device-option-container device-label-container">
-                  <i className={"fas fa-leaf device-icon" + (plant.plantShowing ? " icon-selected" : "")}
-                  onClick={this.onPlantCaret({device: i, plant: j})}></i>
-                  <input className="device-label-input plant-name-input" type="text" defaultValue={plant.plantName}></input>
-                  <i className={"fas fa-caret-right device-caret" + (plant.plantShowing ? " fa-rotate-90" : "")}
-                  onClick={this.onPlantCaret({device: i, plant: j})}></i>
+                  <i className={"fas fa-leaf device-icon" + (plant.plantShowing ? " icon-selected" : "")}></i>
+                  <input className="device-label-input plant-name-input" type="text" data-tip="A friendly name for the plant being monitored by the device eg. 'Jalapenos'"
+                    value={plant.plantName} onClick={(e)=>{e.stopPropagation()}}
+                    onChange={(e)=>{
+                      const { deviceList } = this.state
+                      deviceList[i].devicePlants[j].plantName = this.textValidate(e.target.value)
+                      this.setState({ ...this.state, deviceList })
+                      this.saveToServerDebounced()
+                    }} ></input>
+                  <i className={"fas fa-caret-right device-caret" + (plant.plantShowing ? " fa-rotate-90" : "")}></i>
                 </div>
 
                 {plant.plantShowing && <div>
 
                 {/* TEMP */}
 
-                <div className="device-option-container device-label-container">
-                  <i className={"fas fa-thermometer-half device-icon" + (plant.tempShowing ? " icon-selected" : "")}
-                  onClick={this.onTempCaret({device: i, plant: j})}></i>
+                <div className="device-option-container device-label-container"
+                onClick={this.onOptionGroupCaret({device: i, plant: j, group: 0})}>
+                  <i className={"fas fa-thermometer-half device-icon" + (plant.optionGroups[0].showing ? " icon-selected" : "")}></i>
                   <p className='device-sub-title'>Temperature / Humidity</p>
-                  <i className={"fas fa-caret-right device-caret" + (plant.tempShowing ? " fa-rotate-90" : "")}
-                  onClick={this.onTempCaret({device: i, plant: j})}></i>
+                  <i className={"fas fa-caret-right device-caret" + (plant.optionGroups[0].showing ? " fa-rotate-90" : "")}></i>
                 </div>
-                {plant.tempShowing && <div>
+                {plant.optionGroups[0].showing && <div onClick={(e)=>{e.stopPropagation()}}>
                   <div className="device-option-container">
                     <label data-tip="Enable / Disable the temp / humidity sensor">Temp / humidity sensor enable</label>
-                    <Toggle isChecked={plant.tempEnabled} />
+                    <Toggle isChecked={plant.tempEnabled} onChange={()=>{
+                      const { deviceList } = this.state
+                      deviceList[i].devicePlants[j].tempEnabled = !deviceList[i].devicePlants[j].tempEnabled
+                      this.setState({ ...this.state, deviceList })
+                      this.saveToServer()
+                    }} />
                   </div>
                   <div className="device-option-container">
                     <label data-tip="Turn off the lamp if this sensor reads too hot">Lamp over-temp shutoff</label>
@@ -224,14 +283,13 @@ class Listing extends React.Component {
 
                 {/* LAMP  */}
 
-                <div className="device-option-container device-label-container">
-                  <i className={"far fa-lightbulb device-icon" + (plant.lampShowing ? " icon-selected" : "")}
-                  onClick={this.onLampCaret({device: i, plant: j})}></i>
+                <div className="device-option-container device-label-container"
+                onClick={this.onOptionGroupCaret({device: i, plant: j, group: 1})}>
+                  <i className={"far fa-lightbulb device-icon" + (plant.optionGroups[1].showing ? " icon-selected" : "")}></i>
                   <p className='device-sub-title'>Grow Lamp</p>
-                  <i className={"fas fa-caret-right device-caret" + (plant.lampShowing ? " fa-rotate-90" : "")}
-                  onClick={this.onLampCaret({device: i, plant: j})}></i>
+                  <i className={"fas fa-caret-right device-caret" + (plant.optionGroups[1].showing ? " fa-rotate-90" : "")}></i>
                 </div>
-                {plant.lampShowing && <div>
+                {plant.optionGroups[1].showing && <div onClick={(e)=>{e.stopPropagation()}}>
                   <div className="device-option-container">
                     <label data-tip="Enable lamp control">Lamp enable</label>
                     <Toggle isChecked={true} />
@@ -274,14 +332,13 @@ class Listing extends React.Component {
 
                 {/* PUMP */}
 
-                <div className="device-option-container device-label-container">
-                  <i className={"fas fa-tint device-icon" + (plant.pumpShowing ? " icon-selected" : "")}
-                  onClick={this.onPumpCaret({device: i, plant: j})}></i>
+                <div className="device-option-container device-label-container"
+                onClick={this.onOptionGroupCaret({device: i, plant: j, group: 2})}>
+                  <i className={"fas fa-tint device-icon" + (plant.optionGroups[2].showing ? " icon-selected" : "")}></i>
                   <p className='device-sub-title'>Nutrient Pump</p>
-                  <i className={"fas fa-caret-right device-caret" + (plant.pumpShowing ? " fa-rotate-90" : "")}
-                  onClick={this.onPumpCaret({device: i, plant: j})}></i>
+                  <i className={"fas fa-caret-right device-caret" + (plant.optionGroups[2].showing ? " fa-rotate-90" : "")}></i>
                 </div>
-                {plant.pumpShowing && <div>
+                {plant.optionGroups[2].showing && <div onClick={(e)=>{e.stopPropagation()}}>
                   <div className="device-option-container">
                     <label data-tip="Uses measured flow (mL) to control delivery of nutrient">Flow mode</label>
                     <Toggle isChecked={true} />
@@ -320,14 +377,13 @@ class Listing extends React.Component {
 
                 {/* FLOAT */}
 
-                <div className="device-option-container device-label-container">
-                  <i className={"fas fa-fill-drip device-icon" + (plant.floatShowing ? " icon-selected" : "")}
-                  onClick={this.onFloatCaret({device: i, plant: j})}></i>
+                <div className="device-option-container device-label-container"
+                onClick={this.onOptionGroupCaret({device: i, plant: j, group: 3})}>
+                  <i className={"fas fa-fill-drip device-icon" + (plant.optionGroups[3].showing ? " icon-selected" : "")}></i>
                   <p className='device-sub-title'>Float Sensor</p>
-                  <i className={"fas fa-caret-right device-caret" + (plant.floatShowing ? " fa-rotate-90" : "")}
-                  onClick={this.onFloatCaret({device: i, plant: j})}></i>
+                  <i className={"fas fa-caret-right device-caret" + (plant.optionGroups[3].showing ? " fa-rotate-90" : "")}></i>
                 </div>
-                {plant.floatShowing && <div>
+                {plant.optionGroups[3].showing && <div onClick={(e)=>{e.stopPropagation()}}>
                   <div className="device-option-container">
                     <label data-tip="Sound alarm when triggered">Alarm when triggered</label>
                     <Toggle isChecked={true} />
@@ -344,14 +400,13 @@ class Listing extends React.Component {
 
                 {/* FLOW */}
 
-                <div className="device-option-container device-label-container">
-                  <i className={"fas fa-water device-icon" + (plant.flowShowing ? " icon-selected" : "")}
-                  onClick={this.onFlowCaret({device: i, plant: j})}></i>
+                <div className="device-option-container device-label-container"
+                onClick={this.onOptionGroupCaret({device: i, plant: j, group: 4})}>
+                  <i className={"fas fa-water device-icon" + (plant.optionGroups[4].showing ? " icon-selected" : "")}></i>
                   <p className='device-sub-title'>Flow Sensor</p>
-                  <i className={"fas fa-caret-right device-caret" + (plant.flowShowing ? " fa-rotate-90" : "")}
-                  onClick={this.onFlowCaret({device: i, plant: j})}></i>
+                  <i className={"fas fa-caret-right device-caret" + (plant.optionGroups[4].showing ? " fa-rotate-90" : "")}></i>
                 </div>
-                {plant.flowShowing && <div>
+                {plant.optionGroups[4].showing && <div onClick={(e)=>{e.stopPropagation()}}>
                   <div className="device-option-container">
                     <label data-tip="Enable flow sensor">Enable flow sensor</label>
                     <Toggle isChecked={true} />
@@ -378,4 +433,4 @@ class Listing extends React.Component {
   }
 }
 
-export default connect(state=>state)(Listing)
+export default connect(state=>state)(Devices)

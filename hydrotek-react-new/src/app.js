@@ -7,9 +7,15 @@ import { store } from './stores/store'
 import { buildForDev } from './config'
 import { BrowserRouter as Router } from 'react-router-dom'
 
-console.log(buildForDev)
 if (!buildForDev) {
-  console.log("setting up facebook login")
+
+  console.log("Including Facebook API...")
+  const script = document.createElement("script");
+  script.src = "https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v5.0&appId=750335742141550&autoLogAppEvents=1";
+  script.async = true;
+  document.body.appendChild(script);
+
+  console.log("Setting up Facebook login handler...")
   window.fbAsyncInit = function() {
     FB.init({
       appId: '750335742141550',
@@ -24,7 +30,7 @@ if (!buildForDev) {
     })
   }.bind(this)
 } else {
-  console.log("using dummy login")
+  console.log("Dev mode enabled - using dummy login...")
   dummyLogin()
 }
 

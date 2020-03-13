@@ -1,20 +1,13 @@
 export const demoDevices = [
     {
-        deviceId: 1,
-        deviceShowing: false,
-        deviceLabel: "The main device",
+        deviceLabel: "Big Tent",
         loggingEnabled: true,
-        uploadFrequency: 1,
-        alertEmailAddress: 'tim.eastwood@hotmail.com',
-        //singlePlantMode: false,
+        uploadFrequency: '',
         devicePlants: [
             {
-                plantId: 1,
-                plantShowing: false,
-                plantName: 'plant 1',
+                plantName: 'Strawberries',
 
                 tempEnabled: true,
-                tempShowing: false,
                 tempLampShutoff: false,
                 tempLampMaxTemp: 0,
                 tempHiEmail: false,
@@ -25,7 +18,6 @@ export const demoDevices = [
                 tempLoTemp: 35.5,
 
                 lampEnabled: true,
-                lampShowing: false,
                 lampHeaterMode: false,
                 lampHeaterTemp: 0,
                 lampStartTimeV: "03:00",
@@ -36,7 +28,6 @@ export const demoDevices = [
                 lampInvertLogic: false,
 
                 pumpEnabled: true,
-                pumpShowing: false,
                 pumpFlowMode: false,
                 pumpFlowMl: 0,
                 pumpFlowEmail: false,
@@ -46,7 +37,6 @@ export const demoDevices = [
                 pumpInvertLogic: false,
 
                 floatEnable: true,
-                floatShowing: false,
                 floatAlarm: false,
                 floatPumpShutoff: true,
                 floatInvertLogic: false,
@@ -56,12 +46,9 @@ export const demoDevices = [
 
             },
             {
-                plantId: 2,
-                plantShowing: false,
-                plantName: 'plant 2',
+                plantName: 'Tomatoes',
 
                 tempEnabled: true,
-                tempShowing: false,
                 tempLampShutoff: false,
                 tempLampMaxTemp: 0,
                 tempHiEmail: false,
@@ -101,18 +88,12 @@ export const demoDevices = [
         ]
     },
     {
-        deviceId: 2,
-        deviceShowing: false,
-        deviceLabel: "Back garden",
+        deviceLabel: "Small Tent",
         loggingEnabled: true,
         uploadFrequency: 1,
-        alertEmailAddress: 'tim.eastwood@hotmail.com',
-        //singlePlantMode: false,
         devicePlants: [
             {
-                plantId: 1,
-                plantShowing: false,
-                plantName: 'small shrub',
+                plantName: 'Chilis',
 
                 tempEnabled: true,
                 tempLampShutoff: false,
@@ -149,50 +130,21 @@ export const demoDevices = [
                 floatInvertLogic: false,
 
                 flowEnable: true
-
-            },
-            {
-                plantId: 2,
-                plantShowing: false,
-                plantName: 'tall tree',
-
-                tempEnabled: true,
-                tempLampShutoff: false,
-                tempLampMaxTemp: 0,
-                tempHiEmail: false,
-                tempHiAlarm: false,
-                tempHiTemp: 35.5,
-                tempLoEmail: false,
-                tempLoAlarm: false,
-                tempLoTemp: 35.5,
-
-                lampEnabled: true,
-                lampHeaterMode: false,
-                lampHeaterTemp: 0,
-                lampStartTimeV: "03:00",
-                lampEndTimeV: "23:00",
-                lampFlowerMode: false,
-                lampStartTimeF: "07:00",
-                lampEndTimeF: "21:00",
-                lampInvertLogic: false,
-
-                pumpEnabled: false,
-                pumpFlowMode: false,
-                pumpFlowMl: 0,
-                pumpFlowEmail: false,
-                pumpFlowAlarm: false,
-                pumpMaxDurationSec: 20,
-                pumpFrequencyMins: 15,
-                pumpInvertLogic: false,
-
-                floatEnable: false,
-                floatAlarm: false,
-                floatPumpShutoff: true,
-                floatInvertLogic: false,
-
-                flowEnable: false
-
             }
         ]
     }
 ]
+
+demoDevices.map((device)=>{
+    device.deviceShowing = false
+    device.devicePlants.map((plant)=>{
+        plant.plantShowing = false
+        plant.optionGroups = [
+            { showing: false },
+            { showing: false },
+            { showing: false },
+            { showing: false },
+            { showing: false }
+        ]
+    })
+})

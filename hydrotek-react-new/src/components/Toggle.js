@@ -2,13 +2,16 @@ class Toggle extends React.Component {
     constructor(props) {
       super(props)
       this.state = {
-        isChecked: props.isChecked || false,
+        isChecked: props.isChecked || false
       }
       
       this.handleChange = this.handleChange.bind(this)
     }
-    handleChange() {
+    handleChange = () => {
       this.setState({ isChecked: !this.state.isChecked })
+      if (this.props.onChange) {
+        this.props.onChange(this.state.isChecked)
+      }
     }
     render () {
       return (

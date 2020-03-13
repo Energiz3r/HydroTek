@@ -16,6 +16,9 @@
     border-left: .3rem solid $theme;
     margin-bottom: .5rem;
 }
+.device-alerts-container {
+    border-left: .3rem solid rgb(91, 255, 69);
+}
 .device-sub-container {
     background-color: rgb(102, 102, 102);
     padding: .3rem;
@@ -71,13 +74,19 @@
     border: none;
     text-align: center;
     height: 4rem;
-    width: 100%;
+    //width: 100%;
+}
+.device-label-input:focus{
+    outline: none;
 }
 
 .plant-name-input {
     background-color: rgba(17, 17, 17, 0.5);
     text-align: center;
     border-radius: .4rem;
+}
+.plant-name-input:focus{
+    outline: none;
 }
 
 
@@ -87,6 +96,8 @@
     border: none;
     margin-right: .3rem;
     margin-left: .3rem;
+    padding-left: .5rem;
+    padding-right: .5rem;
 }
 .device-number-input {
     background-color: rgba(0,0,0,0);
@@ -129,6 +140,14 @@
 }
 .icon-selected {
     text-shadow: 0 0 10px $theme !important; //, 0 0 20px rgba(255, 136, 0, 0.5), 0 0 30px rgba(255, 136, 0, 0.5), 0 0 40px rgba(255, 136, 0, 0.5);
+}
+.device-invalid-email {
+    border: .4rem dotted rgb(255, 57, 57);
+    border-radius: .8rem;
+}
+.device-save-error {
+    color: rgb(255, 57, 57);
+    margin-top: 0;
 }
 
 // .rot {
