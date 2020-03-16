@@ -1,0 +1,35 @@
+$switch-width: 3.6rem;
+$switch-height: 2rem;
+$switch-margin: .2rem;
+$switch-size: 1.6rem;
+
+.switch-container {
+  cursor: pointer;
+  width: $switch-width;
+  height: $switch-height;
+  border-radius: $switch-height;
+  background-color: rgb(53, 53, 53);
+  margin-right: 1.2rem;
+  margin-top: 1.2rem;
+}
+
+.switch-slider {
+  width: $switch-size;
+  height: $switch-size;
+  border-radius: $switch-size;
+  background-color: #ccc;
+  margin: $switch-margin;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.switch-container-on {
+  //background-color: #2196F3;
+  background-color: $theme;
+}
+.switch-slider-on {
+  background-color: white;
+  -webkit-transform: translateX($switch-size);
+  -ms-transform: translateX($switch-size);
+  transform: translateX($switch-size);
+}

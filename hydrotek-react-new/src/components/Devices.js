@@ -1,7 +1,6 @@
 import { connect } from 'react-redux'
 import { setRoute } from '../actions/UIActions'
 import { serverAPILocation } from '../config'
-import Toggle from './Toggle'
 import ReactTooltip from "react-tooltip"
 import { demoDevices } from "../utils/demo-device"
 import { debounce } from 'lodash'
@@ -17,12 +16,6 @@ class Devices extends React.Component {
       waitingForAdd: false,
       loadingDevices: true
     }
-  }
-  componentDidMount = () => {
-    setInterval(()=>{
-      this.state.deviceList[0].loggingEnabled = !this.state.deviceList[0].loggingEnabled
-      this.forceUpdate()
-    }, 500)
   }
   onHomeClick = () => {
     this.props.dispatch(setRoute('/home'))
@@ -131,7 +124,7 @@ class Devices extends React.Component {
     const { deviceList } = this.state
     return (
       <div className="device-content">
-        <h2>Device Configuration</h2>
+        <h2>Cloud Configuration</h2>
 
         {!this.checkSaveValidation() && <h3 className="device-save-error">Can't save! Check errors in red below!</h3>}
 
@@ -139,13 +132,16 @@ class Devices extends React.Component {
         <div className="device-container device-alerts-container">
           <div className="device-option-container">
             <label data-tip="Enable sending email alerts (for all devices)">Enable email alerts</label>
-            <Toggle isChecked={this.state.emailAlertsEnable} onChange={()=>{
+            {/* TOGGLE */}
+            <div className={"switch-container" + (this.state.emailAlertsEnable ? " switch-container-on" : "")} onClick={()=>{
               this.setState({ ...this.state, emailAlertsEnable: !this.state.emailAlertsEnable })
               this.saveToServer()
-            }} />
+            }}>
+              <div className={"switch-slider" + (this.state.emailAlertsEnable ? " switch-slider-on" : "")}></div>
+            </div>
           </div>
           <div className="device-option-container device-option-split-row">
-            <label data-tip="Address to send device alerts to (if enabled)">Alert email address (all devices)</label>
+            <label data-tip="Address to send device alerts to (if enabled)">Email address</label>
             <input className={"device-email-input" + (!this.state.alertsEmailValid && this.state.emailAlertsEnable ? ' device-invalid-email' : '')} type="text" placeholder="Email address" value={this.state.alertsEmailAddress}
             onChange={(e)=>{
               const email = e.target.value //  alertsEmailValid
@@ -160,6 +156,8 @@ class Devices extends React.Component {
             disabled={!this.state.emailAlertsEnable}></input>
           </div>
         </div>
+
+        <h2>Device Configuration</h2>
           
         {deviceList.map((device, i)=> {
           return(
@@ -182,18 +180,20 @@ class Devices extends React.Component {
             {device.deviceShowing && <div>
             <div className="device-option-container">
               <label data-tip="Controls whether the device uploads sensor readings at all">Enable Online Logging</label>
-              <Toggle isChecked={device.loggingEnabled} onChange={()=>{
+              {/* TOGGLE */}
+              <div className={"switch-container" + (device.loggingEnabled ? " switch-container-on" : "")} onClick={()=>{
                 const { deviceList } = this.state
                 deviceList[i].loggingEnabled = !deviceList[i].loggingEnabled
                 this.setState({ ...this.state, deviceList })
                 this.saveToServer()
-              }} />
-              <p>{device.loggingEnabled ? "checked" : "unchecked"}</p>
+              }}>
+                <div className={"switch-slider" + (device.loggingEnabled ? " switch-slider-on" : "")}></div>
+              </div>
             </div>
             <div className="device-option-container">
               <label data-tip="Frequency, in minutes, of how often to upload status to server">Upload frequency (mins)</label>
               <div className="device-number-group">
-                <input type="number" className="device-number-input" value={device.uploadFrequency} disabled={device.loggingEnabled}
+                <input type="number" className="device-number-input" value={device.uploadFrequency} disabled={!device.loggingEnabled}
                 onChange={(e)=>{
                   const { deviceList } = this.state
                   deviceList[i].uploadFrequency = this.integerValidate(e.target.value, 60)
@@ -234,30 +234,63 @@ class Devices extends React.Component {
                 {plant.optionGroups[0].showing && <div onClick={(e)=>{e.stopPropagation()}}>
                   <div className="device-option-container">
                     <label data-tip="Enable / Disable the temp / humidity sensor">Temp / humidity sensor enable</label>
-                    <Toggle isChecked={plant.tempEnabled} onChange={()=>{
+                    {/* TOGGLE */}
+                    <div className={"switch-container" + (plant.tempEnabled ? " switch-container-on" : "")} onClick={()=>{
                       const { deviceList } = this.state
                       deviceList[i].devicePlants[j].tempEnabled = !deviceList[i].devicePlants[j].tempEnabled
                       this.setState({ ...this.state, deviceList })
                       this.saveToServer()
-                    }} />
+                    }}>
+                      <div className={"switch-slider" + (plant.tempEnabled ? " switch-slider-on" : "")}></div>
+                    </div>
                   </div>
                   <div className="device-option-container">
                     <label data-tip="Turn off the lamp if this sensor reads too hot">Lamp over-temp shutoff</label>
-                    <Toggle isChecked={plant.tempLampShutoff} />
+                    {/* TOGGLE */}
+                    <div className={"switch-container" + (plant.tempLampShutoff ? " switch-container-on" : "")} onClick={()=>{
+                      const { deviceList } = this.state
+                      deviceList[i].devicePlants[j].tempLampShutoff = !deviceList[i].devicePlants[j].tempLampShutoff
+                      this.setState({ ...this.state, deviceList })
+                      this.saveToServer()
+                    }}>
+                      <div className={"switch-slider" + (plant.tempLampShutoff ? " switch-slider-on" : "")}></div>
+                    </div>
                   </div>
                   <div className="device-option-container">
                     <label>Max lamp temp</label>
                     <div className="device-number-group">
-                      <input type="number" className="device-number-input" defaultValue="1"></input>
+                    <input type="number" className="device-number-input" value={plant.tempLampMaxTemp} disabled={!plant.tempLampShutoff}
+                      onChange={(e)=>{
+                        const { deviceList } = this.state
+                        deviceList[i].devicePlants[j].tempLampMaxTemp = this.floatValidate(e.target.value, 60)
+                        this.setState({ ...this.state, deviceList })
+                        this.saveToServerDebounced()
+                      }} ></input>
                     </div>
                   </div>
                   <div className="device-option-container">
                     <label data-tip="Send an email if this sensor reads too hot">Hi temp email alert</label>
-                    <Toggle isChecked={true} />
+                    {/* TOGGLE */}
+                    <div className={"switch-container" + (plant.tempHiEmail ? " switch-container-on" : "")} onClick={()=>{
+                      const { deviceList } = this.state
+                      deviceList[i].devicePlants[j].tempHiEmail = !deviceList[i].devicePlants[j].tempHiEmail
+                      this.setState({ ...this.state, deviceList })
+                      this.saveToServer()
+                    }}>
+                      <div className={"switch-slider" + (plant.tempHiEmail ? " switch-slider-on" : "")}></div>
+                    </div>
                   </div>
                   <div className="device-option-container">
                     <label data-tip="Sound the buzzer on the device if this sensor reads too hot">Hi temp sound alarm</label>
-                    <Toggle isChecked={true} />
+                    {/* TOGGLE */}
+                    <div className={"switch-container" + (plant.tempHiAlarm ? " switch-container-on" : "")} onClick={()=>{
+                      const { deviceList } = this.state
+                      deviceList[i].devicePlants[j].tempHiAlarm = !deviceList[i].devicePlants[j].tempHiAlarm
+                      this.setState({ ...this.state, deviceList })
+                      this.saveToServer()
+                    }}>
+                      <div className={"switch-slider" + (plant.tempHiAlarm ? " switch-slider-on" : "")}></div>
+                    </div>
                   </div>
                   <div className="device-option-container">
                     <label>Hi temp</label>
@@ -267,11 +300,27 @@ class Devices extends React.Component {
                   </div>
                   <div className="device-option-container">
                     <label data-tip="Send an email if this sensor reads too cold">Lo temp email alert</label>
-                    <Toggle isChecked={true} />
+                    {/* TOGGLE */}
+                    <div className={"switch-container" + (plant.tempLoEmail ? " switch-container-on" : "")} onClick={()=>{
+                      const { deviceList } = this.state
+                      deviceList[i].devicePlants[j].tempLoEmail = !deviceList[i].devicePlants[j].tempLoEmail
+                      this.setState({ ...this.state, deviceList })
+                      this.saveToServer()
+                    }}>
+                      <div className={"switch-slider" + (plant.tempLoEmail ? " switch-slider-on" : "")}></div>
+                    </div>
                   </div>
                   <div className="device-option-container">
                     <label data-tip="Sound the buzzer on the device if this sensor reads too cold">Lo temp sound alarm</label>
-                    <Toggle isChecked={true} />
+                    {/* TOGGLE */}
+                    <div className={"switch-container" + (plant.tempLoAlarm ? " switch-container-on" : "")} onClick={()=>{
+                      const { deviceList } = this.state
+                      deviceList[i].devicePlants[j].tempLoAlarm = !deviceList[i].devicePlants[j].tempLoAlarm
+                      this.setState({ ...this.state, deviceList })
+                      this.saveToServer()
+                    }}>
+                      <div className={"switch-slider" + (plant.tempLoAlarm ? " switch-slider-on" : "")}></div>
+                    </div>
                   </div>
                   <div className="device-option-container">
                     <label>Lo temp</label>
@@ -292,11 +341,27 @@ class Devices extends React.Component {
                 {plant.optionGroups[1].showing && <div onClick={(e)=>{e.stopPropagation()}}>
                   <div className="device-option-container">
                     <label data-tip="Enable lamp control">Lamp enable</label>
-                    <Toggle isChecked={true} />
+                    {/* TOGGLE */}
+                    <div className={"switch-container" + (plant.lampEnabled ? " switch-container-on" : "")} onClick={()=>{
+                      const { deviceList } = this.state
+                      deviceList[i].devicePlants[j].lampEnabled = !deviceList[i].devicePlants[j].lampEnabled
+                      this.setState({ ...this.state, deviceList })
+                      this.saveToServer()
+                    }}>
+                      <div className={"switch-slider" + (plant.lampEnabled ? " switch-slider-on" : "")}></div>
+                    </div>
                   </div>
                   <div className="device-option-container">
                     <label data-tip="Enable using the lamp as a heater">Heater mode</label>
-                    <Toggle isChecked={true} />
+                    {/* TOGGLE */}
+                    <div className={"switch-container" + (plant.lampHeaterMode ? " switch-container-on" : "")} onClick={()=>{
+                      const { deviceList } = this.state
+                      deviceList[i].devicePlants[j].lampHeaterMode = !deviceList[i].devicePlants[j].lampHeaterMode
+                      this.setState({ ...this.state, deviceList })
+                      this.saveToServer()
+                    }}>
+                      <div className={"switch-slider" + (plant.lampHeaterMode ? " switch-slider-on" : "")}></div>
+                    </div>
                   </div>
                   <div className="device-option-container">
                     <label>Heater target temp</label>
@@ -314,7 +379,15 @@ class Devices extends React.Component {
                   </div>
                   <div className="device-option-container">
                     <label data-tip="Enable using the flower hours">Plant flowering</label>
-                    <Toggle isChecked={true} />
+                    {/* TOGGLE */}
+                    <div className={"switch-container" + (plant.lampFlowerMode ? " switch-container-on" : "")} onClick={()=>{
+                      const { deviceList } = this.state
+                      deviceList[i].devicePlants[j].lampFlowerMode = !deviceList[i].devicePlants[j].lampFlowerMode
+                      this.setState({ ...this.state, deviceList })
+                      this.saveToServer()
+                    }}>
+                      <div className={"switch-slider" + (plant.lampFlowerMode ? " switch-slider-on" : "")}></div>
+                    </div>
                   </div>
                   <div className="device-option-container device-option-split-row">
                     <label data-tip="Start time when in Flower mode">Start time (flower)</label>
@@ -326,7 +399,15 @@ class Devices extends React.Component {
                   </div>
                   <div className="device-option-container">
                     <label data-tip="Invert the relay logic">Invert lamp relay logic</label>
-                    <Toggle isChecked={true} />
+                    {/* TOGGLE */}
+                    <div className={"switch-container" + (plant.lampInvertLogic ? " switch-container-on" : "")} onClick={()=>{
+                      const { deviceList } = this.state
+                      deviceList[i].devicePlants[j].lampInvertLogic = !deviceList[i].devicePlants[j].lampInvertLogic
+                      this.setState({ ...this.state, deviceList })
+                      this.saveToServer()
+                    }}>
+                      <div className={"switch-slider" + (plant.lampInvertLogic ? " switch-slider-on" : "")}></div>
+                    </div>
                   </div>
                 </div>}
 
@@ -340,8 +421,28 @@ class Devices extends React.Component {
                 </div>
                 {plant.optionGroups[2].showing && <div onClick={(e)=>{e.stopPropagation()}}>
                   <div className="device-option-container">
+                    <label data-tip="Enable / disable the pump operation">Pump enabled</label>
+                    {/* TOGGLE */}
+                    <div className={"switch-container" + (plant.pumpEnabled ? " switch-container-on" : "")} onClick={()=>{
+                      const { deviceList } = this.state
+                      deviceList[i].devicePlants[j].pumpEnabled = !deviceList[i].devicePlants[j].pumpEnabled
+                      this.setState({ ...this.state, deviceList })
+                      this.saveToServer()
+                    }}>
+                      <div className={"switch-slider" + (plant.pumpEnabled ? " switch-slider-on" : "")}></div>
+                    </div>
+                  </div>
+                  <div className="device-option-container">
                     <label data-tip="Uses measured flow (mL) to control delivery of nutrient">Flow mode</label>
-                    <Toggle isChecked={true} />
+                    {/* TOGGLE */}
+                    <div className={"switch-container" + (plant.pumpFlowMode ? " switch-container-on" : "")} onClick={()=>{
+                      const { deviceList } = this.state
+                      deviceList[i].devicePlants[j].pumpFlowMode = !deviceList[i].devicePlants[j].pumpFlowMode
+                      this.setState({ ...this.state, deviceList })
+                      this.saveToServer()
+                    }}>
+                      <div className={"switch-slider" + (plant.pumpFlowMode ? " switch-slider-on" : "")}></div>
+                    </div>
                   </div>
                   <div className="device-option-container">
                     <label>Nutrient volume per delivery (mL)</label>
@@ -351,11 +452,27 @@ class Devices extends React.Component {
                   </div>
                   <div className="device-option-container">
                     <label data-tip="Alert by email if the flow volume can not be reached within the maximum time">Low-flow email</label>
-                    <Toggle isChecked={true} />
+                    {/* TOGGLE */}
+                    <div className={"switch-container" + (plant.pumpFlowEmail ? " switch-container-on" : "")} onClick={()=>{
+                      const { deviceList } = this.state
+                      deviceList[i].devicePlants[j].pumpFlowEmail = !deviceList[i].devicePlants[j].pumpFlowEmail
+                      this.setState({ ...this.state, deviceList })
+                      this.saveToServer()
+                    }}>
+                      <div className={"switch-slider" + (plant.pumpFlowEmail ? " switch-slider-on" : "")}></div>
+                    </div>
                   </div>
                   <div className="device-option-container">
                     <label data-tip="Sound alarm if the flow volume can not be reached within the maximum time">Low-flow alarm</label>
-                    <Toggle isChecked={true} />
+                    {/* TOGGLE */}
+                    <div className={"switch-container" + (plant.pumpFlowAlarm ? " switch-container-on" : "")} onClick={()=>{
+                      const { deviceList } = this.state
+                      deviceList[i].devicePlants[j].pumpFlowAlarm = !deviceList[i].devicePlants[j].pumpFlowAlarm
+                      this.setState({ ...this.state, deviceList })
+                      this.saveToServer()
+                    }}>
+                      <div className={"switch-slider" + (plant.pumpFlowAlarm ? " switch-slider-on" : "")}></div>
+                    </div>
                   </div>
                   <div className="device-option-container">
                     <label>(Max) pumping duration (sec)</label>
@@ -371,7 +488,15 @@ class Devices extends React.Component {
                   </div>
                   <div className="device-option-container">
                     <label data-tip="Invert relay logic">Invert pump relay logic</label>
-                    <Toggle isChecked={true} />
+                    {/* TOGGLE */}
+                    <div className={"switch-container" + (plant.pumpInvertLogic ? " switch-container-on" : "")} onClick={()=>{
+                      const { deviceList } = this.state
+                      deviceList[i].devicePlants[j].pumpInvertLogic = !deviceList[i].devicePlants[j].pumpInvertLogic
+                      this.setState({ ...this.state, deviceList })
+                      this.saveToServer()
+                    }}>
+                      <div className={"switch-slider" + (plant.pumpInvertLogic ? " switch-slider-on" : "")}></div>
+                    </div>
                   </div>
                 </div>}
 
@@ -385,16 +510,64 @@ class Devices extends React.Component {
                 </div>
                 {plant.optionGroups[3].showing && <div onClick={(e)=>{e.stopPropagation()}}>
                   <div className="device-option-container">
+                    <label data-tip="Enable / disable the sensor operation">Enable float sensor</label>
+                    {/* TOGGLE */}
+                    <div className={"switch-container" + (plant.floatEnable ? " switch-container-on" : "")} onClick={()=>{
+                      const { deviceList } = this.state
+                      deviceList[i].devicePlants[j].floatEnable = !deviceList[i].devicePlants[j].floatEnable
+                      this.setState({ ...this.state, deviceList })
+                      this.saveToServer()
+                    }}>
+                      <div className={"switch-slider" + (plant.floatEnable ? " switch-slider-on" : "")}></div>
+                    </div>
+                  </div>
+                  <div className="device-option-container">
                     <label data-tip="Sound alarm when triggered">Alarm when triggered</label>
-                    <Toggle isChecked={true} />
+                    {/* TOGGLE */}
+                    <div className={"switch-container" + (plant.floatAlarm ? " switch-container-on" : "")} onClick={()=>{
+                      const { deviceList } = this.state
+                      deviceList[i].devicePlants[j].floatAlarm = !deviceList[i].devicePlants[j].floatAlarm
+                      this.setState({ ...this.state, deviceList })
+                      this.saveToServer()
+                    }}>
+                      <div className={"switch-slider" + (plant.floatAlarm ? " switch-slider-on" : "")}></div>
+                    </div>
                   </div>
                   <div className="device-option-container">
                     <label data-tip="Send email when triggered">Email when triggered</label>
-                    <Toggle isChecked={true} />
+                    {/* TOGGLE */}
+                    <div className={"switch-container" + (plant.floatEmail ? " switch-container-on" : "")} onClick={()=>{
+                      const { deviceList } = this.state
+                      deviceList[i].devicePlants[j].floatEmail = !deviceList[i].devicePlants[j].floatEmail
+                      this.setState({ ...this.state, deviceList })
+                      this.saveToServer()
+                    }}>
+                      <div className={"switch-slider" + (plant.floatEmail ? " switch-slider-on" : "")}></div>
+                    </div>
+                  </div>
+                  <div className="device-option-container">
+                    <label data-tip="Prevent the pump operation when triggered">Pump shutoff</label>
+                    {/* TOGGLE */}
+                    <div className={"switch-container" + (plant.floatPumpShutoff ? " switch-container-on" : "")} onClick={()=>{
+                      const { deviceList } = this.state
+                      deviceList[i].devicePlants[j].floatPumpShutoff = !deviceList[i].devicePlants[j].floatPumpShutoff
+                      this.setState({ ...this.state, deviceList })
+                      this.saveToServer()
+                    }}>
+                      <div className={"switch-slider" + (plant.floatPumpShutoff ? " switch-slider-on" : "")}></div>
+                    </div>
                   </div>
                   <div className="device-option-container">
                     <label data-tip="Invert sensor logic">Invert sensor logic</label>
-                    <Toggle isChecked={true} />
+                    {/* TOGGLE */}
+                    <div className={"switch-container" + (plant.floatInvertLogic ? " switch-container-on" : "")} onClick={()=>{
+                      const { deviceList } = this.state
+                      deviceList[i].devicePlants[j].floatInvertLogic = !deviceList[i].devicePlants[j].floatInvertLogic
+                      this.setState({ ...this.state, deviceList })
+                      this.saveToServer()
+                    }}>
+                      <div className={"switch-slider" + (plant.floatInvertLogic ? " switch-slider-on" : "")}></div>
+                    </div>
                   </div>
                 </div>}
 
@@ -409,7 +582,15 @@ class Devices extends React.Component {
                 {plant.optionGroups[4].showing && <div onClick={(e)=>{e.stopPropagation()}}>
                   <div className="device-option-container">
                     <label data-tip="Enable flow sensor">Enable flow sensor</label>
-                    <Toggle isChecked={true} />
+                    {/* TOGGLE */}
+                    <div className={"switch-container" + (plant.flowEnable ? " switch-container-on" : "")} onClick={()=>{
+                      const { deviceList } = this.state
+                      deviceList[i].devicePlants[j].flowEnable = !deviceList[i].devicePlants[j].flowEnable
+                      this.setState({ ...this.state, deviceList })
+                      this.saveToServer()
+                    }}>
+                      <div className={"switch-slider" + (plant.flowEnable ? " switch-slider-on" : "")}></div>
+                    </div>
                   </div>
                 </div>}
 

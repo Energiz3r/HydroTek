@@ -101,14 +101,18 @@
 }
 .device-number-input {
     background-color: rgba(0,0,0,0);
-    border: none;
+    border: .2rem solid $theme;
     margin-right: .3rem;
     margin-left: .3rem;
     max-width: 5rem;
     text-align: center;
-    min-height: 3.6rem;
+    height: 3rem;
     margin-top: .4rem;
 }
+.device-number-input:disabled {
+    border: .2rem solid rgb(97, 97, 97);
+}
+
 
 
 .device-option-container > label {

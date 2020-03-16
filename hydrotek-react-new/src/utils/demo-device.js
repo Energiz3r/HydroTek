@@ -38,12 +38,11 @@ export const demoDevices = [
 
                 floatEnable: true,
                 floatAlarm: false,
+                floatEmail: false,
                 floatPumpShutoff: true,
                 floatInvertLogic: false,
 
-                flowEnable: true,
-                flowShowing: false
-
+                flowEnable: true
             },
             {
                 plantName: 'Tomatoes',
@@ -79,6 +78,7 @@ export const demoDevices = [
 
                 floatEnable: false,
                 floatAlarm: false,
+                floatEmail: false,
                 floatPumpShutoff: true,
                 floatInvertLogic: false,
 
@@ -126,6 +126,7 @@ export const demoDevices = [
 
                 floatEnable: true,
                 floatAlarm: false,
+                floatEmail: false,
                 floatPumpShutoff: true,
                 floatInvertLogic: false,
 
