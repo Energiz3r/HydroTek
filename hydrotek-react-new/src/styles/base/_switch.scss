@@ -33,3 +33,10 @@ $switch-size: 1.6rem;
   -ms-transform: translateX($switch-size);
   transform: translateX($switch-size);
 }
+
+.switch-container-disabled {
+  background-color: rgb(105, 105, 105);
+}
+.switch-slider-disabled {
+  background-color: rgb(160, 160, 160);
+}
