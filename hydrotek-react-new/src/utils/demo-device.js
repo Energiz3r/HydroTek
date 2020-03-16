@@ -2,7 +2,7 @@ export const demoDevices = [
     {
         deviceLabel: "Big Tent",
         loggingEnabled: true,
-        uploadFrequency: '',
+        uploadFrequency: 5,
         devicePlants: [
             {
                 plantName: 'Strawberries',

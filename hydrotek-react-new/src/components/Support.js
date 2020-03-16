@@ -9,7 +9,7 @@ class Support extends React.Component {
     }
   }
   onClick = () => {
-    this.props.dispatch(setRoute('/home'))
+    this.props.dispatch(setRoute('home'))
   }
   render() {
     return (

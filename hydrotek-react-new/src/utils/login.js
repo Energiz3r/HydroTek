@@ -33,7 +33,7 @@ const appLoginRequest = () => {
           store.dispatch(setLoginStatusApp(true))
           setTimeout(()=>{
             store.dispatch(setLoginStatus(true)) // delay the login so the login modal can fade out
-            store.dispatch(setRoute('/home'))
+            store.dispatch(setRoute('home'))
           }, 200)
         } else {
           console.log(result)
@@ -120,7 +120,7 @@ export const dummyLogin = () => {
     setTimeout(()=>{
       console.log("Logged in! (dummy mode)")
       store.dispatch(setLoginStatus(true)) // delay the login so the login modal can fade out
-      store.dispatch(setRoute('/devices'))
+      store.dispatch(setRoute('devices'))
     }, 1200)
   }
 }

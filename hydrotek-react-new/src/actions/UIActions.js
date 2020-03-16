@@ -1,4 +1,4 @@
-import { serverLocation } from '../config'
+//import { serverLocation } from '../config'
 
 //the default/initial state
 export const initUIState = (
@@ -20,7 +20,7 @@ export const initUIState = (
 
 export const setRoute = (route, relative = false) => ({
   type: 'SET_ROUTE',
-  route: relative ? route : (serverLocation + route)
+  route: relative ? route : (route)
 })
 export const setInitialRoute = (route) => ({
   type: 'SET_INITIAL_ROUTE',

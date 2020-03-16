@@ -8,11 +8,11 @@ class Menu extends React.Component {
     }
   }
   onDevicesClick = () => {
-    this.props.dispatch(setRoute('/devices'))
+    this.props.dispatch(setRoute('devices'))
     this.props.menuToggle()
   }
   onSupportClick = () => {
-    this.props.dispatch(setRoute('/support'))
+    this.props.dispatch(setRoute('support'))
     this.props.menuToggle()
   }
   render() {

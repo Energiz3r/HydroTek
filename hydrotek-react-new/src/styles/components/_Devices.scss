@@ -45,7 +45,33 @@
     align-items: flex-start;
     position: relative;
     margin-top: .5rem;
-} 
+}
+//$navbar-height: 5rem;
+//$navbar-height-v-break: 6rem;
+//$navbar-height-h-break: 8rem;
+.device-save-icon-container {
+    position: absolute;
+    top: 6rem;
+    right: 2rem;
+}
+@media only screen and (max-width: $width-breakpoint) {
+    .device-save-icon-container {
+        top: 9rem;
+    }
+}
+@media only screen and (max-height: $height-breakpoint) {
+    .device-save-icon-container {
+        top: 7rem;
+    }
+}
+.device-save-icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.device-save-complete-icon {
+    color: rgb(90, 255, 68);
+}
 .device-sub-title {
     margin-top: 1rem;
     margin-right: auto;

@@ -14,11 +14,13 @@ class Devices extends React.Component {
       alertsEmailAddress: '',
       alertsEmailValid: false,
       waitingForAdd: false,
-      loadingDevices: true
+      loadingDevices: true,
+      waitingForSave: false,
+      saveComplete: false
     }
   }
   onHomeClick = () => {
-    this.props.dispatch(setRoute('/home'))
+    this.props.dispatch(setRoute('home'))
   }
   loadDeviceList = () => {
     fetch(serverAPILocation, {
@@ -94,6 +96,24 @@ class Devices extends React.Component {
   }
   saveToServer = () => {
     if (this.checkSaveValidation()){
+      this.setState({
+        ...this.state,
+        waitingForSave: true,
+        saveComplete: false
+      })
+      setTimeout(()=>{
+        this.setState({
+          ...this.state,
+          waitingForSave: false,
+          saveComplete: true
+        })
+        setTimeout(()=>{
+          this.setState({
+            ...this.state,
+            saveComplete: false
+          })
+        }, 50)
+      }, 2000)
       console.log("save to server")
     }
   }
@@ -128,7 +148,25 @@ class Devices extends React.Component {
       <div className="device-content">
         <h2>Cloud Configuration</h2>
 
-        {!this.checkSaveValidation() && <h3 className="device-save-error">Can't save! Check errors in red below!</h3>}
+        {!this.checkSaveValidation() && <h3 className="device-save-error">Can't save! Check errors in red below</h3>}
+
+        <div className='device-save-icon-container'>
+          {this.state.waitingForSave && <i className="fas fa-spinner fa-spin device-save-icon"></i>}
+          <i className="fas fa-check device-save-icon device-save-complete-icon" style={
+            this.state.saveComplete ? {
+              'opacity': 1,
+              '-webkit-transition': 'none',
+              '-moz-transition': 'none',
+              '-ms-transition': 'none',
+              '-o-transition': 'none',
+            } : {
+              '-webkit-transition': 'opacity 2s ease-in-out',
+              '-moz-transition': 'opacity 2s ease-in-out',
+              '-ms-transition': 'opacity 2s ease-in-out',
+              '-o-transition': 'opacity 2s ease-in-out',
+              'opacity': 0
+            }}></i>
+        </div>
 
         {/* EMAIL ALERT SETTINGS */}
         <div className="device-container device-alerts-container">
