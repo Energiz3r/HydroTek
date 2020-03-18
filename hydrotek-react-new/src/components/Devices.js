@@ -10,13 +10,17 @@ class Devices extends React.Component {
     super(props)
     this.state = {
       deviceList: demoDevices,
+
       emailAlertsEnable: false,
       alertsEmailAddress: '',
       alertsEmailValid: false,
-      waitingForAdd: false,
-      loadingDevices: true,
+
       waitingForSave: false,
       saveComplete: false
+
+      //waitingForAdd: false,
+      //loadingDevices: true,
+      
     }
   }
   onHomeClick = () => {
