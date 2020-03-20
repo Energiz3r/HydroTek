@@ -5,6 +5,8 @@ import ReactTooltip from "react-tooltip"
 import { demoDevices } from "../utils/demo-device"
 import { debounce } from 'lodash'
 
+const serverAPILocation = serverAPILocation + 'api-device-config.php'
+
 class Devices extends React.Component {
   constructor(props) {
     super(props)
@@ -17,16 +19,16 @@ class Devices extends React.Component {
 
       waitingForSave: false,
       saveComplete: false
-
-      //waitingForAdd: false,
-      //loadingDevices: true,
       
     }
   }
   onHomeClick = () => {
     this.props.dispatch(setRoute('home'))
   }
-  loadDeviceList = () => {
+  componentDidMount = () => {
+    this.setState({
+      waitingForSave: true
+    })
     fetch(serverAPILocation, {
       method: 'POST',
       cache: 'no-cache',
@@ -42,9 +44,14 @@ class Devices extends React.Component {
         (result) => {
           if (result.deviceListAvailable === "1") {
             console.log(result)
-            //handle response
+            this.setState({
+              waitingForSave: false,
+              deviceList: result.deviceList,
+              emailAlertsEnable: result.emailAlertsEnable,
+              alertsEmailAddress: result.alertsEmailAddress
+            })
           } else {
-            console.log("Failed create account:")
+            console.log("Unable to fetch devices:")
             console.log(result)
           }
         },
@@ -105,6 +112,9 @@ class Devices extends React.Component {
         waitingForSave: true,
         saveComplete: false
       })
+      console.log("Saving to server")
+
+      //when save confirmed
       setTimeout(()=>{
         this.setState({
           ...this.state,
@@ -118,7 +128,6 @@ class Devices extends React.Component {
           })
         }, 50)
       }, 2000)
-      console.log("save to server")
     }
   }
   saveToServerOnClickDebounced = debounce(() => {

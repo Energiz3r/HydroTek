@@ -7,13 +7,15 @@ import {
   setUserDetails
 } from '../actions/loginActions'
 import { setRoute } from '../actions/UIActions'
-import {serverAPILocation,stopAtLoginResponse, simulateCreateAccount} from '../config'
+import {stopAtLoginResponse, simulateCreateAccount, serverAPILocation} from '../config'
+
+const facebookAPILocation = serverAPILocation + 'api-login-fb.php'
   
 if (!window.serverData) { window.serverData = {} }
 
 const appLoginRequest = () => {
   //console.log("Logging into to App...")
-  fetch(serverAPILocation, {
+  fetch(facebookAPILocation, {
     method: 'POST',
     cache: 'no-cache',
     headers: {
@@ -55,7 +57,7 @@ const appLoginRequest = () => {
 }
 const facebookLoginCheck = (fbResponse) => {
   //console.log("Checking facebook auth with App...")
-  fetch(serverAPILocation, {
+  fetch(facebookAPILocation, {
     method: 'POST',
     cache: 'no-cache',
     headers: {
