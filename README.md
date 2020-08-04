@@ -15,6 +15,10 @@
 ![alt-text](https://i.imgur.com/RJYCEXgl.jpg "Image")
 
 ---
+## Menu Demo:
+https://www.youtube.com/watch?v=8toKR6Uxk_A
+
+---
 ### Status Update:
 
 This device is still under active development. See notes in below sections about how the device works and how much of the software is complete.
