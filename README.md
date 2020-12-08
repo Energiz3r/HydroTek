@@ -1,26 +1,31 @@
 # HydroTek
-## An IoT Hydroponics Controller
+## An IoT Controller for Aquaponics, Hydroponics, and Aeroponics
 
 *Current revision: rev5*
+(rev5 pictured below)
 
-(rev3 pictured below)
-
-![alt-text](https://i.imgur.com/RJYCEXgl.jpg "Image")
+![alt-text](https://i.imgur.com/Od8aEW4l.jpg "Image")
 
 (rev4 pictured below)
 
 ![alt-text](https://i.imgur.com/qcLx93il.jpg "Image")
 
-(rev5 pictured below)
+(rev3 pictured below)
 
-![alt-text](https://i.imgur.com/Od8aEW4l.jpg "Image")
+![alt-text](https://i.imgur.com/RJYCEXgl.jpg "Image")
 
 ---
-### Update:
+## Menu Demo:
+https://www.youtube.com/watch?v=8toKR6Uxk_A
 
-Early revisions of this gadget used an ESP8266 for WiFi functionality and an Arduino Nano for sensors, which communicated with each other over serial. Since discovering the ESP32 I've changed the design to simplify it greatly for rev5, however I've found a consistent issue with the gerber files produced by PCBWeb which has been ruining my manufactured PCBs. The tool is excellent otherwise but it looks like I need to change to Eagle or one of the others unless the vendor can release a patch.
+---
+### Status Update:
 
-In the meantime, I've fixed the rev5 gerber files using a gerber editor such that they can be successfully manufactured. I will likely assemble a rev5, test it for issues, then do a 6th revision with a new layout using a new tool.
+This device is still under active development. See notes in below sections about how the device works and how much of the software is complete.
+
+Early revisions used an ESP8266 and an Arduino Nano, which communicated with each other over serial. Since discovering the ESP32 I've changed the design to simplify it greatly, however I've found a consistent issue with the gerber files produced by PCBWeb which has been ruining my manufactured PCBs. The tool is excellent otherwise but it looks like I will need to change to Eagle or KiCad or somesuch unless the vendor can release a patch.
+
+In the meantime, I've fixed the rev5 gerber files using a gerber editor such that they can be successfully manufactured. There are still issues with this board - the LED and buzzer are both connected to pins on the ESP32 which cannot serve as outputs. I have assembled a rev5 for testing and will soon be working on a 6th revision using the new PCB design tool.
 
 ---
 
@@ -28,29 +33,30 @@ In the meantime, I've fixed the rev5 gerber files using a gerber editor such tha
 
 There are four components to this repository:
 * PCB cad file (created in PCBWeb)
-* Firmware (sketch) for the ESP32 - written with Arduino IDE
-* STL files for a 3D printed case to house the controller
-* API specifications (below) for building a web endpoint
+* Firmware for the ESP32
+* STL files for a case
+* The cloud app for configuration and monitoring of the device
+
+The device has been designed for use with a run-to-waste hydroponic system, however could be applied to just about any setup where the sensors and control outputs are relevant, such as airponics, aquaponics, and even a simple vegge patch.
 
 ---
 
 ### Features:
 
-* Uploads sensor data to a web server
-* WiFi enabled
+* Uploads sensor data to cloud via WiFi
 * 128x64 OLED display
-* RTC with battery backup for control of grow light on/off periods
+* RTC with battery backup for accurate control of grow light times
 * Can monitor:
-  * 2x DHT22 temperature / humidity sensors
-  * 2x YF-S201 hall-effect liquid flow sensors, to detect nutrient flow and operation of nutrient pumps
-  * 2x float switches to detect either empty nutrient tank or full run-off tank
+  * DHT22 temperature / humidity sensor
+  * Liquid flow sensor (YF-S201 or any 5V based hall-effect sensor)
+  * Float switch to detect either empty nutrient tank or full run-off tank
 * Can control:
-  * 2x grow lights
-  * 2x nutrient pumps
+  * Grow light
+  * Nutrient pump
 * Buzzer / LED to alert user to lost WiFi signal, temperature extremes, nutrient pump faults, or full / empty nutrient / run-off tanks
 * The board can be powered either through the barrel jack as designed or using a USB power source plugged into the ESP32 (Note: the USB power source must be sufficient to run both the HydroTek and any connected relays)
 
-I2C pH sensors *could* be connected using a kit [such as this](https://www.sparkfun.com/products/10972), however pH meters are supposed to be kept in a storage solution and aren't suitable for constant monitoring, therefore this was excluded from the feature set.
+I2C pH sensors *could* be connected using a kit [such as this](https://www.sparkfun.com/products/10972), however pH meters are supposed to be stored in a pH-neutral storage solution. Since this means they aren't suitable for a constant-monitoring setup, pH monitoring was excluded from the feature set.
 
 ---
 

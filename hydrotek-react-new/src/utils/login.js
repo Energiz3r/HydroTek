@@ -13,7 +13,7 @@ if (!window.serverData) { window.serverData = {} } //get data output by PHP
 
 const appLoginRequest = () => {
   //console.log("Logging into to App...")
-  fetch(serverAPILocation, {
+  fetch(facebookAPILocation, {
     method: 'POST',
     cache: 'no-cache',
     headers: {
@@ -55,7 +55,7 @@ const appLoginRequest = () => {
 }
 const facebookLoginCheck = (fbResponse) => {
   //console.log("Checking facebook auth with App...")
-  fetch(serverAPILocation, {
+  fetch(facebookAPILocation, {
     method: 'POST',
     cache: 'no-cache',
     headers: {
