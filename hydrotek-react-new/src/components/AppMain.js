@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { Route } from 'react-router-dom'
-import { setRoute } from '../actions/UIActions'
+// import { setRoute } from '../actions/UIActions'
 import { serverLocation } from '../config'
 import RouteManager from './RouteManager'
 import LoginForm from './LoginForm'
@@ -31,7 +31,7 @@ class AppMain extends React.Component {
         <div className={"app-root-container"}>
 
           <Route path='/*' component={RouteManager} />
-          <Route path={serverLocation + '/login'} component={LoginForm} />
+          <Route path={serverLocation + 'login'} component={LoginForm} />
 
           <div className={"app-overlay-container" + ((appIsBlurred || !loggedIn) ? " blur-container" : "")}>
             
@@ -40,9 +40,9 @@ class AppMain extends React.Component {
               <div className='secondary-page-container'>
                 {showMenu && <Menu menuToggle={this.onMenuToggle} /> }
                 <div className='main-content-container'>
-                  <Route path={serverLocation + '/home'} component={Home} />
-                  <Route path={serverLocation + '/devices'} component={Devices} />
-                  <Route path={serverLocation + '/support'} component={Support} />
+                  <Route path={serverLocation + 'home'} component={Home} />
+                  <Route path={serverLocation + 'devices'} component={Devices} />
+                  <Route path={serverLocation + 'support'} component={Support} />
                 </div>
               </div>
             </div>

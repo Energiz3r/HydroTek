@@ -39,15 +39,10 @@ $navbar-height-h-break: 8rem;
   float: right;
   position: absolute;
   right: 2rem;
+  margin-top: 1.5rem;
 }
 
 @media only screen and (max-width: $width-breakpoint) {
-  .navbar-button{
-    font-size: $l-size;
-  }
-  .navbar-container {
-    height: $navbar-height-h-break;
-  }
   .navbar-container > h2 {
     margin-top: 2rem;
     margin-left: 2rem;
@@ -55,6 +50,12 @@ $navbar-height-h-break: 8rem;
   }
   .navbar-burger-button {
     width: 6rem;
+  }
+  .navbar-container {
+    height: $navbar-height-h-break;
+  }
+  .navbar-button{
+    font-size: $l-size;
   }
 }
 @media only screen and (max-height: $height-breakpoint) {

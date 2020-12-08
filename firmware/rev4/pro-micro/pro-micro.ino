@@ -4,14 +4,14 @@
  * 
  */
 
-//#define SERIAL_DEBUG //print output from BOTH the ESP8266 and the Pro Micro to serial
+#define SERIAL_DEBUG //print output from BOTH the ESP8266 and the Pro Micro to serial
 //#define RTC_SET //sets the time on the RTC to the time the sketch is compiled - upload the sketch, then ensure the sketch is re-uploaded with this commented-out afterwards otherwise the RTC will reset when the unit is powered on
 
 #define lamp1OnHour 5
 #define lamp1OffHour 23
 
 #define pump1Enable //run the pump every 4 hours
-#define pump1Duration 10 //seconds
+#define pump1Duration 30 //seconds
 
 #define enableFlow1 // uncomment to make a ticking sounds when activity from the flow sensors is detected
 //#define flowTicks
@@ -57,6 +57,7 @@ void drawInitial() {
 
 void setup() {
 
+  delay(2000);
   pinMode(buttonPin, INPUT_PULLUP);
   pinMode(floatSw1Pin, INPUT_PULLUP);
   pinMode(lamp1Pin, OUTPUT); //digitalWrite( lamp1Pin, HIGH); //default the relay to OFF

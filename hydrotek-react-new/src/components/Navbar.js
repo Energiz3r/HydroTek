@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { webpackDevServer } from '../config'
+import { appName, webpackDevServer } from '../config'
 
 class Navbar extends React.Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class Navbar extends React.Component {
     return (
       <div className="navbar-container">
         <button onClick={this.onMenuClick} className='button-default navbar-button navbar-burger-button'><i className="fas fa-bars fa-navbar"></i></button>
-        <h2>app</h2>
+        <h2>{appName}</h2>
         <h4 className='navbar-name'>{this.props.login.name}</h4>
         {this.props.loggedInFacebook && this.props.loggedIn && !webpackDevServer &&
           <div

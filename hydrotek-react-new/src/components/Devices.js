@@ -155,15 +155,15 @@ class Devices extends React.Component {
           <i className="fas fa-check device-save-icon device-save-complete-icon" style={
             this.state.saveComplete ? {
               'opacity': 1,
-              '-webkit-transition': 'none',
-              '-moz-transition': 'none',
-              '-ms-transition': 'none',
-              '-o-transition': 'none',
+              'WebkitTransition': 'none',
+              'MozTransition': 'none',
+              'MsTransition': 'none',
+              'OTransition': 'none',
             } : {
-              '-webkit-transition': 'opacity 2s ease-in-out',
-              '-moz-transition': 'opacity 2s ease-in-out',
-              '-ms-transition': 'opacity 2s ease-in-out',
-              '-o-transition': 'opacity 2s ease-in-out',
+              'WebkitTransition': 'opacity 2s ease-in-out',
+              'MozTransition': 'opacity 2s ease-in-out',
+              'MsTransition': 'opacity 2s ease-in-out',
+              'OTransition': 'opacity 2s ease-in-out',
               'opacity': 0
             }}></i>
         </div>
@@ -255,7 +255,7 @@ class Devices extends React.Component {
                 <div className="device-option-container device-label-container">
                   <i className={"fas fa-leaf device-icon" + (plant.plantShowing ? " icon-selected" : "")}></i>
                   {/* TEXT */}
-                  <input className="device-label-input plant-name-input" type="text" data-tip="A friendly name for the plant being monitored by the device eg. 'Jalapenos'"
+                  <input className="device-label-input plant-name-input" type="text" data-tip="A friendly name for the plant being monitored by the device eg. 'Jalapenos'" placeholder="Device Name"
                     value={plant.plantName} onClick={(e)=>{e.stopPropagation()}}
                     onChange={(e)=>{
                       const { deviceList } = this.state

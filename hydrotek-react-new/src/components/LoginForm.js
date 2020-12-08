@@ -95,6 +95,8 @@ class LoginForm extends React.Component {
                     >
                   </div>}
 
+                {buildForDev && <p style={{'color':'red'}}>Dev mode enabled - facebook login button is disabled.</p>}
+
                 {createAccount && <div className="login-create-container">
                   <p>Please accept the terms and click Confirm to finish setting up your account</p>
                   <label className='login-create-label'>Name:</label>

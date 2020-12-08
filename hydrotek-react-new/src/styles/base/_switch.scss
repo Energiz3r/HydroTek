@@ -19,7 +19,7 @@ $switch-size: 1.6rem;
   border-radius: $switch-size;
   background-color: #ccc;
   margin: $switch-margin;
-  -webkit-transition: .4s;
+  WebkitTransition: .4s;
   transition: .4s;
 }
 
@@ -29,7 +29,7 @@ $switch-size: 1.6rem;
 }
 .switch-slider-on {
   background-color: white;
-  -webkit-transform: translateX($switch-size);
+  WebkitTransform: translateX($switch-size);
   -ms-transform: translateX($switch-size);
   transform: translateX($switch-size);
 }

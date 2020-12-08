@@ -30,8 +30,8 @@ if (!buildForDev) {
     })
   }.bind(this)
 } else {
-  console.log("Dev mode enabled - using dummy login...")
-  dummyLogin()
+  console.log("Dev mode enabled: using dummy login, skipping load of Facebook assets.")
+  //dummyLogin()
 }
 
 

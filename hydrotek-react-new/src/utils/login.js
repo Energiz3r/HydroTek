@@ -7,9 +7,9 @@ import {
   setUserDetails
 } from '../actions/loginActions'
 import { setRoute } from '../actions/UIActions'
-import {serverAPILocation,stopAtLoginResponse, simulateCreateAccount} from '../config'
+import { serverAPILocation } from '../config'
   
-if (!window.serverData) { window.serverData = {} }
+if (!window.serverData) { window.serverData = {} } //get data output by PHP
 
 const appLoginRequest = () => {
   //console.log("Logging into to App...")
@@ -80,9 +80,10 @@ const facebookLoginCheck = (fbResponse) => {
           console.log(result)
         }
       },
-      (error) => {
+      (error, result) => {
         console.log("error:")
         console.log(error)
+        console.log(result)
       }
     )
 }
@@ -103,24 +104,4 @@ export const facebookCallback = (response) => {
     }
   }  
   return false
-}
-
-export const dummyLogin = () => {
-  setTimeout(()=>{
-    store.dispatch(setLoginStatusFacebook(true))
-    if (!stopAtLoginResponse) {
-      store.dispatch(setLoginStatusApp(true))
-    }
-    if (simulateCreateAccount) {
-      store.dispatch(setCreateAccount())
-    }
-    console.log("Logging in... (dummy mode)")
-  }, 800)
-  if (!stopAtLoginResponse) {
-    setTimeout(()=>{
-      console.log("Logged in! (dummy mode)")
-      store.dispatch(setLoginStatus(true)) // delay the login so the login modal can fade out
-      store.dispatch(setRoute('devices'))
-    }, 1200)
-  }
 }

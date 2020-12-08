@@ -1,9 +1,12 @@
+export const appName = 'HydroTek'
+const prodSubfolder = 'plants/'
+const devSubFolder = ''
+
 //set to false for production
 export const buildForDev = true
-export const stopAtLoginResponse = false //affects dev only
-export const simulateCreateAccount = false //affects dev only
-const serverSubfolder = 'plants'
-//const serverSubfolder = ''
-export const serverLocation = '/' + serverSubfolder
+export const devDefaultRoute = 'devices'
+export const devDummyLogin = true
 
-export const serverAPILocation = 'api.php'
+export const serverLocation = '/' + (buildForDev ? devSubFolder : prodSubfolder)
+
+export const serverAPIEndpoint = 'api.php'

@@ -14,7 +14,7 @@
   left: 0;
   top: -1.5rem;
   z-index: 15; //required to ensure modal draws over everything
-  -webkit-transition: width 2s; /* Safari */
+  WebkitTransition: width 2s; /* Safari */
   transition: width 2s;
 }
 .modal-outer-container {
