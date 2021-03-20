@@ -1,0 +1,74 @@
+
+//login icon badges
+.login-badges-container {
+  //align-self: flex-end;
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 3rem;
+} .login-badges-container > i {
+  margin-top: .5rem;
+  margin-right: .7rem;
+}
+@media only screen and (max-width: $width-breakpoint) {
+  .login-badges-container {
+    display: none;
+  }
+}
+
+.login-form-container {
+  text-align: center;
+}
+
+//terms and conditions
+.terms-container {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+.terms-paragraph {
+  display: inline-block;
+  margin: 0 1rem 0 0;
+  padding: .5rem 0 0 0;
+}
+@media only screen and (max-width: $width-breakpoint) {
+  .terms-container{
+    margin-bottom: 1.4rem;
+  }
+}
+@media only screen and (max-height: $height-breakpoint) {
+  .terms-container{
+    margin-bottom: 1.4rem;
+  }
+}
+.terms-container-user {
+  justify-content: center;
+}
+
+.login-create-container {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  padding: 0 3rem 3rem 3rem;
+}
+
+.login-create-textinput {
+  padding: 1rem;
+  font-size: $m-size;
+}
+.login-create-label {
+  font-size: $l-size;
+}
+
+.login-error-text {
+  font-size: $l-size;
+  color: red;
+  padding-left: 2rem;
+}
+
+
+@media only screen and (max-width: $width-breakpoint) {
+
+}
