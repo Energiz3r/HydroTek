@@ -1,7 +1,37 @@
 # HydroTek
 ## An IoT Controller for Aquaponics, Hydroponics, and Aeroponics
 
-*Current revision: rev5*
+---
+### Status Update:
+
+This project is under active development and is not yet suitable for use by members of the public. If you wish to build this you should contact me to see if it's feasible at that time.
+As of writing, the hardware is mostly complete, but I am designing a new PCB to address minor issues and quality of life points, such as proper connectors for sensors instead of IDC header pins.
+Firmware is largely finished and, with an understanding of the format of the web requests, could be made to talk to any API for updating the device configuration or just simply logging of data.
+Management and reporting software comes in the form of a react / PHP / SQL based web app and is only 20% or thereabouts complete.
+Designs for the casing of the device will not be started until the PCB for the current revision is finalised and tested.
+
+---
+### Design:
+
+There are four components to this repository:
+* PCB cad file (created in PCBWeb for early revisions, then KiCad as of rev7)
+* Firmware for the ESP32
+* STL files for a case
+* The webb app for configuration and monitoring of the device
+
+Early revisions used an ESP8266 and an Arduino Nano, which communicated with each other over serial. Since discovering the ESP32 I've changed the design to simplify it greatly, however I've found a consistent issue with the gerber files produced by PCBWeb which has been ruining my manufactured PCBs. I've had to learn KiCad which I have struggled with, but am making progress.
+
+---
+
+### Overview:
+
+This device is designed to control lighting and nutrient delivery in a hydroponics environment. It has been designed for use primarily with my own run-to-waste hydroponic system, however could be applied to just about any setup where the same sensors and control outputs are relevant, such as airponics, aquaponics, or even a simple vegge patch.
+
+---
+
+*Hardware - Revision 6: 
+
+*latest built revision: rev5*
 (rev5 pictured below)
 
 ![alt-text](https://i.imgur.com/Od8aEW4l.jpg "Image")
@@ -15,31 +45,8 @@
 ![alt-text](https://i.imgur.com/RJYCEXgl.jpg "Image")
 
 ---
-## Menu Demo:
+## Device Options Menu Demo:
 https://www.youtube.com/watch?v=8toKR6Uxk_A
-
----
-### Status Update:
-
-This device is still under active development. See notes in below sections about how the device works and how much of the software is complete.
-
-Early revisions used an ESP8266 and an Arduino Nano, which communicated with each other over serial. Since discovering the ESP32 I've changed the design to simplify it greatly, however I've found a consistent issue with the gerber files produced by PCBWeb which has been ruining my manufactured PCBs. The tool is excellent otherwise but it looks like I will need to change to Eagle or KiCad or somesuch unless the vendor can release a patch.
-
-In the meantime, I've fixed the rev5 gerber files using a gerber editor such that they can be successfully manufactured. There are still issues with this board - the LED and buzzer are both connected to pins on the ESP32 which cannot serve as outputs. I have assembled a rev5 for testing and will soon be working on a 6th revision using the new PCB design tool.
-
----
-
-### Overview:
-
-There are four components to this repository:
-* PCB cad file (created in PCBWeb)
-* Firmware for the ESP32
-* STL files for a case
-* The cloud app for configuration and monitoring of the device
-
-The device has been designed for use with a run-to-waste hydroponic system, however could be applied to just about any setup where the sensors and control outputs are relevant, such as airponics, aquaponics, and even a simple vegge patch.
-
----
 
 ### Features:
 
@@ -70,18 +77,16 @@ I2C pH sensors *could* be connected using a kit [such as this](https://www.spark
 
 ### To Do (not started):
 
-* fetch the configuration for lamp / pump timings from online so the sketch doesn't need to be altered to make changes
+* finish API development to complete the feature of updating the device configuration as changes are made to it through the web interface
 * update the RTC time from online
 * WiFi configuration on the device, using buttons and a menu instead of by editing the sketch
-* Calculate actual flow from the flow sensors
+* Flow sensor calibration on the device, eg. 'pour 1L of water through the sensor then press OK'
 
 ---
 
-### Build instructions:
+### PCB Build instructions:
 
-The software for this is a bit incomplete. The hardware is good to go, so go ahead with that, but if you want to build this and use the online component as I've designed it, shoot me a message at cl@noobs.wtf and I'll sort out the things still needing to be done manually, such as creating an account and preparing the database for your hardware.
-
-Note: The capacitors, barrel jack, and LM7805 can be omitted if the intention is to only run HydroTek from a USB power source. 
+Note: The capacitors, barrel jack, and LM7805 can be omitted if the intention is to only run HydroTek from a reliable USB power source. 
 
 *(rev5)*
 
