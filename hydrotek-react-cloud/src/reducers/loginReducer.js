@@ -9,6 +9,11 @@ export default (state = reducerDefaultState, action) => {
         ...state,
         loggedInFacebook: action.status 
       }
+    case 'SET_LOGIN_ERROR':
+      return {
+        ...state,
+        loginError: true
+      }
     case 'SET_LOGIN_STATUS_APP':
       return {
         ...state,

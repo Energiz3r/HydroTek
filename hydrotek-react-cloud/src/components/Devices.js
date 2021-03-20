@@ -1,11 +1,12 @@
 import { connect } from 'react-redux'
 import { setRoute } from '../actions/UIActions'
-import { serverLocation, serverAPIEndpoint } from '../config'
+import { serverLocation, serverAPIEndpointDeviceConfig } from '../config'
 import ReactTooltip from "react-tooltip"
 import { demoDevices } from "../utils/demo-device"
 import { debounce } from 'lodash'
+import { getNowTimestamp, getFriendlyFromTimestamp, monthDiff } from '../utils/dateUtils'
 
-const serverAPILocation = serverLocation + serverAPIEndpoint
+const serverAPILocation = serverLocation + serverAPIEndpointDeviceConfig
 
 class Devices extends React.Component {
   constructor(props) {
@@ -29,6 +30,8 @@ class Devices extends React.Component {
     this.setState({
       waitingForSave: true
     })
+    console.log("Fetching device info from API:")
+    console.log(serverAPILocation)
     fetch(serverAPILocation, {
       method: 'POST',
       cache: 'no-cache',
@@ -232,6 +235,15 @@ class Devices extends React.Component {
               <i className={"fas fa-caret-right device-caret" + (device.deviceShowing ? " fa-rotate-90" : "")}></i>
             </div>
             {device.deviceShowing && <div>
+            <div className="device-option-container">
+              <label data-tip="The last time the device successfully connected to the internet">Last Seen Online</label>
+              {/* DATE */}
+              <div className={"device-last-seen-date-container"}>
+                <div className={"device-last-seen-date-text" + (monthDiff(device.lastSeenTimestamp, getNowTimestamp()) > 0 ? " device-last-seen-date-text-error" : "")}>
+                  { getFriendlyFromTimestamp(device.lastSeenTimestamp) }
+                </div>
+              </div>
+            </div>
             <div className="device-option-container">
               <label data-tip="Controls whether the device uploads sensor readings at all">Enable Online Logging</label>
               {/* TOGGLE */}

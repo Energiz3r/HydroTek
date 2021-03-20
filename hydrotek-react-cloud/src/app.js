@@ -4,21 +4,21 @@ import './styles/styles.scss'
 import AppMain from './components/AppMain'
 import { facebookCallback, dummyLogin } from './utils/login.js'
 import { store } from './stores/store'
-import { buildForDev } from './config'
+import { buildForDev, facebookAppID } from './config'
 import { BrowserRouter as Router } from 'react-router-dom'
 
 if (!buildForDev) {
 
   console.log("Including Facebook API...")
   const script = document.createElement("script");
-  script.src = "https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v5.0&appId=750335742141550&autoLogAppEvents=1";
+  script.src = "https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v5.0&appId=" + facebookAppID + "&autoLogAppEvents=1";
   script.async = true;
   document.body.appendChild(script);
 
   console.log("Setting up Facebook login handler...")
   window.fbAsyncInit = function() {
     FB.init({
-      appId: '750335742141550',
+      appId: facebookAppID,
       cookie: true,  // enable cookies to allow the server to access the session
       xfbml: false,
       status: true,

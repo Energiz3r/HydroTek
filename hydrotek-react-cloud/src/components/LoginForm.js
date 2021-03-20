@@ -61,6 +61,7 @@ class LoginForm extends React.Component {
   render() {
     const {
       loggedInFacebook,
+      loginError,
       loggedInApp,
       createAccount,
       responseErrorMessage,
@@ -82,7 +83,9 @@ class LoginForm extends React.Component {
 
                 <h2>Welcome to App!</h2>
 
-                {loggedInFacebook && !loggedInApp && !createAccount && <p>Logging in...</p>}
+                {loggedInFacebook && !loggedInApp && !createAccount && !loginError && <p>Logging in...</p>}
+
+                {loginError && <p className="login-error-message">Login error. See developer console for information.</p>}
 
                 {!buildForDev && !loggedInFacebook && 
                   <div

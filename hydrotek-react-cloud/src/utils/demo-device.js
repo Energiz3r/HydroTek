@@ -1,6 +1,7 @@
 export const demoDevices = [
     {
         deviceLabel: "Big Tent",
+        lastSeenTimestamp: 1616278496000,
         loggingEnabled: true,
         uploadFrequency: 5,
         devicePlants: [
@@ -89,6 +90,7 @@ export const demoDevices = [
     },
     {
         deviceLabel: "Small Tent",
+        lastSeenTimestamp: 1593900896000,
         loggingEnabled: true,
         uploadFrequency: 1,
         devicePlants: [

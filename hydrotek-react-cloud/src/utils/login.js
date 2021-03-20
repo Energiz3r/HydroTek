@@ -3,17 +3,19 @@ import {
   setLoginStatusFacebook,
   setLoginStatusApp,
   setLoginStatus,
+  setLoginError,
   setCreateAccount,
   setUserDetails
 } from '../actions/loginActions'
 import { setRoute } from '../actions/UIActions'
-import { serverAPILocation } from '../config'
+import { serverAPIEndpointFacebook } from '../config'
   
 if (!window.serverData) { window.serverData = {} } //get data output by PHP
 
 const appLoginRequest = () => {
-  //console.log("Logging into to App...")
-  fetch(facebookAPILocation, {
+  console.log("Logging into to App...")
+  console.log(serverAPIEndpointFacebook)
+  fetch(serverAPIEndpointFacebook, {
     method: 'POST',
     cache: 'no-cache',
     headers: {
@@ -42,20 +44,23 @@ const appLoginRequest = () => {
           } else if (result.reason == 'no_facebook_session') {
             store.dispatch(setResponseErrorMessage("Invalid facebook session! Please refresh the page and try again."))
           } else {
+            store.dispatch(setLoginError())
             console.log("App auth failed for some reason. Response:")
             console.log(result)
           }          
         }
       },
       (error) => {
-        console.log("error:")
+        store.dispatch(setLoginError())
+        console.log("Error checking login state with app:")
         console.log(error)
       }
     )
 }
 const facebookLoginCheck = (fbResponse) => {
-  //console.log("Checking facebook auth with App...")
-  fetch(facebookAPILocation, {
+  console.log("Checking facebook auth with App...")
+  console.log(serverAPIEndpointFacebook)
+  fetch(serverAPIEndpointFacebook, {
     method: 'POST',
     cache: 'no-cache',
     headers: {
@@ -76,12 +81,14 @@ const facebookLoginCheck = (fbResponse) => {
           appLoginRequest()
           //console.log("App accepted facebook auth!")
         } else {
+          store.dispatch(setLoginError())
           console.log("App failed facebook auth:")
           console.log(result)
         }
       },
       (error, result) => {
-        console.log("error:")
+        store.dispatch(setLoginError())
+        console.log("Login error while checking facebook login status with server:")
         console.log(error)
         console.log(result)
       }
@@ -98,6 +105,8 @@ export const facebookCallback = (response) => {
         facebookLoginCheck(response.authResponse)
       },1000)
     } else {
+      store.dispatch(setLoginError())
+      console.log("Failed to confirm facebook callback:")
       console.log(response)
       store.dispatch(setLoginStatusFacebook(false))
       store.dispatch(setLoginStatusApp(false))
