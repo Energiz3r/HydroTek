@@ -1,0 +1,9 @@
+node_modules/
+server/node_modules/
+public/bundle.js
+public/bundle.js.map
+server/public/bundle.js
+server/public/bundle.js.map
+.DS_Store
+package-lock.json
+src/config.js
