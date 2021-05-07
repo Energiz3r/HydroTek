@@ -2,7 +2,6 @@ import { connect } from 'react-redux'
 import { setInitialRoute, setRoute } from '../actions/UIActions'
 import {
   buildForDev,
-  serverAPILocation,
   serverLocation,
   devDefaultRoute,
   devDummyLogin

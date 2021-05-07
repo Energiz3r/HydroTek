@@ -1,0 +1,4 @@
+3-pin right angle molex PCB - p/n 172648-0103
+
+MIKROE-2168 display 4.3" capacitive touch I2C
+https://au.rs-online.com/web/p/lcd-colour-displays/1393635/
