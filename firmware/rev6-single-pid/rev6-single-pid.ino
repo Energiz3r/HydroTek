@@ -26,10 +26,16 @@
  */
 
 #define LOOP_SPEED 50 // frequency with which to update sensors and so on (every x ms). default 50. do not change
+#define HEATER_SPEED_RATIO 4 // how often the PID loop will cycle the grow lamp output when it is used as a heater.
+                             // 1 = 12 seconds, the shortest time. (minimum setting)
+                             // 2 = 24 seconds (12 x 2)
+                             // 3 = 36 seconds... and so on
+                             // increase this number to slow down the frequency at which your heater/lamp will cycle to
+                             // prevent rapid cooling / heating of the element
 
-//#define PREFERENCES_CLEAR //deprecated. can be reset from the settings menu. uncomment to erase settings from flash
+//#define PREFERENCES_CLEAR //uncomment to erase settings from flash
 //#define SET_RTC_MANUAL // uncomment to force setting the RTC time to the sketch compile time
-//#define offlineMode // deprecated. wifi can be disabled from the settings menu
+//#define offlineMode //deprecated... there is now a WIFI enable/disable setting in the menu
 //#define buttonDisable
 
 #include <pitches.h>
@@ -64,14 +70,14 @@ char* wifiSSID = "";
 char* wifiPassphrase =  "";
 
 #define webEndpoint "https://noobs.wtf/plants/device/upload.php" //the php script that the ESP8266 will connect to for uploading data
-#define lampHeaterTempVariance 0.5 // how much to allow the temp to vary from the desired setting before switching the state of the heater (lamp)
+#define lampHeaterTempVariance 1.5 // how much to allow the temp to vary from the desired setting before switching the state of the heater (lamp)
 #define buttonShortTime 30 //ms
 #define buttonLongTime 250 //ms
-//#define flowPulsesPerMl 0.45 //flow sensor pulses per mL of liquid (YF-S201 sensor = 0.45) //deprecated. now an item in the settings menu
+//#define flowPulsesPerMl 0.45 //flow sensor pulses per mL of liquid (YF-S201 sensor = 0.45) //now a config item configurable on the device
 #define buzzerChannel 1
-#define screenSleepTime 1 // how long to keep screen on for before sleeping (mins)
-#define buttonDebounceTime 10 //ms
-#define numMenuOptions 34
+#define screenSleepTime 1 // how long to keep screen on for before sleeping
+#define buttonDebounceTime 10
+#define numMenuOptions 33
 
 // ESP WiFi Includes
 #include <WiFi.h>
@@ -223,7 +229,6 @@ MenuOption configFlowEnable;
 MenuOption configFlowPulsesPerMl;
 MenuOption configDisplayType;
 MenuOption configEnableWifi;
-MenuOption configResetSettings;
 
 String getConfigItemDescription(int menuPos) {
   if (configUploadFrequencyMins.pos() == menuPos) { return configUploadFrequencyMins.title(); }
@@ -259,7 +264,6 @@ String getConfigItemDescription(int menuPos) {
   else if (configFlowPulsesPerMl.pos() == menuPos) { return configFlowPulsesPerMl.title(); }
   else if (configDisplayType.pos() == menuPos) { return configDisplayType.title(); }
   else if (configEnableWifi.pos() == menuPos) { return configEnableWifi.title(); }
-  else if (configResetSettings.pos() == menuPos) { return configResetSettings.title(); }
   else { return "Invalid"; }
 }
 
@@ -297,7 +301,6 @@ void incrementConfigItem(int menuPos, bool increment) {
   else if (configFlowPulsesPerMl.pos() == menuPos) { configFlowPulsesPerMl.adjustVal(increment); }
   else if (configDisplayType.pos() == menuPos) { configDisplayType.adjustVal(increment); }
   else if (configEnableWifi.pos() == menuPos) { configEnableWifi.adjustVal(increment); }
-  else if (configResetSettings.pos() == menuPos) { Serial.println("Erasing flash and rebooting..."); preferences.clear(); ESP.restart(); } // delete everything in the flash and reboot the ESP to recreate the structure
 }
 
 const String stringEnabled = "Enabled";
@@ -336,7 +339,6 @@ String getConfigItemValue(int menuPos) {
   else if (configFlowPulsesPerMl.pos() == menuPos) { return String(configFlowPulsesPerMl.floatVal()); }
   else if (configDisplayType.pos() == menuPos) { return String(configDisplayType.intVal()); }
   else if (configEnableWifi.pos() == menuPos) { return configEnableWifi.boolVal() ? stringEnabled : stringDisabled; }
-  else if (configResetSettings.pos() == menuPos) { return ""; }
   else { return "Invalid"; }
 }
 
@@ -444,9 +446,8 @@ void flashRead() {
 
   configEnableWifi.setBoolVal(             preferences.getBool("enablewifi", true));
 
-  int displayType = preferences.getUInt("displaytype", 0);
-  Serial.println("Display type: " + displayType);
-  configDisplayType.setIntVal(displayType);
+  Serial.println("Display type: " + preferences.getUInt("displaytype", 0));
+  configDisplayType.setIntVal(             preferences.getUInt("displaytype", 0));
   Serial.println("Loaded settings from flash!");
 }
 
@@ -562,7 +563,6 @@ void handleReceiveConfig(String webResponse) {
   configDisplayType.setIntVal( doc["configDisplayType"]);
 
   // configEnableWifi ... it would be a bit silly to set this parameter via an online app...
-  // reset settings not needed
 
   Serial.println("Updated config:");
   Serial.println(webResponse);
@@ -612,18 +612,106 @@ void tempCheckState() {
   }
 }
 
+//PID variables
+float temperature_read = 0;
+float set_temperature = 0;
+float PID_error = 0;
+float previous_error = 0;
+float elapsedTime, Time, timePrev;
+int PID_value = 0;
+
+//PID constants
+int kp = 9.1;   int ki = 0.1;   int kd = 0.1;
+int PID_p = 0;    int PID_i = 0;    int PID_d = 0;
+
+//the current duty cycle calculated by the PID loop
+int lampDutyCycle = 0;
+
+//temperature PID control for when Lamp is used as Heater
+unsigned int long lastSerialUpdate = 0;
+void heaterPIDUpdate() {
+  // First we read the real value of temperature
+  temperature_read = temp;
+  set_temperature = configLampHeaterTemp.floatVal();
+  //Next we calculate the error between the setpoint and the real value
+  PID_error = set_temperature - temperature_read;
+  //Calculate the P value
+  PID_p = kp * PID_error;
+  //Calculate the I value in a range on +-3
+  if(-3 < PID_error <3)
+  {
+    PID_i = PID_i + (ki * PID_error);
+  }
+
+  //For derivative we need real time to calculate speed change rate
+  timePrev = Time;                            // the previous time is stored before the actual time read
+  Time = millis();                            // actual time read
+  elapsedTime = (Time - timePrev) / 1000;
+  //Now we can calculate the D calue
+  PID_d = kd*((PID_error - previous_error)/elapsedTime);
+  //Final total PID value is the sum of P + I + D
+  PID_value = PID_p + PID_i + PID_d;
+
+  //We define PWM range between 0 and 255
+  if(PID_value < 0)
+  {    PID_value = 0;    }
+  if(PID_value > 255)  
+  {    PID_value = 255;  }
+  //Now we can write the PWM signal to the mosfet on digital pin D3
+  //analogWrite(lampPin,PID_value);
+  lampDutyCycle = PID_value;
+  previous_error = PID_error;     //Remember to store the previous error for next loop.
+
+  String PIDOutput = 
+  "Set temp: " + String(set_temperature) + 
+  " Real temp: " + String(temperature_read) + 
+  " PID_d: " + String(PID_d) + 
+  " PID_value: " + String(PID_value) + 
+  " Duty cycle: " + String(PID_value) +
+  " Elapsed time: " + String(elapsedTime);
+  if (millis() - lastSerialUpdate > 5000) {
+    Serial.println(PIDOutput);
+    lastSerialUpdate = millis();
+  }
+  
+}
+
 //turn lamp relay(s) on / off
-bool lampLastState = false;
+bool lampLastState = false; // used to know the status of the lamp elsewhere
+
+//unsigned int long lastLampDutyCycleUpdate = 0; // a timer for turning the lamp on / off
+int lampDutyCycleCount = 0;
 void lampSetState (String stateStr) {
-  bool state = stateStr == "ON";
+  
+  bool hourState = stateStr == "ON"; //the lamp state, requested by the normal lamp operation (hours based)
   bool invertLogic = configLampInvertLogic.boolVal();
-  //Serial.println("Lamp invert: " + String(invertLogic));
-  bool tempOverride = false;
-  if (!configLampHeaterMode.boolVal() && configTempEnable.boolVal() && configTempLampShutoff.boolVal() && temp > configTempLampShutoffTemp.floatVal()) {
-    tempOverride = true;
+  bool heaterMode = configLampHeaterMode.boolVal();
+  bool tempSensorEnabled = configTempEnable.boolVal();
+  bool heaterUsesHours = false; //add an option for this!
+  bool actualState = hourState;
+  bool heaterState = false;
+  
+  if (heaterMode) {
+    if (!tempSensorEnabled) {
+      Serial.println("Heater mode is enabled but temp sensor is not!");
+      return;
+    }
+    if (!heaterUsesHours || (heaterUsesHours && hourState)) {
+      heaterPIDUpdate();
+        if (lampDutyCycle > 1 && lampDutyCycle * HEATER_SPEED_RATIO >= lampDutyCycleCount) { //lamp ON (duty cycle > 1 to prevent short flashes)
+          heaterState = true;
+        } else {
+          heaterState = false;
+        }
+        lampDutyCycleCount++;
+        if (lampDutyCycleCount > 255 * HEATER_SPEED_RATIO) {
+          lampDutyCycleCount = 0;
+        }
+        actualState = heaterState; 
+    }
   }
   if (!invertLogic) {
-    if (state && !tempOverride) {
+    if (actualState) {
       digitalWrite(lampPin, LOW);
       lampLastState = true;
     } else {
@@ -631,7 +719,7 @@ void lampSetState (String stateStr) {
       lampLastState = false;
     }
   } else {
-    if (state && !tempOverride) {
+    if (actualState) {
       digitalWrite(lampPin, HIGH);
       lampLastState = true;
     } else {
@@ -639,33 +727,27 @@ void lampSetState (String stateStr) {
       lampLastState = false;
     }
   }
+  
 }
 
+//check whether the current time is during the lamp ON hours
 void lampCheckState (int currentHour) {
   if (configLampEnable.boolVal()) {
-    if (configLampHeaterMode.boolVal()) {
-      if (configTempEnable.boolVal()) {
-        if (temp > configLampHeaterTemp.floatVal() + lampHeaterTempVariance) {
-          lampSetState("OFF");
-        } else if (temp < configLampHeaterTemp.floatVal() - lampHeaterTempVariance) {
-          lampSetState("ON");
-        }
+    if (configLampEndHour.intVal() > configLampStartHour.intVal()) { //if the shutoff hour is later in the day than the turn on hour
+      if (currentHour < configLampEndHour.intVal() && currentHour >= configLampStartHour.intVal()) {
+        lampSetState("ON");
+      } else {
+        lampSetState("OFF");
       }
-    } else {
-      if (configLampEndHour.intVal() > configLampStartHour.intVal()) {
-        if (currentHour < configLampEndHour.intVal() && currentHour >= configLampStartHour.intVal()) {
-          lampSetState("ON");
-        } else {
-          lampSetState("OFF");
-        }
+    }
+    else if (configLampEndHour.intVal() < configLampStartHour.intVal()) { // if the shutoff hour is earlier than the turn on hour
+      if (currentHour >= configLampStartHour.intVal() || currentHour < configLampEndHour.intVal()) {
+        lampSetState("ON");
+      } else {
+        lampSetState("OFF");
       }
-      else if (configLampEndHour.intVal() < configLampStartHour.intVal()) {
-        if (currentHour >= configLampStartHour.intVal() || currentHour < configLampEndHour.intVal()) {
-          lampSetState("ON");
-        } else {
-          lampSetState("OFF");
-        }
-      }
+    } else if (configLampEndHour.intVal() == configLampStartHour.intVal()) { //if both hours are the same, assume on all the time
+      lampSetState("ON");
     }
   } else {
     lampSetState("OFF");
@@ -983,17 +1065,9 @@ void menuDraw() {
         } else if (getConfigItemValue(menuSelection) == "1") {
           display.print("Temp Only");
         }
-      } else if (menuSelection == 34) {
-        display.setCursor(lineX + 3, lineY(2));
-        display.print("R U sure?");
-        display.setTextSize(1);
-        display.setCursor(lineX + 3, lineY(4));
-        display.print("Press Up or Down to");
-        display.setCursor(lineX + 3, lineY(5));
-        display.print("confirm");
       } else {
         display.print(getConfigItemValue(menuSelection)); //print the current setting
-        if (menuSelection == 31) { // if adjusting the flow sensor ticks / mL setting
+        if (menuSelection == 31) { // if 
           display.setTextSize(1);
           display.setCursor(lineX, lineY(2));
           display.print("Hit OK to calibrate");
@@ -1284,7 +1358,6 @@ void setup() {
   configDisplayType.Init(32, "Select display type", "int", 1, 0);
 
   configEnableWifi.Init(33, "Enable WiFi", "bool", 0, 0);
-  configResetSettings.Init(34, "Reset Settings", "bool", 0, 0);
 
   pinMode(floatSw1Pin, INPUT_PULLUP);
   pinMode(floatSw2Pin, INPUT_PULLUP);
@@ -1332,19 +1405,11 @@ void setup() {
 
 bool flowLastState = false;
 int long unsigned lastSensorUpdate = 0;
-int long unsigned lastSerialUpdate = 0;
 bool wifiConnOnce = false; // track whether wifi ever connected
 bool calledWifiBegin = false; //track whether WiFi.begin() was called (only do this once, but we don't do this in setup() as we need to wait a while for the stack to be ready
 void loop () {
 
   unsigned int long curMillis = millis();
-
-  if (millis() - lastSerialUpdate > 60000) {
-    String upd = "";
-    upd = "Temp: " + String(temp) + " Target: " + String(configLampHeaterTemp.floatVal());
-    Serial.println(upd);
-    lastSerialUpdate = millis();
-  }
 
   if (curMillis - screenSleepLastAction > screenSleepTime * 60 * 1000) {
     screenIsSleeping = true;
