@@ -104,6 +104,12 @@ export const facebookCallback = (response) => {
         store.dispatch(setLoginStatusFacebook(true))
         facebookLoginCheck(response.authResponse)
       },1000)
+    } else if (response.status == "unknown") {
+      //store.dispatch(setLoginError())
+      console.log("Not known to facebook:")
+      console.log(response)
+      store.dispatch(setLoginStatusFacebook(false))
+      store.dispatch(setLoginStatusApp(false))
     } else {
       store.dispatch(setLoginError())
       console.log("Failed to confirm facebook callback:")

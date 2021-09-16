@@ -32,6 +32,13 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   devServer: {
+    //http2: true,
+    https: true,
+    // https: {
+    //   key: fs.readFileSync('/path/to/server.key'),
+    //   cert: fs.readFileSync('/path/to/server.crt'),
+    //   cacert: fs.readFileSync('/path/to/ca.pem'),
+    // },
     contentBase: path.join(__dirname, 'public'),
     historyApiFallback: {
       index: '/'

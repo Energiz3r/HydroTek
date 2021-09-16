@@ -48,14 +48,14 @@ class ApplicationBase extends React.Component {
   constructor() {
     super()
     this.state = {
-      displayMode: 'app'
+      displayMode: isIE ? 'IE' : 'app'
     }
   }
-  componentWillMount(){
-    if (isIE) {
-      this.setState({displayMode:'IE'})
-    }
-  }
+  // componentWillMount(){
+  //   if (isIE) {
+  //     this.setState({displayMode:'IE'})
+  //   }
+  // }
   render() {
     const { displayMode } = this.state
     if (displayMode == 'app') {

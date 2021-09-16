@@ -1,25 +1,26 @@
-import { connect } from 'react-redux'
-import { setRoute } from '../actions/UIActions'
+import { connect } from "react-redux";
+import { setRoute } from "../actions/UIActions";
 
 class Support extends React.Component {
   constructor(props) {
-    super(props)
-    this.state = {
-
-    }
-  }
-  onClick = () => {
-    this.props.dispatch(setRoute('home'))
+    super(props);
+    this.state = {};
   }
   render() {
     return (
       <div>
-          <h4>Support Info</h4>
-          <p>There <i>is</i> no support. Good luck!</p>
-          <button className='button-default' onClick={this.onClick}>Home</button>
+        <h1>Support</h1>
+        <p>
+          <a href="https://github.com/Energiz3r/HydroTek">
+            https://github.com/Energiz3r/HydroTek
+          </a>
+        </p>
+        <p>
+          <a href="https://noobs.wtf">https://noobs.wtf</a>
+        </p>
       </div>
-    )
+    );
   }
 }
 
-export default connect(state=>state)(Support)
+export default connect((state) => state)(Support);

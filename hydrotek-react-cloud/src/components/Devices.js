@@ -23,9 +23,6 @@ class Devices extends React.Component {
       
     }
   }
-  onHomeClick = () => {
-    this.props.dispatch(setRoute('home'))
-  }
   componentDidMount = () => {
     this.setState({
       waitingForSave: true

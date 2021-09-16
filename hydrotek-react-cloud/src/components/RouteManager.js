@@ -24,12 +24,12 @@ class RouteManager extends React.Component {
       const prev = prevProps.UI.route
       const next = this.props.UI.route
       if (prev != next) {
-        console.log("Route was: " + prev + ", setting to: " + next)
+        //console.log("Route was: " + prev + ", setting to: " + next)
         this.props.history.push(serverLocation + next)
       }
     }
     componentDidMount = () => {
-      console.log("Route manager loading.")
+      //console.log("Route manager loading.")
 
       const url = this.props.location.pathname //get the current url
       console.log("Route manager started at: " + url)
