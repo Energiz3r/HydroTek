@@ -4,43 +4,40 @@ import ReactTooltip from "react-tooltip";
 import { demoDevices } from "../utils/demo-device";
 import { DashboardDeviceTile } from "./DashboardDeviceTile";
 
-class DeviceDashboard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      deviceList: demoDevices,
-    };
-  }
-  componentDidMount = () => {
-    this.setState({
-      waitingForSave: true,
-    });
-  };
-  onDeviceAddClick = () => {
-    //create a device on the server and fetch the config
-  };
+import { createUseStyles, useTheme } from "react-jss";
+const useStyles = createUseStyles({
+  dashbTileContainer: {
+    borderRadius: "0.4rem",
+    padding: "0.5rem",
+    display: "grid",
+    gridTemplateColumns: "repeat(4, 1fr)",
+    gap: "1.5rem 1.5rem",
+  },
+  dashbContent: {
+    width: "100%",
+    maxWidth: "140rem",
+    alignItems: "stretch",
+    textAlign: "center",
+  },
+});
 
-  render() {
-    const { deviceList } = this.state;
+const DeviceDashboard = (props) => {
+  const theme = useTheme();
+  const classes = useStyles({ theme });
+  return (
+    <div className={classes.dashbContent}>
+      <h2>Devices Dashboard</h2>
 
-    return (
-      <div className="dashb-content">
-        <h2>Devices Dashboard</h2>
-
-        <div className="dashb-tile-container">
-          {deviceList.map((device, i) => (
-            <DashboardDeviceTile device={device} key={i} />
-          ))}
-        </div>
-
-        <ReactTooltip place="top" type="dark" effect="solid" />
-
-        <button className="button-default" onClick={this.onDeviceAddClick}>
-          +
-        </button>
+      <div className={classes.dashbTileContainer}>
+        {demoDevices.map((device, i) => (
+          <DashboardDeviceTile device={device} key={i} />
+        ))}
+        <DashboardDeviceTile isAddButtonOnly={true} />
       </div>
-    );
-  }
-}
+
+      <ReactTooltip place="top" type="dark" effect="solid" />
+    </div>
+  );
+};
 
 export default connect((state) => state)(DeviceDashboard);

@@ -19,7 +19,6 @@
     "node-sass": "^5.0.0",
     "normalize.css": "^8.0.1",
     "paste.js": "0.0.21",
-    "prop-types": "^15.7.2",
     "react": "",
     "react-animation-components": "",
     "react-dom": "",
@@ -37,6 +36,7 @@
     "validator": "^13.5.2"
   },
   "devDependencies": {
+    "@react-theming/storybook-addon": "^1.1.1",
     "@storybook/addon-actions": "^6.3.8",
     "@storybook/addon-essentials": "^6.3.8",
     "@storybook/addon-links": "^6.3.8",
@@ -49,6 +49,7 @@
     "eslint": "^7.22.0",
     "html-webpack-plugin": "^5.3.1",
     "prettier": "^2.4.0",
+    "prop-types": "^15.7.2",
     "webpack": "^5.36.2",
     "webpack-cli": "^4.5.0",
     "webpack-dev-server": "^3.11.2"

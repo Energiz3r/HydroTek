@@ -24,9 +24,6 @@ body,
   max-width: 100%;
   background-color: black;
 }
-body {
-  //background-color: rgb(247, 0, 0);
-}
 #app {
   background-color: rgb(43, 255, 0);
 }
@@ -108,4 +105,8 @@ a:hover {
 }
 .noSupportContainer > h2 {
   text-align: center;
+}
+
+.fa-stack {
+  height: 3rem;
 }
