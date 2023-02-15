@@ -4,6 +4,8 @@
 
 ---
 
+Visit [https://github.com/Energiz3r/hydrotek-react](https://github.com/Energiz3r/hydrotek-react) to access the react app which accompanies the hardware.
+
 ### Status Update:
 
 This project is under development. If you wish to build this you should contact me to see if it's feasible at the time.
