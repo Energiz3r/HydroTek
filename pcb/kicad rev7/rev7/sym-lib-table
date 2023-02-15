@@ -1,4 +1,7 @@
 (sym_lib_table
   (lib (name Arduino_Nano-cache)(type Legacy)(uri ${KICAD_TEMPLATE_DIR}/Arduino_Nano/Arduino_Nano-cache.lib)(options "")(descr ""))
   (lib (name ESP32_mini)(type Legacy)(uri "C:/Repos/HydroTek/pcb/kicad rev7/ESP32_mini_KiCad_Library/ESP32_mini.lib")(options "")(descr ""))
+  (lib (name 2022-08-08_02-26-27)(type Legacy)(uri "C:/Repos/HydroTek/pcb/kicad rev7/footprints/KiCAD/2022-08-08_02-26-27/2022-08-08_02-26-27.lib")(options "")(descr ""))
+  (lib (name 2022-08-08_02-27-11)(type Legacy)(uri "C:/Repos/HydroTek/pcb/kicad rev7/footprints/KiCAD/2022-08-08_02-27-11/2022-08-08_02-27-11.lib")(options "")(descr ""))
+  (lib (name 2022-08-08_02-28-42)(type Legacy)(uri "C:/Repos/HydroTek/pcb/kicad rev7/footprints/KiCAD/2022-08-08_02-28-42/2022-08-08_02-28-42.lib")(options "")(descr ""))
 )

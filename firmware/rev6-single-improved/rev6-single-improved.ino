@@ -42,16 +42,16 @@
 #define floatSw2Pin 5 // OK
 #define dhtPin 16 // OK (dht2: 17)
 #define flowPin 25 // OK (flow2: 32)
-#define lampPin 18 // OK - untested (lamp2: 18) 19 originally - bridged to ground on current PCB
-#define pumpPin 26 // OK - untested (pump2: 36)
+#define lampPin 18 // untested (lamp2: 18) 19 originally - bridged to ground on current PCB
+#define pumpPin 26 // untested (pump2: 36)
 
 #define ledPin 33 // not working (pin is not an output)
 #define ledBrightness 20 // 0 - 255
-#define buzzPin 14 // not tested
-#define buttonPinOK 32 //
-#define buttonPinBK 27 //
-#define buttonPinUP 13 // TCK
-#define buttonPinDN 4 // IO4
+#define buzzPin 14 // OK (TMS)
+#define buttonPinOK 32 // OK
+#define buttonPinBK 27 // OK
+#define buttonPinUP 13 // OK (TCK)
+#define buttonPinDN 4 // OK (IO4)
 #define buttonDurationLong 
 
 #define aux1 19
